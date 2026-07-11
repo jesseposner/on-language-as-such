@@ -31,6 +31,9 @@ The translation and commentary were made in collaboration with Claude
 its commentary argues that the effectiveness of language models is
 itself evidence for Benjamin's account of language.
 
+The commentary also owes a standing debt to Michael Millerman, in
+conversation with whom the essay was first worked through.
+
 ## License
 
 Translation, commentary, and epilegomena © 2026 Jesse Posner, licensed
