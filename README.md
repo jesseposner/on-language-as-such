@@ -24,6 +24,13 @@ original readable in parallel.
   annotated bibliography. The received English translation (E. Jephcott)
   is cited comparatively under fair use.
 
+## Acknowledgment
+
+The translation and commentary were made in collaboration with Claude
+(Anthropic) — a fact this edition regards as more than incidental, since
+its commentary argues that the effectiveness of language models is
+itself evidence for Benjamin's account of language.
+
 ## License
 
 Translation, commentary, and epilegomena © 2026 Jesse Posner, licensed
