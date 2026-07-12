@@ -24,6 +24,14 @@ original readable in parallel.
   annotated bibliography. The received English translation (E. Jephcott)
   is cited comparatively under fair use.
 
+## A living edition
+
+The edition is maintained as a living document. Published, reader-visible
+changes are recorded in the site's
+[Revision History](https://jesseposner.github.io/on-language-as-such/#revisions)
+and in [CHANGELOG.md](CHANGELOG.md). Substantive revisions follow the gated
+review process documented in [EDITORIAL.md](EDITORIAL.md).
+
 ## Acknowledgment
 
 The translation and commentary were made in collaboration with Claude

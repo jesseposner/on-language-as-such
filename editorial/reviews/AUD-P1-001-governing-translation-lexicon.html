@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>AUD-P1-001 · Governing translation lexicon</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f6efe1;
+      --surface: #efe6d2;
+      --ink: #241d12;
+      --soft: #6b5f4b;
+      --rubric: #8e2f1c;
+      --rubric-soft: #a95a3f;
+      --rule: #d9cdb4;
+      --code: #e7dcc2;
+      --open-bg: #f4dfd5;
+      --open-ink: #722312;
+      --caution-bg: #f3e8c5;
+      --caution-ink: #594714;
+      --gain-bg: #e5ead5;
+      --gain-ink: #38451f;
+      --cost-bg: #f2ddd4;
+      --cost-ink: #6c291a;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #171310;
+        --surface: #100d0b;
+        --ink: #e6dbc4;
+        --soft: #a2937a;
+        --rubric: #d97a55;
+        --rubric-soft: #b7683f;
+        --rule: #3b332a;
+        --code: #26201a;
+        --open-bg: #351a14;
+        --open-ink: #efad91;
+        --caution-bg: #302817;
+        --caution-ink: #d7c173;
+        --gain-bg: #202817;
+        --gain-ink: #becd8d;
+        --cost-bg: #321b16;
+        --cost-ink: #e4a18a;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 17px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      line-height: 1.68;
+    }
+    a { color: var(--rubric); text-underline-offset: .16em; }
+    header, main, footer { width: min(100% - 2rem, 78rem); margin-inline: auto; }
+    header { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+    .eyebrow, .meta, .status, th, .decision-label, .label, .number, .metric strong {
+      font-family: "Avenir Next", Avenir, "Gill Sans", "Helvetica Neue", sans-serif;
+    }
+    .eyebrow { margin: 0 0 .4rem; color: var(--rubric); letter-spacing: .14em; text-transform: uppercase; font-size: .74rem; }
+    h1, h2, h3 { font-family: Baskerville, "Hoefler Text", Georgia, serif; line-height: 1.18; }
+    h1 { margin: 0; max-width: 20ch; font-size: clamp(2.1rem, 6vw, 4.4rem); font-weight: 600; }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.55rem, 3vw, 2.2rem); font-weight: 600; }
+    h3 { margin: 1.8rem 0 .65rem; font-size: 1.18rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: .55rem 1.5rem; margin-top: 1.5rem; color: var(--soft); font-size: .82rem; }
+    .status { display: inline-block; padding: .2rem .55rem; border: 1px solid currentColor; color: var(--open-ink); background: var(--open-bg); letter-spacing: .08em; text-transform: uppercase; font-size: .7rem; }
+    main { padding: 2.8rem 0 5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem); gap: 3.5rem; align-items: start; }
+    article { min-width: 0; }
+    aside { position: sticky; top: 1.5rem; padding: 1.25rem; background: var(--surface); border-top: 3px solid var(--rubric); }
+    section { padding: 2.2rem 0; border-bottom: 1px solid var(--rule); }
+    section:first-child { padding-top: 0; }
+    p, ul, ol { margin: .7rem 0 1rem; }
+    li { margin-bottom: .5rem; }
+    blockquote { margin: 1rem 0; padding: .9rem 1.1rem; background: var(--surface); border-left: 3px solid var(--rubric-soft); }
+    code { padding: .08em .28em; background: var(--code); font-size: .88em; overflow-wrap: anywhere; }
+    pre { overflow-x: auto; padding: 1rem; background: var(--code); border: 1px solid var(--rule); font-size: .82rem; line-height: 1.55; white-space: pre-wrap; }
+    pre code { padding: 0; background: transparent; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .9rem; }
+    th, td { padding: .7rem .6rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+    th { color: var(--rubric); letter-spacing: .06em; font-size: .72rem; text-transform: uppercase; }
+    .lede { max-width: 68ch; font-size: 1.12rem; }
+    .callout { padding: 1rem 1.15rem; background: var(--caution-bg); color: var(--caution-ink); border: 1px solid currentColor; }
+    .callout strong { color: inherit; }
+    .option { padding: 1rem 1.15rem; border: 1px solid var(--rule); margin: 1rem 0; }
+    .option h3 { margin-top: 0; }
+    .tradeoff, .note { color: var(--soft); }
+    .decision-label { color: var(--rubric); letter-spacing: .09em; text-transform: uppercase; font-size: .72rem; }
+    .questions { counter-reset: question; list-style: none; padding: 0; }
+    .questions li { counter-increment: question; padding: .9rem 0 .9rem 2.3rem; border-bottom: 1px solid var(--rule); position: relative; }
+    .questions li::before { content: counter(question); position: absolute; left: 0; top: .9rem; color: var(--rubric); font-weight: 700; }
+    .toc { list-style: none; padding: 0; font-size: .88rem; }
+    .toc li { margin-bottom: .45rem; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .7rem; margin: 1.2rem 0; }
+    .metric { min-width: 0; padding: .85rem; background: var(--surface); border-top: 2px solid var(--rubric-soft); }
+    .metric strong { display: block; color: var(--rubric); font-size: 1.55rem; line-height: 1; }
+    .metric span { display: block; margin-top: .4rem; color: var(--soft); font-size: .78rem; line-height: 1.35; }
+    .balance { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1rem 0; }
+    .gain, .cost { padding: 1rem 1.1rem; border: 1px solid currentColor; }
+    .gain { background: var(--gain-bg); color: var(--gain-ink); }
+    .cost { background: var(--cost-bg); color: var(--cost-ink); }
+    .gain h3, .cost h3 { margin-top: 0; color: inherit; }
+    .samples { list-style: none; padding: 0; }
+    .sample { margin: 0 0 1rem; padding: 1rem; border: 1px solid var(--rule); }
+    .sample h3 { margin: 0 0 .8rem; font-size: 1.02rem; }
+    .readings { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .reading { min-width: 0; padding: .75rem; background: var(--code); }
+    .reading .label { display: block; margin-bottom: .35rem; color: var(--soft); font-size: .64rem; letter-spacing: .09em; text-transform: uppercase; }
+    .reading p { margin: 0; line-height: 1.48; }
+    footer { padding: 1.4rem 0 3rem; border-top: 1px solid var(--rule); color: var(--soft); font-family: "Avenir Next", Avenir, sans-serif; font-size: .78rem; }
+    :focus-visible { outline: 3px solid var(--rubric); outline-offset: 3px; }
+    @media (max-width: 900px) {
+      .metrics { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 800px) {
+      header { padding-top: 2.2rem; }
+      main { grid-template-columns: 1fr; gap: 1.5rem; }
+      aside { position: static; }
+      .readings, .balance { grid-template-columns: 1fr; }
+      table { display: block; overflow-x: auto; }
+    }
+    @media (max-width: 440px) {
+      .metrics { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+    @media print {
+      body { background: white; color: black; }
+      main { display: block; }
+      aside { position: static; margin-bottom: 2rem; }
+      a { color: black; }
+      .sample, .option { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Governing translation lexicon</h1>
+    <div class="meta">
+      <span class="status">Resolved</span>
+      <span><strong>Issue:</strong> AUD-P1-001</span>
+      <span><strong>Priority:</strong> P1 · translation integrity</span>
+      <span><strong>Opened:</strong> 2026-07-12</span>
+      <span><strong>Released edition:</strong> 2026.07.12.2</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="question">
+        <h2>The question before the edition</h2>
+        <p class="lede">The translation’s most original decision is also its most consequential: it renders Benjamin’s recurrent <code>geistiges Wesen</code> as “quintessence,” extends that choice to “quintessential” for other forms of <code>geistig</code>, and formerly rendered both <code>Sache</code> and <code>Materie</code> as “matter.” The result is a vivid English metaphysics. The editorial question was whether that metaphysics belongs in the default reading text, in an interpretive gloss, or in a separately labeled alternate translation.</p>
+        <div class="callout"><strong>Recommendation A+ and its focused subdecisions were approved on 2026-07-12.</strong> The full policy disclosure remains in the translator’s note, the seven <code>Sache</code> readings follow local function while “matter” is reserved for <code>Materie</code>, and AUD-P1-001C removes the redundant opening notice while exposing the Revision History beneath the byline. Final local verification is recorded below; the known ¶1 German restoration remains coordinated separately with AUD-P0-002.</div>
+      </section>
+
+      <section id="policy">
+        <h2>The adopted policy, in its own words</h2>
+        <blockquote>
+          <p><code>Geistiges Wesen</code> remains “quintessence” throughout; related adjective slots remain “quintessential”; bare <code>Geist</code> and compounds remain in the spirit-family. This is an interpretive redeployment, not a claim of literal equivalence. The German permits an alchemical reading; this English gathers and intensifies its dispersed nodes. Hamlet is identified as an English resonance, not a proposed source.</p>
+        </blockquote>
+        <p>The <a href="../../index.html#trnote">translator’s note</a> is unusually candid about this choice. It rejects Jephcott’s “mental” as psychologizing and “spiritual” as damaged in current English, then deliberately gives the <code>Geist</code> family two English networks: “quintessence” for the technical construction and “spirit” for the bare noun and compounds.</p>
+        <p>This is not a hidden error. It is an explicit theory of translation. The audit question is whether the theory provides readers enough access to Benjamin’s lexical structure before it asks them to inhabit the edition’s interpretation.</p>
+      </section>
+
+      <section id="corpus">
+        <h2>What the policy controls</h2>
+        <div class="metrics" aria-label="Corpus counts">
+          <div class="metric"><strong>45</strong><span><code>geistig… Wesen</code> constructions in the 26-paragraph German reading text</span></div>
+          <div class="metric"><strong>61</strong><span>quintessence-family forms in the current English reading text</span></div>
+          <div class="metric"><strong>7 + 3</strong><span><code>Sache</code> sites rendered contextually; <code>Materie</code> alone remains “matter”</span></div>
+          <div class="metric"><strong>2</strong><span><code>Inbegriff</code> occurrences displaced to “epitome” by the policy</span></div>
+        </div>
+        <p>The core construction appears in twelve paragraphs: ¶1 (1), ¶2 (5), ¶3 (5), ¶4 (5), ¶5 (2), ¶7 (4), ¶8 (6), ¶9 (3), ¶10 (7), ¶11 (4), ¶15 (2), and ¶26 (1). It therefore governs the argument’s opening definition, its name theory, its central identity thesis, revelation, Genesis, and the final purified definition.</p>
+        <table>
+          <thead><tr><th>German source field</th><th>Current English field</th><th>Editorial consequence</th></tr></thead>
+          <tbody>
+            <tr><td><code>geistiges Wesen</code> and inflections</td><td>“quintessence” and related noun forms</td><td>The technical term no longer visibly belongs to the <code>Geist</code> family.</td></tr>
+            <tr><td>Other adjectival <code>geistig</code>, including <code>geistige Inhalte</code> and <code>rein geistig</code></td><td>“quintessential contents,” “quintessential imparting,” “purely quintessential,” and related forms</td><td>The modern “most typical” sense is available even where no essence-noun occurs in German.</td></tr>
+            <tr><td>Bare <code>Geist</code>, <code>Sprachgeist</code>, and other compounds</td><td>“spirit” family</td><td>The German recurrence is divided into two English metaphysical vocabularies.</td></tr>
+            <tr><td><code>Inbegriff</code></td><td>“epitome”</td><td>The German term with the strongest ordinary claim to “quintessence” must move elsewhere.</td></tr>
+            <tr><td><code>Sache</code> and <code>Materie</code></td><td><code>Sache</code>: “factual subject matter,” “subject matter,” “object,” or “thing”; <code>Materie</code>: “matter”</td><td>The object/thing/subject-matter field is now distinct from material substance, with contextual variation disclosed.</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Counts were mechanically checked against the Edition 2026.07.12.2 paragraph DOM. The corrected German witness remains a separate pending issue.</p>
+      </section>
+
+      <section id="evidence">
+        <h2>Lexical and philosophical evidence</h2>
+        <h3><code>geistig</code> does not select one English register</h3>
+        <p>Modern <a href="https://www.duden.de/rechtschreibung/geistig">Duden</a> places <code>geistig</code> first in the field of mind, thought, and intellect; separately, it gives the sense “present only in thought” with <code>geistige Wesen</code> as its example, and lists “spiritual” as a learned synonym. This modern evidence cannot settle Benjamin’s 1916 usage, but it confirms the problem: the German spans mental, intellectual, ideational, and spiritual registers.</p>
+
+        <h3><code>Wesen</code> contributes essence, being, and entity</h3>
+        <p>The <a href="https://www.spektrum.de/lexikon/philosophie/wesen/2220">Metzler philosophy lexicon</a> traces philosophical <code>Wesen</code> to <em>essentia</em> and defines it as the enduring “what” of a being, including what is necessary and over-individual. That supports “essence” where Benjamin contrasts <code>geistiges Wesen</code> with <code>sprachliches Wesen</code>. In entity contexts—especially <code>ein geistiges Wesen</code> or “the highest” such being—English “being” can be more natural. A responsible policy therefore needs controlled contextual variation, not a blind replacement.</p>
+
+        <h3>“Quintessence” is meaningful, but adds determinate content</h3>
+        <p><a href="https://www.merriam-webster.com/dictionary/quintessence">Merriam-Webster</a> records three live senses: the fifth and highest element of ancient and medieval philosophy, an essence in its purest concentration, and the most typical exemplar. The current rendering is therefore neither arbitrary nor meaningless. Its difficulty is precisely that it is richly meaningful: it supplies a fifth-element and distillation model that <code>geistiges Wesen</code> does not lexically specify, while “quintessential” supplies a strong exemplary or superlative sense at adjective sites.</p>
+        <p>The 26-paragraph German text contains no <code>Quintessenz</code>. It does contain <code>Inbegriff</code> twice. Jephcott renders the first of those as “quintessence”; the present edition instead uses “epitome” because “quintessence” has been reassigned to <code>geistiges Wesen</code>. This does not by itself disqualify the new policy, but it shows that the policy remaps a system rather than solving one isolated word.</p>
+      </section>
+
+      <section id="precedent">
+        <h2>Translation precedent and scholarship</h2>
+        <table>
+          <thead><tr><th>Source</th><th>Rendering or finding</th><th>Weight</th></tr></thead>
+          <tbody>
+            <tr><td>Edmund Jephcott, <em>Selected Writings</em> I, pp. 62–74</td><td>Uses “mental being” and “linguistic being.” Elsewhere renders <code>Sache</code> contextually as factual subject matter, object, or thing, while preserving <code>Materie</code> as matter.</td><td>The received English precedent, but not a lexical authority. “Mental” can psychologize a term applied to lamps, things, nature, religion, and God.</td></tr>
+            <tr><td><a href="https://pureadmin.qub.ac.uk/ws/portalfiles/portal/437649173/Walter_Benjamins_Philosophy_of_Language.pdf">Alexei Procyshyn, “Walter Benjamin’s Philosophy of Language”</a>, pp. 10–16</td><td>Consistently describes the paired <code>sprachliche-</code> and <code>geistige Wesen</code> as “linguistic and spiritual essences.” His argument depends on preserving their relation while distinguishing them.</td><td>Directly relevant scholarship already cited throughout this edition. It supports “spiritual essence” as a viable technical English.</td></tr>
+            <tr><td><a href="https://mimesisjournals.com/ojs/index.php/aesthetica-preprint/article/download/1776/1408/">Rochelle Tobias, “The Expanse of the Sky”</a>, p. 139</td><td>Calls <code>geistig</code> notoriously difficult and lists spiritual, intellectual, ideational, intelligible, and mental. She treats Jephcott’s “mental” as comparatively neutral but insufficient to illuminate the idea or essence imparted.</td><td>Useful independent confirmation that no single ordinary English equivalent is complete.</td></tr>
+            <tr><td><a href="https://edizionicafoscari.unive.it/media/pdf/journals/the-journal-for-the-philosophy-of-language-mind-an/2022/2/iss-3-2-2022_HHwMCdR.pdf">Massimiliano De Villa, “Translation in Walter Benjamin’s Early Writings”</a>, p. 232 n. 19</td><td>Notes that Benjamin deliberately writes <code>Sache an sich</code>, not Kant’s <code>Ding an sich</code>.</td><td>Shows why “matter in itself” is not merely awkward: it obscures a philosophically marked wording.</td></tr>
+          </tbody>
+        </table>
+        <p>No precedent makes the decision for this edition. The evidence does establish that “spiritual essence” is an attested scholarly solution, “mental being” is the received solution, and “quintessence” is this edition’s interpretive innovation rather than an established equivalent.</p>
+      </section>
+
+      <section id="balance">
+        <h2>What “quintessence” gains—and what it costs</h2>
+        <div class="balance">
+          <div class="gain">
+            <h3>Gains</h3>
+            <ul>
+              <li>One memorable noun carries both essence and being without sounding like clinical psychology.</li>
+              <li>The word has genuine premodern philosophical and alchemical depth.</li>
+              <li>It resonates with the essay’s real language of magic, material community, densities, transformations, and residue.</li>
+              <li>It gives this translation a distinct interpretive voice and can provoke productive rereading.</li>
+            </ul>
+          </div>
+          <div class="cost">
+            <h3>Costs</h3>
+            <ul>
+              <li>The reader cannot see that <code>geistiges Wesen</code> and bare <code>Geist</code> share a German root.</li>
+              <li>The formal pair <code>geistiges Wesen / sprachliches Wesen</code> becomes asymmetric.</li>
+              <li>“Quintessential contents” naturally suggests representative or most-characteristic contents.</li>
+              <li>The rendering imports a specific fifth-element/distillation ontology and displaces <code>Inbegriff</code>.</li>
+            </ul>
+          </div>
+        </div>
+        <p>The alchemical reading is not invented: the German genuinely has magic of <code>Materie</code>, media of differing density, <code>Verwandlungen</code>, and a residue of the creative word. The former English amplified that network through “quintessence,” seven additional “matter” renderings of <code>Sache</code>, and interpretive vocabulary in the commentary. The approved policy removes the <code>Sache</code> amplification and labels the remaining effect of “quintessence” as the edition’s interpretive wager rather than independent lexical proof.</p>
+      </section>
+
+      <section id="samples">
+        <h2>Counterfactual samples under option B</h2>
+        <p>The following samples preserve the initial close-reading proposal for comparison. After editorial discussion, option B is no longer the provisional recommendation: “spiritual” was judged to overselect the source’s theological ambiguity and to carry unwanted contemporary religious and New Age connotations. The focused companion report shows how the retained wording behaves under the revised recommendation.</p>
+        <ol class="samples">
+          <li class="sample">
+            <h3>¶1.2–4 · adjective-only <code>geistige Inhalte</code></h3>
+            <div class="readings">
+              <div class="reading"><span class="label">Current</span><p>“the principle, directed toward the imparting of <strong>quintessential contents</strong>…”</p></div>
+              <div class="reading"><span class="label">Close-reading sample</span><p>“the principle directed toward the imparting of <strong>spiritual contents</strong>…”</p></div>
+            </div>
+          </li>
+          <li class="sample">
+            <h3>¶2.3–5 · the governing distinction</h3>
+            <div class="readings">
+              <div class="reading"><span class="label">Current</span><p>“to understand a linguistic essence one must always ask of which <strong>quintessence</strong> it is the immediate expression… This ‘itself’ is a <strong>quintessence</strong>.”</p></div>
+              <div class="reading"><span class="label">Close-reading sample</span><p>“to understand a linguistic essence one must always ask of which <strong>spiritual essence</strong> it is the immediate expression… This ‘itself’ is a <strong>spiritual essence</strong>.”</p></div>
+            </div>
+          </li>
+          <li class="sample">
+            <h3>¶4.11 · the theory’s primal problem</h3>
+            <div class="readings">
+              <div class="reading"><span class="label">Current</span><p>“Mediality, which is the immediacy of all <strong>quintessential imparting</strong>, is the fundamental problem…”</p></div>
+              <div class="reading"><span class="label">Close-reading sample</span><p>“Mediality, which is the immediacy of all <strong>spiritual imparting</strong>, is the fundamental problem…”</p></div>
+            </div>
+          </li>
+          <li class="sample">
+            <h3>¶10.6 · the identity thesis</h3>
+            <div class="readings">
+              <div class="reading"><span class="label">Current</span><p>“as imparting, language imparts a <strong>quintessence</strong>, that is, an impartability as such.”</p></div>
+              <div class="reading"><span class="label">Close-reading sample</span><p>“as imparting, language imparts a <strong>spiritual essence</strong>—that is, impartability as such.”</p></div>
+            </div>
+          </li>
+          <li class="sample">
+            <h3>¶11.1 · degrees of being</h3>
+            <div class="readings">
+              <div class="reading"><span class="label">Current</span><p>“the equation of <strong>quintessence</strong> with linguistic essence… yields a gradation of all <strong>quintessential being</strong>…”</p></div>
+              <div class="reading"><span class="label">Close-reading sample</span><p>“the equation of <strong>spiritual</strong> with linguistic essence… yields a gradation of all <strong>spiritual being</strong>…”</p></div>
+            </div>
+          </li>
+          <li class="sample">
+            <h3>¶12.4 and ¶26.2 · adjective and final definition</h3>
+            <div class="readings">
+              <div class="reading"><span class="label">Current</span><p>“immaterial and <strong>purely quintessential</strong>…” / “The language of a being is the medium in which its <strong>quintessence</strong> imparts itself.”</p></div>
+              <div class="reading"><span class="label">Close-reading sample</span><p>“immaterial and <strong>purely spiritual</strong>…” / “The language of a being is the medium in which its <strong>spiritual essence</strong> imparts itself.”</p></div>
+            </div>
+          </li>
+        </ol>
+        <p class="note">These remain useful counterfactuals: they demonstrate both the lexical visibility option B would recover and the theological/idiomatic pressure it would introduce. See <a href="AUD-P1-001A-quintessence-recommendation.html#progression">AUD-P1-001A’s retained-wording sequence</a> for the current direction.</p>
+      </section>
+
+      <section id="sache">
+        <h2><code>Sache</code> and <code>Materie</code>: a separate lexical collapse</h2>
+        <p>The German uses <code>Sache</code> seven times—twice in ¶7 and five times in ¶16—and <code>Materie</code> three times, in ¶12, ¶14, and ¶18. Before this decision, the English rendered all ten as “matter.” Modern <a href="https://www.duden.de/rechtschreibung/Sache">Duden</a> gives “thing, object, something,” an affair or circumstance, and the object or actual subject at issue among the central senses of <code>Sache</code>. Its entry for <a href="https://www.duden.de/rechtschreibung/Materie"><code>Materie</code></a> leads with material substance and includes the philosophical reality opposed to <code>Geist</code>.</p>
+        <p>The former collapse was especially consequential because “magic of matter” correctly translates <code>Magie der Materie</code> in ¶12. Repeating “matter” for every <code>Sache</code> made the bourgeois theory of reference and the thing-in-itself formulation sound material, strengthening the very alchemical network used to defend “quintessence.” The approved contextual renderings remove that false reinforcement.</p>
+        <table>
+          <thead><tr><th>Location</th><th>German</th><th>Former reading</th><th>Approved reading</th></tr></thead>
+          <tbody>
+            <tr><td>¶7.5</td><td><code>eine Sache anderen Menschen</code></td><td>“some matter to other men”</td><td>“factual subject matter to other men”</td></tr>
+            <tr><td>¶7.7</td><td><code>ihr Gegenstand die Sache</code></td><td>“its object the matter”</td><td>“its object the subject matter”</td></tr>
+            <tr><td>¶16.9</td><td><code>das Wort zur Sache</code></td><td>“the word relates to the matter”</td><td>“the word relates to its object”</td></tr>
+            <tr><td>¶16.9</td><td><code>das Wesen der Sache</code></td><td>“the essence of the matter”</td><td>“the essence of the thing”</td></tr>
+            <tr><td>¶16.9</td><td><code>die Sache an sich</code></td><td>“the matter in itself”</td><td>“the thing in itself”</td></tr>
+            <tr><td>¶16.12</td><td><code>Diese Erkenntnis der Sache</code></td><td>“This knowledge of the matter”</td><td>“This knowledge of the thing”</td></tr>
+            <tr><td>¶16.12</td><td><code>der Name, den der Mensch der Sache gibt</code></td><td>“the name that man gives to the matter”</td><td>“the name that man gives to the thing”</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Approved and implemented policy:</strong> reserve unqualified “matter” for <code>Materie</code>; translate <code>Sache</code> by local function; and disclose the shift from <code>Ding</code> to <code>Sache</code> in ¶16 rather than manufacturing a false English invariant. The exact seven-site matrix was approved through AUD-P1-001B after comparison with the German and the canonical English.</p>
+      </section>
+
+      <section id="options">
+        <h2>Resolution options</h2>
+        <div class="option">
+          <h3>A. Retain “quintessence” as the sole reading text</h3>
+          <p>Keep all current quintessence-family renderings, identify the translation prominently as interpretive before the essay, add an occurrence glossary, and revise the commentary so the alchemical reading is presented as an editorial construction rather than independent lexical proof.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> preserves the edition’s strongest signature and cleanest noun, but readers still cannot directly inspect Benjamin’s <code>Geist</code> family in English. “Quintessential” remains especially exposed to its contemporary exemplary sense.</p>
+        </div>
+
+        <div class="option">
+          <h3>B. Make a close rendering the default; retain “quintessence” as gloss</h3>
+          <p>Use “spiritual essence” as the governing default, “spiritual being” where <code>Wesen</code> denotes an entity, and contextual “spiritual” for adjective-only sites. Preserve “quintessence” in the translator’s note and commentary as a named interpretive lens, not as the lexical surface.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> restores the visible <code>Geist</code> relation and aligns with significant scholarship, but “spiritual” carries religious and nonmaterial associations and the English will need carefully controlled variation.</p>
+        </div>
+
+        <div class="option">
+          <h3>C. Publish close and interpretive English layers</h3>
+          <p>Keep the present “quintessence” translation as an explicitly interpretive layer and add a complete close layer governed by option B. Make the close layer the default, give each layer durable citation metadata, and let readers compare them.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> turns the disagreement into a scholarly feature and preserves both achievements. It also doubles translation maintenance, requires a source architecture and permalink policy, and risks making commentary ambiguous about which wording it discusses.</p>
+        </div>
+
+        <div class="option">
+          <h3>D. Adopt the received “mental being”</h3>
+          <p>Follow Jephcott for maximum comparability with the standard English edition.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> supplies a known terminology but narrows <code>Geist</code> toward psychology and sits awkwardly with lamps, things, supra-individual spirit, religion, and God. Not recommended.</p>
+        </div>
+      </section>
+
+      <section id="recommendation">
+        <h2>Approved recommendation</h2>
+        <p>Adopt Recommendation A+ for the canonical reading text and the approved contextual <code>Sache</code>/<code>Materie</code> policy above. The initial option B recommendation is superseded, and the focused seven-site decision is complete.</p>
+        <ol>
+          <li>Retain “quintessence” for <code>geistiges Wesen</code> and “quintessential” in the related adjective slots throughout the canonical English.</li>
+          <li>Let recurrence establish the local technical sense in the reading text, while defining it fully in the translator’s note as “of or pertaining to quintessence,” not “most typical.”</li>
+          <li>State explicitly that the policy is an interpretive redeployment: it avoids the psychologizing pressure of “mental” and the over-theological and contemporary New Age pressure of “spiritual,” while sacrificing the visible <code>Geist</code> root.</li>
+          <li>Do not add a second English layer. Make the single translation’s wager inspectable through the German parallel, translator’s note, and commentary.</li>
+          <li>Reserve “matter” for <code>Materie</code>; render <code>Sache</code> contextually and explain the <code>Ding</code>/<code>Sache</code> shift in ¶16.</li>
+          <li>Reaudit every commentary claim built on the alchemical network. Retain source-grounded claims; relabel translation-generated resonances as this edition’s interpretation.</li>
+        </ol>
+        <p>The <a href="AUD-P1-001A-quintessence-recommendation.html">focused Recommendation A+ review</a> preserves the retired prefatory notice as historical evidence, alongside the seven-passage recurrence sequence, replacement translator’s-note language, commentary and epilogue examples, and the cleaner <code>Sache</code>/<code>Materie</code> result. <a href="AUD-P1-001C-opening-disclosure-and-history-link.html">AUD-P1-001C</a> records the superseding opening decision.</p>
+        <p>The approved seven-site decision and canonical-English control collation are recorded separately in <a href="AUD-P1-001B-sache-materie-renderings.html">AUD-P1-001B · Separating <code>Sache</code> from <code>Materie</code></a>.</p>
+      </section>
+
+      <section id="questions">
+        <h2>Decision state</h2>
+        <ul class="questions">
+          <li>The canonical English remains a single, explicitly interpretive translation.</li>
+          <li>Recommendation A+ governs <code>geistiges Wesen</code> and related <code>geistig</code> slots; no second English layer is added.</li>
+          <li>The edition lets recurrence establish the local term while explaining its gains and losses fully in the translator’s note and commentary.</li>
+          <li>“Matter” is reserved for <code>Materie</code>; the seven <code>Sache</code> sites use the approved contextual matrix and are disclosed in the translator’s note.</li>
+        </ul>
+      </section>
+
+      <section id="implementation">
+        <h2>Implementation boundary</h2>
+        <p>The approved A+ scope and focused <code>Sache</code>/<code>Materie</code> matrix were implemented through an occurrence ledger rather than an undifferentiated search-and-replace:</p>
+        <pre><code>source term       paragraph / sentence   source context
+current English   approved English       policy reason
+commentary uses   cross-references       verification state</code></pre>
+        <p>The ledger must cover all 45 <code>geistig… Wesen</code> constructions, every other quintessence-family rendering, both <code>Inbegriff</code> sites, all seven <code>Sache</code> sites, and all three <code>Materie</code> sites. It must also account for repeated quotations in the commentary, translator’s note, synthesis, epilogue, bibliography, and Revision History.</p>
+        <p class="callout"><strong>Separate later dependency:</strong> AUD-P0-002 is still resolving the final German readings. The later translation consistency pass must consume that approved witness, including the restored ¶1 <code>geistigen Inhalt</code> if adopted. It does not reopen the approved lexical policies recorded here unless the adopted witness supplies new evidence.</p>
+      </section>
+
+      <section id="acceptance">
+        <h2>Acceptance criteria</h2>
+        <p>AUD-P1-001 can be marked resolved only when:</p>
+        <ul>
+          <li>the canonical translation’s interpretive role is stated explicitly in the translator’s note and remains inspectable through the German parallel;</li>
+          <li>every occurrence governed by <code>geistig</code>, <code>geistiges Wesen</code>, <code>Inbegriff</code>, <code>Sache</code>, and <code>Materie</code> has an approved, reviewable disposition;</li>
+          <li>the formal relation between <code>geistiges Wesen</code> and <code>sprachliches Wesen</code> is either audible in English or its deliberate loss is disclosed;</li>
+          <li>“quintessence” is identified accurately as lexical rendering, interpretive gloss, or alternate layer according to the decision;</li>
+          <li>the translator’s note, commentary, synthesis, epilogue, bibliography, and repeated English quotations agree with the adopted policy;</li>
+          <li>no argument cites a resonance created by the translation as though it were independent German evidence;</li>
+          <li>mechanical counts and context review detect no stale wording;</li>
+          <li>desktop, mobile, keyboard, and paragraph/sentence deep-link checks pass;</li>
+          <li><code>CHANGELOG.md</code>, the public Revision History, edition marker, audit checklist, and this decision record agree.</li>
+        </ul>
+      </section>
+
+      <section id="record">
+        <h2>Decision and implementation record</h2>
+        <p><span class="decision-label">Discussion update · 2026-07-12</span><br>The editor regards “quintessence” as the best of the available imperfect options: “mental” psychologizes the concept, while “spiritual” overweights its theological ambiguity and carries unwanted contemporary religious and New Age associations. The editor further argues that the essay’s frequent repetition destabilizes the ordinary exemplary sense of “quintessential” and establishes a local technical use.</p>
+        <p><span class="decision-label">Decision · 2026-07-12</span><br>Recommendation A+ approved. Retain “quintessence” and “quintessential” throughout the canonical English; define their local technical sense before ¶1; disclose the interpretive redeployment and its lexical costs; add no second English layer; and recalibrate commentary and epilogue claims so English-generated resonances are not presented as independent German evidence.</p>
+        <p><span class="decision-label">Focused decision · 2026-07-12</span><br>AUD-P1-001B Option A approved as one matrix: “factual subject matter” and “subject matter” in ¶7; “object” at the word–referent relation in ¶16; “thing” at the remaining four ¶16 sites; “the thing in itself” for <code>die Sache an sich</code>; and a compact disclosure of the local <code>Ding</code>/<code>Sache</code> flattening.</p>
+        <p><span class="decision-label">Superseding presentation decision · 2026-07-12</span><br>AUD-P1-001C removes the standalone term notice before ¶1 while retaining the full translator’s note and all canonical wording. It also adds a visible “Living edition · Revision history” link beneath the byline.</p>
+        <p><span class="decision-label">Implementation · 2026-07-12</span><br>The final A+ disclosure and policy-language scope is implemented in <code>index.html</code>: full translator’s-note replacement, calibrated overview and ¶1 commentary, epilogue replacement, consistent <code>Geist</code> paraphrases, and no prefatory term notice. The seven approved <code>Sache</code> readings are implemented at <code>#u7-5</code>, <code>#u7-7</code>, <code>#u16-9</code>, and <code>#u16-12</code>, with synchronized commentary quotations, analysis, translator’s note, and Edition 2026.07.12.2 records. The title-area history link makes the living-edition record discoverable. No German wording changed.</p>
+        <p><span class="decision-label">Verification · 2026-07-12</span><br>Confirmed 7 German <code>Sache</code> sites and 3 <code>Materie</code> sites; all seven approved contextual readings; all three genuine “matter” readings; 61 quintessence-family forms; zero opening notices; one title-area Revision History link; a complete policy in <code>#trnote</code>; no stale former wording in live English surfaces; no duplicate IDs; valid JavaScript; and clean diff whitespace. Browser checks passed at 1440 px and 390 px in light and dark modes, including keyboard focus, desktop and mobile history-link activation, Revision History display, ¶1, ¶7, and ¶16 paragraph and sentence links, highlighted units, German display, responsive internal records, no reading-wrap overflow, and no console errors. The pre-existing mobile masthead-controls overflow remains assigned to its separate audit item.</p>
+        <p><span class="decision-label">Resolution</span><br>AUD-P1-001 is resolved in Edition 2026.07.12.2. The later post-witness consistency pass remains a separate audit task and does not prevent closure of this lexical-policy decision.</p>
+        <p><span class="decision-label">Publication · Edition 2026.07.12.2</span><br>The A+ policy, focused <code>Sache</code>/<code>Materie</code> matrix, commentary calibration, and living-edition navigation were published atomically. The release commit and tag are recorded in Git history.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Primary references</h2>
+        <ul>
+          <li><a href="https://www.kritiknetz.de/images/stories/texte/walter-benjamin-gesammelte-schriften-ii.pdf">Walter Benjamin, <em>Gesammelte Schriften</em> II.1</a>, pp. 140–157.</li>
+          <li>Edmund Jephcott, trans., “On Language as Such and on the Language of Man,” in <em>Selected Writings</em>, vol. 1 (Harvard/Belknap, 1996), pp. 62–74.</li>
+          <li><a href="https://pureadmin.qub.ac.uk/ws/portalfiles/portal/437649173/Walter_Benjamins_Philosophy_of_Language.pdf">Alexei Procyshyn, “Walter Benjamin’s Philosophy of Language”</a>, <em>Philosophy Compass</em> 9:6 (2014), 368–381.</li>
+          <li><a href="https://mimesisjournals.com/ojs/index.php/aesthetica-preprint/article/download/1776/1408/">Rochelle Tobias, “The Expanse of the Sky: Nature, History, and Dwelling in Celan and Hölderlin”</a>, <em>Aesthetica Preprint</em> 118 (2021), 137–159.</li>
+          <li><a href="https://doi.org/10.30687/Jolma/2723-9640/2022/02/005">Massimiliano De Villa, “Translation in Walter Benjamin’s Early Writings”</a>, <em>JoLMA</em> 3:2 (2022), 223–248.</li>
+          <li><a href="https://www.duden.de/rechtschreibung/geistig">Duden: <code>geistig</code></a>; <a href="https://www.duden.de/rechtschreibung/Sache"><code>Sache</code></a>; <a href="https://www.duden.de/rechtschreibung/Materie"><code>Materie</code></a>.</li>
+          <li><a href="https://www.spektrum.de/lexikon/philosophie/wesen/2220">Metzler Lexikon Philosophie: <code>Wesen</code></a>; <a href="https://www.merriam-webster.com/dictionary/quintessence">Merriam-Webster: “quintessence”</a>.</li>
+          <li><code>index.html</code>, <code>AUDIT.md</code>, and <code>EDITORIAL.md</code> in this repository.</li>
+        </ul>
+      </section>
+    </article>
+
+    <aside aria-label="Review contents">
+      <p class="eyebrow">AUD-P1-001</p>
+      <h2>Review contents</h2>
+      <ol class="toc">
+        <li><a href="#question">Question before the edition</a></li>
+        <li><a href="#policy">Adopted policy</a></li>
+        <li><a href="#corpus">Corpus and scope</a></li>
+        <li><a href="#evidence">Lexical evidence</a></li>
+        <li><a href="#precedent">Precedent and scholarship</a></li>
+        <li><a href="#balance">Interpretive gains and costs</a></li>
+        <li><a href="#samples">Sample renderings</a></li>
+        <li><a href="#sache"><code>Sache</code> / <code>Materie</code></a></li>
+        <li><a href="#options">Resolution options</a></li>
+        <li><a href="#recommendation">Recommendation</a></li>
+        <li><a href="#questions">Decision state</a></li>
+        <li><a href="#implementation">Implementation shape</a></li>
+        <li><a href="#acceptance">Acceptance criteria</a></li>
+        <li><a href="#record">Decision record</a></li>
+        <li><a href="#sources">Primary references</a></li>
+      </ol>
+      <p class="callout"><strong>Resolved:</strong> Recommendation A+ and its focused subdecisions are approved, implemented, verified, and published in Edition 2026.07.12.2.</p>
+    </aside>
+  </main>
+
+  <footer>
+    Internal review · resolved in Edition 2026.07.12.2 · noindex, unlisted, not access-controlled · governed by EDITORIAL.md
+  </footer>
+</body>
+</html>

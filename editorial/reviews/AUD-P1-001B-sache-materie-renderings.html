@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AUD-P1-001B · Separating Sache from Materie</title>
+  <style>
+    :root {
+      --paper: #f5efe2;
+      --surface: #eee4d1;
+      --surface-2: #e7dac2;
+      --ink: #251f16;
+      --soft: #685d4c;
+      --rubric: #8c321f;
+      --rule: #cdbfa5;
+      --recommended: #e4ead7;
+      --recommended-ink: #31421f;
+      --reserved: #f0dfcb;
+      --reserved-ink: #704020;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #171310;
+        --surface: #211b16;
+        --surface-2: #2a221b;
+        --ink: #e8dec9;
+        --soft: #b4a48b;
+        --rubric: #dc7a55;
+        --rule: #4b4033;
+        --recommended: #202817;
+        --recommended-ink: #c4d39a;
+        --reserved: #302217;
+        --reserved-ink: #e2ac7c;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+    a { color: var(--rubric); text-underline-offset: .18em; }
+    a:focus-visible { outline: 2px solid var(--rubric); outline-offset: 3px; }
+    code {
+      padding: .08em .28em;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      font-size: .9em;
+    }
+    header {
+      padding: 3.5rem max(1.5rem, calc((100vw - 76rem) / 2));
+      border-bottom: 1px solid var(--rule);
+    }
+    h1, h2, h3 { font-weight: 600; line-height: 1.25; }
+    h1 { max-width: 21ch; margin: .2rem 0 1rem; font-size: clamp(2.2rem, 5vw, 4.5rem); }
+    h2 { margin: 0 0 1rem; font-size: 1.55rem; }
+    h3 { margin: 1.2rem 0 .45rem; font-size: 1.08rem; }
+    p { margin: 0 0 1rem; }
+    .eyebrow, .meta, .status, .label, .toc, footer {
+      font-family: "Avenir Next", Avenir, "Helvetica Neue", sans-serif;
+    }
+    .eyebrow {
+      margin: 0;
+      color: var(--rubric);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .meta { display: flex; flex-wrap: wrap; gap: .65rem 1.4rem; color: var(--soft); font-size: .8rem; }
+    .status {
+      padding: .22rem .55rem;
+      border: 1px solid var(--rubric);
+      color: var(--rubric);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 17rem;
+      gap: 3rem;
+      max-width: 76rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    article { min-width: 0; }
+    article > section { padding: 0 0 2.7rem; margin: 0 0 2.7rem; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; }
+    .lede { max-width: 68ch; font-size: 1.18rem; }
+    .callout, .recommendation, .reserved {
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+    }
+    .recommendation { border-top: 3px solid var(--recommended-ink); background: var(--recommended); color: var(--recommended-ink); }
+    .reserved { border-top: 3px solid var(--reserved-ink); background: var(--reserved); color: var(--reserved-ink); }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin: 1.2rem 0; }
+    .metric { padding: 1rem; border: 1px solid var(--rule); background: var(--surface); }
+    .metric strong { display: block; color: var(--rubric); font-size: 2rem; line-height: 1; }
+    .metric span { display: block; margin-top: .45rem; color: var(--soft); font-size: .88rem; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+    th, td { padding: .65rem .7rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    th { color: var(--rubric); font-family: "Avenir Next", Avenir, sans-serif; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; }
+    .passage { margin: 1rem 0 1.5rem; padding: 1.15rem; border: 1px solid var(--rule); background: var(--surface); }
+    .passage h3 { margin-top: 0; }
+    .reading-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+    .reading-grid.four { grid-template-columns: repeat(4, 1fr); }
+    .reading { padding: .85rem; background: var(--paper); border-top: 2px solid var(--rule); }
+    .reading.recommended-reading { border-top-color: var(--recommended-ink); }
+    .label { display: block; margin-bottom: .35rem; color: var(--rubric); font-size: .69rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+    .reading p { margin: 0; }
+    .options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .option { padding: 1rem 1.1rem; border: 1px solid var(--rule); background: var(--surface); }
+    .option h3 { margin-top: 0; }
+    .tradeoff { color: var(--soft); font-size: .92rem; }
+    ul, ol { padding-left: 1.35rem; }
+    li { margin: .45rem 0; }
+    aside { position: sticky; top: 1.5rem; align-self: start; }
+    aside h2 { font-size: 1.15rem; }
+    .toc { padding-left: 1.2rem; font-size: .8rem; }
+    .toc li { margin: .5rem 0; }
+    aside .callout { margin-top: 1.2rem; font-size: .86rem; }
+    footer { padding: 1.2rem 1.5rem 2rem; border-top: 1px solid var(--rule); color: var(--soft); font-size: .76rem; text-align: center; }
+
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+      aside { position: static; order: -1; }
+      .toc { columns: 2; }
+    }
+    @media (max-width: 640px) {
+      header { padding-top: 2.4rem; }
+      main { padding: 2rem 1rem 4rem; }
+      .metrics, .reading-grid, .reading-grid.four, .options { grid-template-columns: 1fr; }
+      .toc { columns: 1; }
+      th, td { min-width: 8.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Separating <em>Sache</em> from <em>Materie</em></h1>
+    <div class="meta">
+      <span class="status">Resolved</span>
+      <span><strong>Report:</strong> AUD-P1-001B</span>
+      <span><strong>Parent issue:</strong> AUD-P1-001</span>
+      <span><strong>Prepared:</strong> 2026-07-12</span>
+      <span><strong>Released edition:</strong> 2026.07.12.2</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="question">
+        <h2>The question before the edition</h2>
+        <p class="lede">The German distinguishes seven uses of <code>Sache</code>—a thing, object, affair, or subject matter—from three uses of <code>Materie</code>, material substance. Before this decision, the English rendered all ten as “matter.” The governing distinction was already approved in principle; this review determined the exact English at each of the seven <code>Sache</code> sites.</p>
+        <div class="callout"><strong>Option A was explicitly approved, verified, and released in Edition 2026.07.12.2.</strong> The seven reading-text replacements, repeated commentary quotations, translator’s note, and public records agree.</div>
+      </section>
+
+      <section id="stakes">
+        <h2>Why the distinction matters</h2>
+        <div class="metrics" aria-label="Source-word counts">
+          <div class="metric"><strong>7</strong><span><code>Sache</code> sites: two in ¶7, five in ¶16.</span></div>
+          <div class="metric"><strong>3</strong><span><code>Materie</code> sites: ¶12, ¶14, and ¶18.</span></div>
+          <div class="metric"><strong>10</strong><span>Former English “matter” renderings across both source words.</span></div>
+        </div>
+        <p>“Magic of matter” in ¶12 directly translates <code>Magie der Materie</code>. Extending “matter” backward into the bourgeois communication model of ¶7 and forward into the word–thing relation of ¶16 makes those passages sound more materially and alchemically charged than their German source vocabulary warrants.</p>
+        <p>The correction is not mechanically simple. In ¶7, <code>Sache</code> is detachable subject matter within a means–object–addressee model. In ¶16, it is the object or thing to which a word and a name relate. Meanwhile Benjamin also writes <code>Gegenstand</code> (“object”) in ¶7 and <code>Ding</code> (“thing”) throughout ¶16. No one English invariant preserves all three German distinctions.</p>
+      </section>
+
+      <section id="canonical-english">
+        <h2>The canonical English as a control witness</h2>
+        <p>The review now collates every site against Edmund Jephcott’s standard English translation. The working reference is the private Carpe transcript at <code>artifacts/benjamin/text/jephcott-translation-transcript.md</code>, checked visually against Jesse’s PDF scan of the <em>Selected Writings</em> text at printed pp. 65 and 69. It is used here as a control witness, not as an authority that overrides the German.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Locus</th><th>Jephcott transcript</th><th>Editorial consequence</th></tr></thead>
+            <tbody>
+              <tr><td>¶7.5</td><td>“communicating <strong>factual subject matter</strong> to other men”</td><td>Strong precedent for the factual/content sense rather than material “matter.”</td></tr>
+              <tr><td>¶7.7</td><td>“its object <strong>factual</strong>”</td><td>The transcript is syntactically elliptical here. It confirms the factual register but is not clean copy to reproduce silently.</td></tr>
+              <tr><td>¶16.9a</td><td>“an accidental relation to its <strong>object</strong>”</td><td>“Object” is natural specifically at the word–referent relation.</td></tr>
+              <tr><td>¶16.9b</td><td>“the essence of the <strong>thing</strong>”</td><td>Jephcott changes terms within the paragraph rather than forcing one invariant.</td></tr>
+              <tr><td>¶16.9c</td><td>“the <strong>thing in itself</strong> has no word”</td><td>Preserves <code>an sich</code> more formally than “the thing itself.”</td></tr>
+              <tr><td>¶16.12a</td><td>“This knowledge of the <strong>thing</strong>”</td><td>Supports ordinary “thing” in the knowledge clause.</td></tr>
+              <tr><td>¶16.12b</td><td>“the name that man gives to <strong>language</strong> depends on how <strong>language</strong> is communicated to him”</td><td>A known error in the received translation: German <code>der Sache … wie sie</code> says the thing and how it imparts itself. This site must be corrected against the German, not followed.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="recommendation"><strong>Finding:</strong> the canonical English supports a contextual policy, but a more differentiated one than the first draft of this review. It points toward “factual subject matter” in ¶7, “object” for the relation in ¶16, and “thing” for essence, being-in-itself, knowledge, and naming—while its final “language” reading is precisely the slip this edition already identified and must not inherit.</p>
+        <p class="reserved"><strong>Visual verification completed:</strong> printed p. 65 confirms “communicating factual subject matter” and the exact elliptical phrase “its object factual.” Printed p. 69 confirms “relation to its object,” “essence of the thing,” “thing in itself,” “knowledge of the thing,” and the received error “the name that man gives to language depends on how language is communicated to him.” The Carpe transcript is accurate at every relevant locus.</p>
+      </section>
+
+      <section id="ledger">
+        <h2>The seven-site ledger</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Locus</th><th>German</th><th>Jephcott</th><th>Former English</th><th>Approved reading</th></tr></thead>
+            <tbody>
+              <tr><td>¶7.5</td><td><code>eine Sache anderen Menschen</code></td><td>“factual subject matter”</td><td>“some matter to other men”</td><td>“<strong>factual subject matter</strong> to other men”</td></tr>
+              <tr><td>¶7.7</td><td><code>ihr Gegenstand die Sache</code></td><td>“its object factual”</td><td>“its object the matter”</td><td>“its object the <strong>subject matter</strong>”</td></tr>
+              <tr><td>¶16.9a</td><td><code>das Wort zur Sache</code></td><td>“relation to its object”</td><td>“the word relates to the matter”</td><td>“the word relates to its <strong>object</strong>”</td></tr>
+              <tr><td>¶16.9b</td><td><code>das Wesen der Sache</code></td><td>“essence of the thing”</td><td>“the essence of the matter”</td><td>“the essence of the <strong>thing</strong>”</td></tr>
+              <tr><td>¶16.9c</td><td><code>die Sache an sich</code></td><td>“thing in itself”</td><td>“the matter in itself”</td><td>“the <strong>thing in itself</strong>”</td></tr>
+              <tr><td>¶16.12a</td><td><code>Diese Erkenntnis der Sache</code></td><td>“knowledge of the thing”</td><td>“This knowledge of the matter”</td><td>“This knowledge of the <strong>thing</strong>”</td></tr>
+              <tr><td>¶16.12b</td><td><code>der Name, den der Mensch der Sache gibt</code></td><td>“name … gives to language” <em>(error)</em></td><td>“the name that man gives to the matter”</td><td>“the name that man gives to the <strong>thing</strong>”</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="reserved"><strong>Boundary:</strong> the three genuine <code>Materie</code> renderings remain “matter”: “magic of matter” (¶12), creation “out of matter” (¶14), and “the imparting of matter in magical community” (¶18).</p>
+      </section>
+
+      <section id="paragraph-seven">
+        <h2>Decision 1 · ¶7 as detachable subject matter</h2>
+        <div class="passage">
+          <h3>¶7.5 · what the bourgeois model can transmit</h3>
+          <div class="reading-grid four">
+            <div class="reading"><span class="label">German</span><p><em>er teile eine Sache anderen Menschen mit</em></p></div>
+            <div class="reading"><span class="label">Former</span><p>“he imparts <strong>some matter</strong> to other men”</p></div>
+            <div class="reading"><span class="label">Jephcott</span><p>“communicating <strong>factual subject matter</strong> to other men”</p></div>
+            <div class="reading recommended-reading"><span class="label">Approved and implemented</span><p>“he imparts <strong>factual subject matter</strong> to other men”</p></div>
+          </div>
+        </div>
+        <div class="passage">
+          <h3>¶7.7 · means, object, addressee</h3>
+          <div class="reading-grid four">
+            <div class="reading"><span class="label">German</span><p><em>Das Mittel der Mitteilung ist das Wort, ihr Gegenstand die Sache, ihr Adressat ein Mensch.</em></p></div>
+            <div class="reading"><span class="label">Former</span><p>“the means of imparting is the word, its object <strong>the matter</strong>, its addressee a human being.”</p></div>
+            <div class="reading"><span class="label">Jephcott transcript</span><p>“the means of communication is the word, its object <strong>factual</strong>, and its addressee a human being.”</p></div>
+            <div class="reading recommended-reading"><span class="label">Approved and implemented</span><p>“the means of imparting is the word, its object <strong>the subject matter</strong>, its addressee a human being.”</p></div>
+          </div>
+        </div>
+        <p><strong>Why “factual subject matter” first, then “subject matter”:</strong> Jephcott’s first phrase accurately names the detachable what-about which the bourgeois model supposes words carry. The shorter noun phrase in the triad is cleaner than the transcript’s elliptical “its object factual” while keeping the same semantic field.</p>
+        <p><strong>Live alternatives:</strong> “some subject matter” stays closer to the German article; “something” is more idiomatic but too indefinite to recur in the triad; “the thing at issue” is precise in ¶7.7 but longer and less stable.</p>
+      </section>
+
+      <section id="paragraph-sixteen">
+        <h2>Decision 2 · ¶16 as object, then thing</h2>
+        <div class="passage">
+          <h3>¶16.9–11 · conventionalism and word-mysticism</h3>
+          <div class="reading-grid four">
+            <div class="reading"><span class="label">German</span><p><em>das Wort zur Sache … das Wesen der Sache … die Sache an sich</em></p></div>
+            <div class="reading"><span class="label">Former</span><p>“the word relates to the <strong>matter</strong> accidentally… the essence of the <strong>matter</strong>… the <strong>matter in itself</strong> has no word”</p></div>
+            <div class="reading"><span class="label">Jephcott</span><p>“an accidental relation to its <strong>object</strong>… the essence of the <strong>thing</strong>… the <strong>thing in itself</strong> has no word”</p></div>
+            <div class="reading recommended-reading"><span class="label">Approved and implemented</span><p>“the word relates to its <strong>object</strong> accidentally… the essence of the <strong>thing</strong>… the <strong>thing in itself</strong> has no word”</p></div>
+          </div>
+        </div>
+        <div class="passage">
+          <h3>¶16.12–13 · knowledge and naming</h3>
+          <div class="reading-grid four">
+            <div class="reading"><span class="label">German</span><p><em>Diese Erkenntnis der Sache … der Name, den der Mensch der Sache gibt</em></p></div>
+            <div class="reading"><span class="label">Former</span><p>“This knowledge of the <strong>matter</strong>… the name that man gives to the <strong>matter</strong>”</p></div>
+            <div class="reading"><span class="label">Jephcott</span><p>“This knowledge of the <strong>thing</strong>… the name that man gives to <strong>language</strong>” <em>(the received slip)</em></p></div>
+            <div class="reading recommended-reading"><span class="label">Approved and implemented</span><p>“This knowledge of the <strong>thing</strong>… the name that man gives to the <strong>thing</strong>”</p></div>
+          </div>
+        </div>
+        <p><strong>Why “object” only at the relation:</strong> Jephcott’s contextual move is persuasive here. A word has a relation to its object; the same passage then asks whether the word is the essence of the thing. English gains clarity by varying with the argument instead of forcing one invariant.</p>
+        <p><strong>Why “the thing in itself”:</strong> this now follows both the formal force of <code>an sich</code> and the received English. The phrase does carry Kantian resonance, but so does the German construction; “the thing itself” would reduce that formal pressure. The translator’s note should still disclose that English “thing” locally covers both <code>Ding</code> and <code>Sache</code>.</p>
+        <p><strong>Why depart from Jephcott at the final site:</strong> the received “name that man gives to language” is a documented translation error. German says the name given to the thing rests on how it imparts itself. The standard English is evidence here chiefly because it shows what must be corrected.</p>
+      </section>
+
+      <section id="options">
+        <h2>Resolution options</h2>
+        <div class="options">
+          <div class="option recommendation">
+            <h3>A. Canonical-informed contextual rendering · approved</h3>
+            <p>Use “factual subject matter” then “subject matter” in ¶7; use “object” at the word–referent relation in ¶16 and “thing” at the remaining four sites; retain “thing in itself”; correct Jephcott’s final “language” slip against the German.</p>
+            <p class="tradeoff">Best idiomatic and argumentative fit, with the standard English used as a control rather than copied mechanically.</p>
+          </div>
+          <div class="option">
+            <h3>B. Simplified subject matter / thing split</h3>
+            <p>Use “subject matter” twice in ¶7 and “thing” throughout ¶16, including “the thing itself.”</p>
+            <p class="tradeoff">The cleanest two-term policy, but less sensitive than Jephcott to the changing function of <code>Sache</code> within ¶16 and less exact about <code>an sich</code>.</p>
+          </div>
+          <div class="option">
+            <h3>C. Source-distinguishing “object” policy</h3>
+            <p>Use “subject matter” in ¶7 and “object” throughout ¶16, including “the object in itself.”</p>
+            <p class="tradeoff">Keeps <code>Sache</code> visibly apart from <code>Ding</code>, but collides with <code>Gegenstand</code> and makes the creation passage sound like later semiotics.</p>
+          </div>
+          <div class="option">
+            <h3>D. Retain “matter” with a note</h3>
+            <p>Leave the current edition’s English unchanged and explain that seven sites translate <code>Sache</code>, not <code>Materie</code>.</p>
+            <p class="tradeoff">Avoids revision but preserves a materially misleading merger inside the reading text. Not recommended.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="surfaces">
+        <h2>Everything that must change in lockstep</h2>
+        <ul>
+          <li><strong>Canonical text:</strong> the seven readings at <code>#u7-5</code>, <code>#u7-7</code>, <code>#u16-9</code>, and <code>#u16-12</code>.</li>
+          <li><strong>Translator’s note:</strong> the “Corrections of the received translation” item formerly said the name is given “to the matter” (<code>der Sache</code>).</li>
+          <li><strong>¶7 commentary:</strong> two unit quotations and the analysis formerly called <code>eine Sache</code> “factual matter.”</li>
+          <li><strong>¶16 commentary:</strong> both unit quotations and the paragraph explaining this edition’s rendering of <code>der Sache</code>.</li>
+          <li><strong>Policy note:</strong> one compact disclosure that ¶16 renders <code>Sache</code> contextually and that English “thing” locally covers both <code>Ding</code> and <code>Sache</code>.</li>
+          <li><strong>Records:</strong> exact old/new wording in <code>CHANGELOG.md</code>, the on-site Revision History at release, and the AUD-P1-001 decision record.</li>
+        </ul>
+        <p>The bibliography’s statement that the received translation was checked against German <code>der Sache</code> can remain; it names the source phrase without endorsing “matter.”</p>
+      </section>
+
+      <section id="questions">
+        <h2>Approved decisions</h2>
+        <ol>
+          <li>Use Jephcott’s “factual subject matter” at ¶7.5 and the cleaner “subject matter” at ¶7.7.</li>
+          <li>Use the canonical-informed ¶16 variation—“object” at the relation, then “thing” at the remaining four sites.</li>
+          <li>Render <code>die Sache an sich</code> as “the thing in itself.”</li>
+          <li>Treat Jephcott’s final “language” reading as a received error to correct against the German, not wording to preserve.</li>
+          <li>Adopt the compact translator’s-note disclosure and synchronized commentary changes in the same implementation.</li>
+          <li>Approve and implement the seven-site matrix as a unit; no locus remains open.</li>
+        </ol>
+      </section>
+
+      <section id="verification">
+        <h2>Implementation and verification</h2>
+        <ol>
+          <li>Applied exactly the approved seven reading-text replacements and synchronized every repeated quotation.</li>
+          <li>Confirmed all three <code>Materie</code> sites still read “matter.”</li>
+          <li>Confirmed the reading-text quintessence-family count remains 61.</li>
+          <li>Preserved the completed scan collation in the decision record: Jephcott printed pp. 65 and 69, corresponding to PDF image pages 2 and 4.</li>
+          <li>Confirmed no stale <code>Sache</code> → “matter” wording remains outside clearly labeled former readings and historical records.</li>
+          <li>Checked ¶7 and ¶16 paragraph and sentence links, German display, light and dark modes, desktop and mobile reading surfaces, and the internal review page.</li>
+          <li>Recorded every old/new pair in Edition <code>2026.07.12.2</code> and its public Revision History.</li>
+        </ol>
+      </section>
+
+      <section id="record">
+        <h2>Recommendation record</h2>
+        <p><span class="label">Prior decision · 2026-07-12</span>The editor approved separating <code>Sache</code> from <code>Materie</code> in principle while reserving all seven exact renderings for this focused review.</p>
+        <p><span class="label">Canonical-English collation · 2026-07-12</span>Every site checked against the private Carpe transcript and visually confirmed against Jesse’s scan at printed pp. 65 and 69. The received English supplies “factual subject matter,” “object,” and “thing” as contextual precedents, preserves “thing in itself,” and prints the known final “language” slip that must be corrected against the German.</p>
+        <p><span class="label">Decision · 2026-07-12</span>Option A approved as a unit: “factual subject matter” then “subject matter” in ¶7; “object” at ¶16.9a; “thing” at the remaining four ¶16 sites; “the thing in itself” for <code>die Sache an sich</code>; and an explicit note about the <code>Ding</code>/<code>Sache</code> flattening.</p>
+        <p><span class="label">Implementation · 2026-07-12</span>Implemented at <code>#u7-5</code>, <code>#u7-7</code>, <code>#u16-9</code>, and <code>#u16-12</code>, together with every repeated commentary quotation, the ¶7 and ¶16 analyses, the translator’s note, <code>CHANGELOG.md</code>, the on-site Edition 2026.07.12.2 entry, the audit checklist, and the parent decision records. The German reading text was not changed.</p>
+        <p><span class="label">Verification · 2026-07-12</span>Confirmed 7 German <code>Sache</code> sites and 3 <code>Materie</code> sites; all seven approved contextual readings; all three genuine “matter” readings; 61 quintessence-family forms; no stale former wording in the live English surfaces; no duplicate IDs; valid JavaScript syntax; and a clean <code>git diff --check</code>. Browser checks passed at 1440 px and 390 px in light and dark modes, including ¶7 and ¶16 paragraph and sentence links, highlighted units, German display, responsive review layout, no reading-wrap overflow, and no console errors. The pre-existing mobile masthead-controls overflow remains assigned to the separate mobile-apparatus audit item.</p>
+        <p><span class="label">Publication · Edition 2026.07.12.2</span>The <code>Sache</code> translation changes were published atomically with the governing translation-policy and living-edition navigation revisions. The release commit and tag are recorded in Git history.</p>
+      </section>
+
+      <section id="references">
+        <h2>References and related records</h2>
+        <ul>
+          <li><a href="AUD-P1-001-governing-translation-lexicon.html#sache">AUD-P1-001 · Governing translation lexicon</a> — source counts, lexical evidence, and the parent acceptance criteria.</li>
+          <li><a href="AUD-P1-001A-quintessence-recommendation.html#matter">AUD-P1-001A · Retaining “quintessence”</a> — the approved reason for reserving “matter” to genuine <code>Materie</code> anchors.</li>
+          <li><a href="../../index.html#p7">Current ¶7</a> and <a href="../../index.html#p16">current ¶16</a>.</li>
+          <li><a href="https://www.duden.de/rechtschreibung/Sache">Duden: <code>Sache</code></a>; <a href="https://www.duden.de/rechtschreibung/Materie">Duden: <code>Materie</code></a>.</li>
+          <li>Edmund Jephcott, trans., “On Language as Such and on the Language of Man,” in <em>Selected Writings</em>, vol. 1 (Harvard/Belknap, 1996), pp. 62–74; the canonical received English and a useful precedent for contextual rather than uniform rendering.</li>
+          <li>Private Carpe transcript: <code>artifacts/benjamin/text/jephcott-translation-transcript.md</code>, from Jesse’s scan of the <em>Selected Writings</em> text; consulted at ¶7 and ¶16 for this review and not a public-distribution source.</li>
+          <li>Jesse’s private PDF scan, <code>Benjamin-3-11-On Language as Such (2).pdf</code>, printed pp. 65 and 69 (PDF image pages 2 and 4); visually checked 2026-07-12.</li>
+        </ul>
+      </section>
+    </article>
+
+    <aside aria-label="Review contents">
+      <p class="eyebrow">AUD-P1-001B</p>
+      <h2>Review contents</h2>
+      <ol class="toc">
+        <li><a href="#question">Question before the edition</a></li>
+        <li><a href="#stakes">Why it matters</a></li>
+        <li><a href="#canonical-english">Canonical English</a></li>
+        <li><a href="#ledger">Seven-site ledger</a></li>
+        <li><a href="#paragraph-seven">¶7 · subject matter</a></li>
+        <li><a href="#paragraph-sixteen">¶16 · thing or object</a></li>
+        <li><a href="#options">Resolution options</a></li>
+        <li><a href="#surfaces">Repeated surfaces</a></li>
+        <li><a href="#questions">Approved decisions</a></li>
+        <li><a href="#verification">Verification</a></li>
+        <li><a href="#record">Recommendation record</a></li>
+        <li><a href="#references">References</a></li>
+      </ol>
+      <p class="callout"><strong>Resolved:</strong> Option A is approved, implemented, verified, and published in Edition 2026.07.12.2.</p>
+    </aside>
+  </main>
+
+  <footer>
+    Internal review · resolved in Edition 2026.07.12.2 · noindex, unlisted, not access-controlled · governed by EDITORIAL.md
+  </footer>
+</body>
+</html>

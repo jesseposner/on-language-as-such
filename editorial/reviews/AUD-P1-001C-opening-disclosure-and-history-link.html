@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AUD-P1-001C · Opening disclosure and Revision History link</title>
+  <style>
+    :root { color-scheme: dark; --paper:#171310; --ink:#e6dbc4; --soft:#b8aa91; --rule:#4b3e31; --accent:#e8794d; --panel:#211b16; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:18px/1.62 Georgia,serif; }
+    header { padding:3.2rem max(2rem,8vw) 2.6rem; border-bottom:1px solid var(--rule); }
+    main { display:grid; grid-template-columns:minmax(0,820px) minmax(220px,280px); gap:3rem; max-width:1200px; margin:auto; padding:2.6rem 2rem 5rem; }
+    article { min-width:0; }
+    aside { align-self:start; position:sticky; top:2rem; }
+    h1,h2,h3 { line-height:1.12; }
+    h1 { max-width:18ch; margin:.35rem 0 1.2rem; font-size:clamp(2.7rem,7vw,5.2rem); }
+    h2 { margin:2.6rem 0 .8rem; font-size:1.55rem; }
+    h3 { margin:1.5rem 0 .4rem; font-size:1.08rem; }
+    p { margin:.7rem 0; }
+    a { color:var(--accent); text-underline-offset:.18em; }
+    code { padding:.05rem .28rem; border:1px solid var(--rule); background:var(--panel); color:var(--ink); }
+    .eyebrow,.label,.meta,.status,.toc { font-family:system-ui,sans-serif; }
+    .eyebrow { color:var(--accent); font-size:.72rem; font-weight:700; letter-spacing:.13em; text-transform:uppercase; }
+    .meta { display:flex; flex-wrap:wrap; gap:.6rem 1.3rem; color:var(--soft); font-size:.78rem; }
+    .status { padding:.18rem .48rem; border:1px solid var(--accent); color:var(--accent); font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    .callout,.reading { margin:1.2rem 0; padding:1rem 1.1rem; border:1px solid var(--rule); background:var(--panel); }
+    .reading .label { display:block; color:var(--accent); font-size:.7rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+    .reading p { margin:.35rem 0 0; }
+    table { width:100%; border-collapse:collapse; margin:1rem 0; }
+    th,td { padding:.7rem; border:1px solid var(--rule); text-align:left; vertical-align:top; }
+    th { color:var(--accent); font-family:system-ui,sans-serif; font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; }
+    .toc { margin:0; padding-left:1.25rem; color:var(--soft); font-size:.82rem; }
+    .toc li { margin:.35rem 0; }
+    footer { border-top:1px solid var(--rule); padding:1.2rem 2rem 2rem; color:var(--soft); font:12px/1.5 system-ui,sans-serif; text-align:center; }
+    @media (max-width:800px) { main { grid-template-columns:1fr; padding:2rem 1.2rem 4rem; } aside { position:static; order:-1; } header { padding:2.4rem 1.2rem 2rem; } table { font-size:.88rem; } }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Opening disclosure and Revision History link</h1>
+    <div class="meta">
+      <span class="status">Resolved</span>
+      <span><strong>Issue:</strong> AUD-P1-001C</span>
+      <span><strong>Parent:</strong> AUD-P1-001</span>
+      <span><strong>Decision:</strong> 2026-07-12</span>
+      <span><strong>Released edition:</strong> 2026.07.12.2</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="question">
+        <h2>The opening problem</h2>
+        <p>The current local edition inserts a compact “Translation term · Quintessence” notice immediately before ¶1. The full translator’s note later provides the complete policy, while the reading text itself repeats the quintessence family 61 times. At the same time, the Revision History is technically linked from the footer and Sources, but not discoverable near the title.</p>
+        <div class="callout"><strong>Superseding editorial decision:</strong> remove the standalone opening notice, retain the full translator’s note, and use the newly available opening space for a compact “Living edition · Revision history” link beneath the byline.</div>
+      </section>
+
+      <section id="rationale">
+        <h2>Why this is the cleaner opening</h2>
+        <ul>
+          <li>The translation should begin with Benjamin’s first paragraph rather than an editorial warning.</li>
+          <li>The technical use is established by repetition and remains fully disclosed in the translator’s note.</li>
+          <li>The Revision History is structural information about the edition and should be visible before a reader begins.</li>
+          <li>Placing the link beneath the byline avoids adding another button to the already crowded mobile controls.</li>
+        </ul>
+      </section>
+
+      <section id="wording">
+        <h2>Exact reader-facing change</h2>
+        <div class="reading">
+          <span class="label">Remove before ¶1</span>
+          <p>“Translation term · Quintessence” and its explanatory paragraph.</p>
+        </div>
+        <div class="reading">
+          <span class="label">Add beneath the byline</span>
+          <p><a href="#">Living edition · Revision history</a></p>
+        </div>
+        <p>The new link targets <code>#revisions</code> through the existing <code>select(29)</code> navigation. Paragraph-level navigation to ¶1 will again target <code>#p1</code> directly.</p>
+      </section>
+
+      <section id="boundary">
+        <h2>Change boundary</h2>
+        <table>
+          <thead><tr><th>Surface</th><th>Disposition</th></tr></thead>
+          <tbody>
+            <tr><td>Canonical English and German</td><td>No wording changes.</td></tr>
+            <tr><td>Full translator’s note</td><td>Retain the complete quintessence policy and its caveats.</td></tr>
+            <tr><td>Commentary and epilogue</td><td>No change.</td></tr>
+            <tr><td>Opening term notice</td><td>Remove as redundant.</td></tr>
+            <tr><td>Revision History access</td><td>Add the exact link beneath the byline; retain existing footer and Sources links.</td></tr>
+            <tr><td>Edition marker</td><td>Publish as Edition 2026.07.12.2.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="verification">
+        <h2>Verification</h2>
+        <ol>
+          <li>Confirmed the opening notice and its now-unused CSS are absent.</li>
+          <li>Confirmed the full quintessence policy remains in <code>#trnote</code> and the reading-text family count remains 61.</li>
+          <li>Confirmed the title-area link opens <code>#revisions</code> and the displayed edition is 2026.07.12.2.</li>
+          <li>Confirmed ¶1 paragraph and sentence links target the reading text directly after the notice removal.</li>
+          <li>Checked desktop and mobile layouts in light and dark modes, keyboard focus, German display, overflow, and console errors.</li>
+          <li>Synchronized <code>CHANGELOG.md</code>, the public Edition 2026.07.12.2 entry, and the A+ decision records.</li>
+        </ol>
+      </section>
+
+      <section id="record">
+        <h2>Decision record</h2>
+        <p><span class="label">Original decision · 2026-07-12</span><br>AUD-P1-001A Recommendation A+ included a compact quintessence notice immediately before ¶1.</p>
+        <p><span class="label">Superseding decision · 2026-07-12</span><br>The editor approved a visible Revision History link beneath the title and judged the opening quintessence notice unnecessary. The full translator’s note remains the authoritative disclosure.</p>
+        <p><span class="label">Implementation · 2026-07-12</span><br>Removed <code>#term-quintessence</code> and its dedicated CSS; restored paragraph-level ¶1 navigation to <code>#p1</code>; added “Living edition · Revision history” beneath the byline with the existing <code>select(29)</code> behavior; and made the wrapped label one continuous tap target. The full translator’s note and all canonical wording remain unchanged.</p>
+        <p><span class="label">Verification · 2026-07-12</span><br>Confirmed zero opening notices, one title-area history link, 61 reading-text quintessence-family forms, a complete <code>#trnote</code> policy, no duplicate IDs, valid JavaScript, and clean diff whitespace. Browser checks passed at 1440 px and 390 px in light and dark modes, including keyboard focus, desktop and mobile link activation, Revision History display, ¶1 paragraph and sentence targets, German display, no reading-wrap overflow, and no console errors. The pre-existing mobile masthead-controls overflow remains assigned to its separate audit item.</p>
+        <p><span class="label">Publication · Edition 2026.07.12.2</span><br>The approved opening and Revision History changes were published with the governing translation-policy release. The release commit and tag are recorded in Git history.</p>
+      </section>
+    </article>
+
+    <aside aria-label="Review contents">
+      <p class="eyebrow">AUD-P1-001C</p>
+      <h2>Review contents</h2>
+      <ol class="toc">
+        <li><a href="#question">Opening problem</a></li>
+        <li><a href="#rationale">Rationale</a></li>
+        <li><a href="#wording">Exact change</a></li>
+        <li><a href="#boundary">Boundary</a></li>
+        <li><a href="#verification">Verification</a></li>
+        <li><a href="#record">Decision record</a></li>
+      </ol>
+      <div class="callout"><strong>Resolved:</strong> the approved notice removal and title-area history link are implemented, verified, and published in Edition 2026.07.12.2.</div>
+    </aside>
+  </main>
+
+  <footer>Internal review · resolved in Edition 2026.07.12.2 · noindex, unlisted, not access-controlled · governed by EDITORIAL.md</footer>
+</body>
+</html>

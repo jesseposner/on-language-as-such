@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>AUD-P0-001 · Rights and licensing</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f6efe1;
+      --surface: #efe6d2;
+      --ink: #241d12;
+      --soft: #6b5f4b;
+      --rubric: #8e2f1c;
+      --rubric-soft: #a95a3f;
+      --rule: #d9cdb4;
+      --code: #e7dcc2;
+      --open-bg: #f4dfd5;
+      --open-ink: #722312;
+      --caution-bg: #f3e8c5;
+      --caution-ink: #594714;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #171310;
+        --surface: #100d0b;
+        --ink: #e6dbc4;
+        --soft: #a2937a;
+        --rubric: #d97a55;
+        --rubric-soft: #b7683f;
+        --rule: #3b332a;
+        --code: #26201a;
+        --open-bg: #351a14;
+        --open-ink: #efad91;
+        --caution-bg: #302817;
+        --caution-ink: #d7c173;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 17px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      line-height: 1.68;
+    }
+    a { color: var(--rubric); text-underline-offset: .16em; }
+    header, main, footer { width: min(100% - 2rem, 76rem); margin-inline: auto; }
+    header { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+    .eyebrow, .meta, .status, th, .decision-label {
+      font-family: "Avenir Next", Avenir, "Gill Sans", "Helvetica Neue", sans-serif;
+    }
+    .eyebrow { margin: 0 0 .4rem; color: var(--rubric); letter-spacing: .14em; text-transform: uppercase; font-size: .74rem; }
+    h1, h2, h3 { font-family: Baskerville, "Hoefler Text", Georgia, serif; line-height: 1.18; }
+    h1 { margin: 0; max-width: 22ch; font-size: clamp(2.1rem, 6vw, 4.4rem); font-weight: 600; }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.55rem, 3vw, 2.2rem); font-weight: 600; }
+    h3 { margin: 1.8rem 0 .65rem; font-size: 1.18rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: .55rem 1.5rem; margin-top: 1.5rem; color: var(--soft); font-size: .82rem; }
+    .status { display: inline-block; padding: .2rem .55rem; border: 1px solid currentColor; color: var(--open-ink); background: var(--open-bg); letter-spacing: .08em; text-transform: uppercase; font-size: .7rem; }
+    main { padding: 2.8rem 0 5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(15rem, 20rem); gap: 3.5rem; align-items: start; }
+    article { min-width: 0; }
+    aside { position: sticky; top: 1.5rem; padding: 1.25rem; background: var(--surface); border-top: 3px solid var(--rubric); }
+    section { padding: 2.2rem 0; border-bottom: 1px solid var(--rule); }
+    section:first-child { padding-top: 0; }
+    p, ul, ol { margin: .7rem 0 1rem; }
+    li { margin-bottom: .5rem; }
+    blockquote { margin: 1rem 0; padding: .9rem 1.1rem; background: var(--surface); border-left: 3px solid var(--rubric-soft); }
+    blockquote p { margin: 0 0 .6rem; }
+    blockquote p:last-child { margin-bottom: 0; }
+    code { padding: .08em .28em; background: var(--code); font-size: .88em; overflow-wrap: anywhere; }
+    pre { overflow-x: auto; padding: 1rem; background: var(--code); border: 1px solid var(--rule); font-size: .82rem; line-height: 1.55; white-space: pre-wrap; }
+    pre code { padding: 0; background: transparent; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .9rem; }
+    th, td { padding: .7rem .6rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+    th { color: var(--rubric); letter-spacing: .06em; font-size: .72rem; text-transform: uppercase; }
+    .lede { max-width: 67ch; font-size: 1.12rem; }
+    .callout { padding: 1rem 1.15rem; background: var(--caution-bg); color: var(--caution-ink); border: 1px solid currentColor; }
+    .callout strong { color: inherit; }
+    .option { padding: 1rem 1.15rem; border: 1px solid var(--rule); margin: 1rem 0; }
+    .option h3 { margin-top: 0; }
+    .tradeoff { color: var(--soft); }
+    .decision-label { color: var(--rubric); letter-spacing: .09em; text-transform: uppercase; font-size: .72rem; }
+    .questions { counter-reset: question; list-style: none; padding: 0; }
+    .questions li { counter-increment: question; padding: .9rem 0 .9rem 2.3rem; border-bottom: 1px solid var(--rule); position: relative; }
+    .questions li::before { content: counter(question); position: absolute; left: 0; top: .9rem; color: var(--rubric); font-weight: 700; }
+    .toc { list-style: none; padding: 0; font-size: .88rem; }
+    .toc li { margin-bottom: .45rem; }
+    footer { padding: 1.4rem 0 3rem; border-top: 1px solid var(--rule); color: var(--soft); font-family: "Avenir Next", Avenir, sans-serif; font-size: .78rem; }
+    :focus-visible { outline: 3px solid var(--rubric); outline-offset: 3px; }
+    @media (max-width: 800px) {
+      header { padding-top: 2.2rem; }
+      main { grid-template-columns: 1fr; gap: 1.5rem; }
+      aside { position: static; }
+      table { display: block; overflow-x: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+    @media print {
+      body { background: white; color: black; }
+      main { display: block; }
+      aside { position: static; margin-bottom: 2rem; }
+      a { color: black; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Rights and licensing across jurisdictions</h1>
+    <div class="meta">
+      <span class="status">In discussion</span>
+      <span><strong>Issue:</strong> AUD-P0-001</span>
+      <span><strong>Priority:</strong> P0 · publication risk</span>
+      <span><strong>Opened:</strong> 2026-07-12</span>
+      <span><strong>Affected edition:</strong> 2026.07.12</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="question">
+        <h2>The question before the edition</h2>
+        <p class="lede">The site repeatedly states that Benjamin's German essay is in the public domain because he died in 1940. That is true in Germany and many life-plus-seventy jurisdictions, but copyright is territorial. The essay's 1955 first publication creates a serious possibility that it remains protected in the United States through 2050.</p>
+        <div class="callout"><strong>No resolution has been implemented.</strong> This page presents the issue, known facts, uncertainties, options, and provisional language for editorial discussion.</div>
+      </section>
+
+      <section id="current">
+        <h2>Current published claims</h2>
+        <p>The same unqualified conclusion appears in four public locations:</p>
+        <table>
+          <thead><tr><th>Location</th><th>Current claim</th><th>Problem</th></tr></thead>
+          <tbody>
+            <tr><td><code>README.md</code>, edition</td><td>"German text: public domain (Benjamin d. 1940)"</td><td>States a worldwide conclusion from a fact that only determines some territorial terms.</td></tr>
+            <tr><td><code>README.md</code>, license; <code>LICENSE</code></td><td>"The German text is in the public domain."</td><td>Contains no jurisdiction or reservation.</td></tr>
+            <tr><td><code>index.html</code>, Sources</td><td>"the original is out of copyright"</td><td>Repeats the same global claim in bibliographic metadata.</td></tr>
+            <tr><td><code>index.html</code>, colophon</td><td>"German text: public domain"</td><td>Presents the claim to every reader as part of the edition's rights notice.</td></tr>
+          </tbody>
+        </table>
+        <p>The public CC BY statement covers the translation, commentary, epilogue, and design without expressly reserving any copyright that may subsist in the underlying essay.</p>
+      </section>
+
+      <section id="facts">
+        <h2>Facts presently established</h2>
+        <ol>
+          <li>Walter Benjamin was a German author who died in 1940.</li>
+          <li>The essay was written in 1916 but, according to the edition's own bibliography, was first published in Germany in <em>Schriften</em> in 1955.</li>
+          <li>German copyright ordinarily runs for the author's life plus seventy years and expires at the end of the relevant calendar year. On that rule, Benjamin's authorial copyright expired there after 2010.</li>
+          <li>The United States restored copyright in qualifying foreign works under the Uruguay Round Agreements Act when they remained protected in their source country on the applicable restoration date.</li>
+          <li>Benjamin's work remained protected in Germany on 1996-01-01, the relevant restoration date for many eligible works.</li>
+          <li>A restored 1955 publication would ordinarily receive the remainder of a ninety-five-year US publication term, ending after 2050.</li>
+          <li>A new translation may carry copyright in the translator's original expression while still being a derivative use of the underlying protected work.</li>
+        </ol>
+        <p class="callout"><strong>Working legal hypothesis:</strong> the German essay and a full new translation are likely still protected in the United States, through 2050, unless a fact about publication, eligibility, ownership, permission, or another doctrine changes the analysis.</p>
+      </section>
+
+      <section id="uncertainties">
+        <h2>What remains to be verified</h2>
+        <ul>
+          <li>The exact first-publication record, including whether publication occurred in the United States within thirty days of foreign publication.</li>
+          <li>The essay's historical US copyright status before restoration and which URAA eligibility basis applies.</li>
+          <li>The present US rights holder or administrator for the German essay and English translation rights.</li>
+          <li>Whether any existing license or permission covers this publication.</li>
+          <li>Whether the intended audience and distribution should be treated as US-facing, worldwide, or jurisdiction-limited.</li>
+          <li>Whether continued display during rights research is an acceptable risk.</li>
+        </ul>
+        <p>These are questions for documentary research and, for a reliable publication decision, qualified legal advice. The audit itself cannot conclusively determine them.</p>
+      </section>
+
+      <section id="stakes">
+        <h2>Why the issue is P0</h2>
+        <ul>
+          <li>The site reproduces the complete German text rather than short quotations.</li>
+          <li>It publishes a complete new translation, the paradigmatic form of a derivative work.</li>
+          <li>The public-domain representation may invite downstream reuse by readers who rely on it.</li>
+          <li>The CC BY notice may appear to authorize uses beyond the rights the edition can grant.</li>
+          <li>GitHub Pages publication and the editor's US context make US status materially relevant even if the text is free in Germany.</li>
+        </ul>
+        <p>Qualifying the notice would correct the representation but would not, by itself, cure any lack of permission to distribute protected material.</p>
+      </section>
+
+      <section id="options">
+        <h2>Resolution options</h2>
+
+        <div class="option">
+          <h3>A. Temporarily withdraw the complete texts</h3>
+          <p>Remove the full German and English translation from the public site while retaining a project description, limited quotations where justified, and the rights-research notice.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> lowest interim legal exposure, highest disruption to the edition and its readers.</p>
+        </div>
+
+        <div class="option">
+          <h3>B. Correct the notice immediately and conduct expedited clearance</h3>
+          <p>Keep the edition online, replace every blanket public-domain claim with a territorial and under-review notice, stop representing the translation as unconditionally reusable, and promptly identify the rights holder or obtain advice.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> corrects misleading metadata and preserves access, but does not eliminate the risk that current distribution itself is unauthorized.</p>
+        </div>
+
+        <div class="option">
+          <h3>C. Seek permission for a durable worldwide edition</h3>
+          <p>Identify the rights holder or administrator and request a license covering the German text, this translation, worldwide web publication, revision, archiving, and the intended downstream license.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> strongest long-term foundation, but may take time, cost money, impose terms, or be refused. An interim posture is still required.</p>
+        </div>
+
+        <div class="option">
+          <h3>D. Publish only where demonstrably public domain</h3>
+          <p>Attempt to restrict the complete text by territory while presenting a reduced edition elsewhere.</p>
+          <p class="tradeoff"><strong>Tradeoff:</strong> technically and legally complex, imperfect on static hosting, and not recommended without specialist guidance.</p>
+        </div>
+      </section>
+
+      <section id="recommendation">
+        <h2>Provisional recommendation</h2>
+        <p>Separate the immediate truthfulness problem from the underlying distribution decision:</p>
+        <ol>
+          <li><strong>Approve an immediate correction of the blanket rights claims.</strong> No edition should tell readers that worldwide public-domain status follows simply from Benjamin's death date.</li>
+          <li><strong>Choose an interim publication posture:</strong> temporary withdrawal (A) or continued access with an explicit warning and expedited clearance (B).</li>
+          <li><strong>Pursue the durable answer:</strong> confirm the URAA analysis and identify or approach the rights administrator (C).</li>
+        </ol>
+        <p>The legally safest interim posture is A. If continuity of public access is given greater weight, B is the minimally responsible alternative, with the explicit understanding that revised wording is not itself permission.</p>
+      </section>
+
+      <section id="language">
+        <h2>Provisional wording if option B is chosen</h2>
+        <p>This language is presented for discussion and has not been applied.</p>
+
+        <h3>README and colophon</h3>
+        <pre><code>Rights notice: Walter Benjamin's German text is in the public domain in
+Germany and other jurisdictions where copyright expired seventy years after
+his death. Its United States copyright status is under review. The original
+translation, commentary, epilogue, and design are © 2026 Jesse Posner.
+No license is granted to any underlying material still protected by copyright.</code></pre>
+
+        <h3>Repository license</h3>
+        <pre><code>Except for third-party and underlying material, the original translation,
+commentary, epilogue, and page design are © 2026 Jesse Posner and offered
+under CC BY 4.0 to the extent the licensor is authorized to grant that license.
+
+Walter Benjamin's underlying German essay may remain protected in some
+jurisdictions, including the United States. No rights in protected underlying
+material are granted by this license.</code></pre>
+
+        <p class="callout">This proposed text is a disclosure and reservation, not a conclusion that publication may lawfully continue.</p>
+      </section>
+
+      <section id="questions">
+        <h2>Decisions required</h2>
+        <ol class="questions">
+          <li>For the interim, should the complete German and English texts be temporarily withdrawn, or should the edition remain online under corrected rights language while clearance proceeds?</li>
+          <li>Should the project seek a formal license for worldwide publication and revision?</li>
+          <li>Is CC BY reuse of the translation a non-negotiable goal, or may the eventual rights arrangement narrow downstream reuse?</li>
+          <li>Should qualified counsel or a rights specialist confirm the URAA analysis before any final public statement is made?</li>
+        </ol>
+      </section>
+
+      <section id="acceptance">
+        <h2>Acceptance criteria</h2>
+        <p>AUD-P0-001 can be marked resolved only when:</p>
+        <ul>
+          <li>the interim publication posture is explicitly chosen;</li>
+          <li>the 1955 publication and URAA facts are documented;</li>
+          <li>the relevant rights holder or a defensible alternative conclusion is identified;</li>
+          <li>README, LICENSE, bibliography, colophon, and any metadata state the same accurate position;</li>
+          <li>the CC BY scope is stated without purporting to license rights the project does not control;</li>
+          <li>the public Revision History records the change;</li>
+          <li>the deployed site is checked against the approved language and publication posture.</li>
+        </ul>
+      </section>
+
+      <section id="record">
+        <h2>Decision and implementation record</h2>
+        <p><span class="decision-label">Interim posture · 2026-07-12</span><br>Leave the currently published edition online while the commissioned legal, bibliographic, and rights-holder research is completed. Low expected near-term traffic and a low perceived likelihood of enforcement make an emergency takedown disproportionate at this stage.</p>
+        <p>This is a temporary risk posture, not a conclusion that publication is lawful, a waiver of the rights issue, or approval of the current public-domain and CC BY claims.</p>
+        <p><span class="decision-label">Final decision</span><br>Deferred until the three research memoranda have been reviewed.</p>
+        <p><span class="decision-label">Approved language and scope</span><br>No edition language or distribution change has yet been approved.</p>
+        <p><span class="decision-label">Implementation</span><br>No substantive change authorized; the site remains online in its current state.</p>
+        <p><span class="decision-label">Verification</span><br>Legal and publication-history research in progress.</p>
+        <p><span class="decision-label">Publication</span><br>No new rights-related edition published.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Primary references</h2>
+        <ul>
+          <li><a href="https://www.gesetze-im-internet.de/urhg/__64.html">German Copyright Act §64</a> — ordinary authorial term.</li>
+          <li><a href="https://www.gesetze-im-internet.de/urhg/__69.html">German Copyright Act §69</a> — calculation from the end of the calendar year.</li>
+          <li><a href="https://www.copyright.gov/circs/circ38b.pdf">US Copyright Office Circular 38B</a> — copyright restoration under the URAA.</li>
+          <li><a href="https://www.copyright.gov/circs/circ15a.pdf">US Copyright Office Circular 15A</a> — duration of copyright.</li>
+          <li><code>index.html</code>, Sources — edition's current first-publication statement: Suhrkamp, 1955.</li>
+        </ul>
+      </section>
+    </article>
+
+    <aside aria-label="Review contents">
+      <p class="eyebrow">AUD-P0-001</p>
+      <h2>Review contents</h2>
+      <ol class="toc">
+        <li><a href="#question">Question before the edition</a></li>
+        <li><a href="#current">Current claims</a></li>
+        <li><a href="#facts">Established facts</a></li>
+        <li><a href="#uncertainties">Open verification</a></li>
+        <li><a href="#stakes">Why this is P0</a></li>
+        <li><a href="#options">Resolution options</a></li>
+        <li><a href="#recommendation">Provisional recommendation</a></li>
+        <li><a href="#language">Provisional wording</a></li>
+        <li><a href="#questions">Decisions required</a></li>
+        <li><a href="#acceptance">Acceptance criteria</a></li>
+        <li><a href="#record">Decision record</a></li>
+        <li><a href="#sources">Primary references</a></li>
+      </ol>
+      <p class="callout"><strong>Gate:</strong> Do not modify the edition's rights language or published texts until an option is approved and recorded here.</p>
+    </aside>
+  </main>
+
+  <footer>
+    Internal review · opened 2026-07-12 · noindex, unlisted, not access-controlled · governed by EDITORIAL.md
+  </footer>
+</body>
+</html>
