@@ -4,6 +4,22 @@ This file records published, reader-visible changes to the living edition. The e
 
 Versions use calendar dates. Paragraph and sentence identifiers refer to the edition's stable internal anchors.
 
+## 2026.07.12.4
+
+### Interface
+
+- Rebuilt the colophon as labeled Edition, Text, Rights, and Credits blocks,
+  with keyboard hints on a separate line.
+- Moved the colophon below the two-column reading layout so the sticky
+  apparatus no longer obscures its right side; it now reflows from four
+  columns to two and then one as the viewport narrows.
+- Condensed the rights summary and linked to the complete license notice.
+
+### Scope
+
+- No German reading, English translation, commentary, or bibliographic claim
+  changed in this edition.
+
 ## 2026.07.12.3
 
 ### Edition

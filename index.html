@@ -178,8 +178,37 @@ aside.panel{
 .panel .hint{font-family:"Avenir Next",Avenir,sans-serif; font-size:.7rem; color:var(--soft); letter-spacing:.08em; margin-top:2.2rem; border-top:1px solid var(--rule); padding-top:.9rem}
 
 footer.colophon{
-  grid-column:1/-1; border-top:1px solid var(--rule); padding:1.4rem 2rem 2.2rem;
-  font-size:.78rem; color:var(--soft); font-family:"Avenir Next",Avenir,sans-serif; letter-spacing:.04em;
+  min-width:0; border-top:1px solid var(--rule); padding:1.25rem 2rem 1.4rem;
+  font-size:.78rem; color:var(--soft); font-family:"Avenir Next",Avenir,sans-serif;
+  letter-spacing:.025em; overflow-wrap:anywhere;
+}
+.colophon-grid{
+  display:grid; grid-template-columns:1fr 1.25fr 1.7fr 1.2fr; gap:1.5rem;
+  max-width:72rem; margin:0 auto;
+}
+.colophon-item{min-width:0}
+.colophon dt{
+  margin-bottom:.35rem; color:var(--rubric); font-size:.66rem; font-weight:600;
+  letter-spacing:.13em; line-height:1.3; text-transform:uppercase;
+}
+.colophon dd{line-height:1.55}
+.colophon a{text-decoration:underline; text-decoration-color:var(--rule2); text-underline-offset:.18em}
+.colophon a:hover{text-decoration-color:currentColor}
+.colophon-keys{
+  max-width:72rem; margin:.75rem auto 0; padding-top:.55rem; border-top:1px solid var(--rule);
+  line-height:1.5;
+}
+.colophon-keys strong{
+  margin-right:.55rem; color:var(--rubric); font-size:.66rem; letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.colophon kbd{
+  display:inline-block; min-width:1.45em; padding:.02em .3em; border:1px solid var(--rule2);
+  border-radius:2px; background:var(--panel); color:var(--ink); font:inherit; line-height:1.35;
+  text-align:center;
+}
+@media (max-width:1180px){
+  .colophon-grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem 2rem}
 }
 
 #sheet-close{display:none}
@@ -196,6 +225,11 @@ footer.colophon{
     display:block; position:sticky; top:0; float:right; margin:-1.2rem -1rem 0 0;
     font-size:1.4rem; background:none; border:none; color:var(--rubric); cursor:pointer;
   }
+}
+@media (max-width:620px){
+  footer.colophon{padding:1.25rem 1.35rem 1.4rem}
+  .colophon-grid{grid-template-columns:1fr; gap:1.05rem}
+  .colophon-keys{margin-top:.9rem}
 }
 ::selection{background:var(--rubric); color:var(--paper)}
 </style>
@@ -880,7 +914,9 @@ footer.colophon{
 <h3>Acknowledgment</h3>
 <p>This edition's commentary was first worked through in conversation with Michael Millerman, whose way of reading a text, triangulating it against Heidegger, Strauss, and Maimonides rather than annotating it in isolation, left its mark throughout. The debt is gladly acknowledged; the errors are this edition's own.</p></div><div class="comm" data-n="29" id="revisions"><div class="crumb">Living edition</div><h2 class="c-title">Revision History</h2>
 <p>This page records substantive, reader-visible changes to the published edition. Dates identify the version consulted; translation and German-text revisions name the affected paragraph or sentence and preserve their rationale.</p>
-<p class="revision-current"><strong>Current edition:</strong> 2026.07.12.3 · <strong>First published:</strong> 2026.07.11</p>
+<p class="revision-current"><strong>Current edition:</strong> 2026.07.12.4 · <strong>First published:</strong> 2026.07.11</p>
+<section class="revision-entry" aria-labelledby="revision-2026-07-12-4"><h3 id="revision-2026-07-12-4"><span class="revision-version">Edition 2026.07.12.4</span><time datetime="2026-07-12">12 July 2026</time></h3>
+<ul><li>Rebuilt the colophon as labeled Edition, Text, Rights, and Credits blocks, with keyboard hints on a separate line.</li><li>Moved the colophon below the two-column reading layout so the sticky apparatus no longer obscures its right side; it now reflows from four columns to two and then one as the viewport narrows.</li><li>Condensed the rights summary and linked to the complete license notice.</li><li>No German reading, English translation, commentary, or bibliographic claim changed.</li></ul></section>
 <section class="revision-entry" aria-labelledby="revision-2026-07-12-3"><h3 id="revision-2026-07-12-3"><span class="revision-version">Edition 2026.07.12.3</span><time datetime="2026-07-12">12 July 2026</time></h3>
 <ul><li>Replaced blanket worldwide public-domain claims with a territorial notice: Benjamin's authorial copyright is understood to have expired in Germany and some other jurisdictions, while the essay may remain protected in the United States through 2050.</li><li>Narrowed CC BY 4.0 to Jesse Posner's independently created commentary, annotations, epilegomena, and original page design; it excludes Benjamin's German essay, this complete English translation pending clearance, quotations from third-party translations, and other third-party material.</li><li>Corrected the first-publication record to <em>Schriften</em>, vol. II (Suhrkamp, 1955), pp. 401–419, while preserving the uncertainty about the exact release day.</li><li>The complete German and English reading texts remain available. No German reading or English translation wording changed.</li></ul></section>
 <section class="revision-entry" aria-labelledby="revision-2026-07-12-2"><h3 id="revision-2026-07-12-2"><span class="revision-version">Edition 2026.07.12.2</span><time datetime="2026-07-12">12 July 2026</time></h3>
@@ -891,10 +927,28 @@ footer.colophon{
 <p><strong>Initial public edition.</strong></p><ul><li>Published the complete twenty-six-paragraph English translation with the German text readable in parallel.</li><li>Published sentence-level commentary, structural apparatus, synthesis essay, translator's note, notes, and annotated bibliography.</li><li>Published the edition as a self-contained study page with paragraph and sentence permalinks, German-text display, and light/dark themes.</li></ul></section>
 </div>
   </aside>
-  <footer class="colophon">
-    Study edition · current edition <a href="#revisions" onclick="select(29);return false;">2026.07.12.3</a> · first published 2026-07-11 · German reading text after textlog.de, with editorial corrections (collation with GS II.1 pending) · interim rights notice: Benjamin's authorial copyright is understood to have expired in Germany and some other jurisdictions; the essay may remain protected in the United States through 2050 · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> applies only to Jesse Posner's independently created commentary, annotations, epilegomena, and original page design, to the extent he owns or is authorized to license them; it excludes Benjamin's German essay, this complete English translation pending clearance, quotations from third-party translations, and all other third-party material · no rights in excluded material are granted · the received translation (E. Jephcott, <em>Selected Writings</em> I, Harvard 1996) is cited comparatively under fair use · made in collaboration with Claude (Anthropic) · keys: j/k paragraphs, g German, Esc apparatus
-  </footer>
 </div>
+<footer class="colophon" aria-label="Edition information">
+  <dl class="colophon-grid">
+    <div class="colophon-item">
+      <dt>Edition</dt>
+      <dd>Study edition · <a href="#revisions" onclick="select(29,true);return false;">2026.07.12.4</a><br>First published 11 July 2026</dd>
+    </div>
+    <div class="colophon-item">
+      <dt>Text</dt>
+      <dd>German reading text after textlog.de, editorially corrected; <em>GS</em> II.1 collation pending.</dd>
+    </div>
+    <div class="colophon-item">
+      <dt>Rights</dt>
+      <dd>Rights vary by jurisdiction. US protection may continue through 2050. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a> applies only to original commentary and design; it excludes the essay and translation. <a href="https://github.com/jesseposner/on-language-as-such/blob/main/LICENSE" target="_blank" rel="noopener">Full rights notice</a>.</dd>
+    </div>
+    <div class="colophon-item">
+      <dt>Credits</dt>
+      <dd>Jephcott cited comparatively under fair use. Made with Claude (Anthropic).</dd>
+    </div>
+  </dl>
+  <p class="colophon-keys"><strong>Keys</strong><kbd>j</kbd>/<kbd>k</kbd> paragraphs · <kbd>g</kbd> German · <kbd>Esc</kbd> apparatus</p>
+</footer>
 <script>
 const paras = document.querySelectorAll("section.para");
 const comms = document.querySelectorAll(".comm");
@@ -928,6 +982,7 @@ function select(n, scroll=false, s=null){
   } else if(n>26){
     history.replaceState(null,"","#"+HASHNAMES[n]);
     if(window.matchMedia("(max-width:1020px)").matches) document.body.classList.add("sheet-open");
+    else if(scroll) requestAnimationFrame(()=>panel.scrollIntoView({block:"start"}));
   } else {
     history.replaceState(null,""," ");
     document.body.classList.remove("sheet-open");
