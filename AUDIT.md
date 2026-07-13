@@ -56,6 +56,15 @@ This is an inference requiring formal confirmation, not legal advice. If correct
 - Determine whether Suhrkamp or another party administers US English-language and source-text rights.
 - State that the CC license covers original contributions only, subject to any underlying rights.
 
+**Option B approved and published in Edition 2026.07.12.3:**
+the blanket claims are replaced with a territorial notice, CC BY is narrowed
+to independently created commentary, annotations, epilegomena, and design,
+and the German essay, this complete translation pending clearance, and
+third-party material are excluded. The complete edition remains online.
+Clearance outreach and counsel review remain separate open decisions, so the
+underlying rights issue is not yet fully resolved. See
+`editorial/reviews/AUD-P0-001A-rights-research-findings.html`.
+
 ## 2. German witness and *Gesammelte Schriften* collation
 
 The stated outstanding print check was performed against a scan of [*Gesammelte Schriften* II.1, pp. 140-157](https://www.kritiknetz.de/images/stories/texte/walter-benjamin-gesammelte-schriften-ii.pdf).
@@ -301,7 +310,7 @@ Useful automated checks:
 
 ### Publication blockers
 
-- [ ] Qualify the public-domain and license language.
+- [x] Qualify the public-domain and license language.
 - [ ] Complete formal US rights research or clearance.
 - [ ] Establish the German source of truth.
 - [ ] Resolve and document all fifteen *GS* divergences.

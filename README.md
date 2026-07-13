@@ -3,18 +3,21 @@
 Walter Benjamin's 1916 essay "Über Sprache überhaupt und über die Sprache
 des Menschen," in a new English translation with a sentence-level
 commentary, a synthesis essay, and an annotated bibliography — presented
-as a single self-contained study page with the public-domain German
-original readable in parallel.
+as a single self-contained study page with the German original readable
+in parallel.
 
 **Read it:** https://jesseposner.github.io/on-language-as-such/
 
 ## The edition
 
-- **German text**: public domain (Benjamin d. 1940), after textlog.de,
-  with fifteen editorial corrections; collated against a second online
+- **German text**: after textlog.de, with fifteen editorial corrections;
+  collated against a second online
   witness (99.7% agreement; the witnesses share a corrupt electronic
   ancestor, and the emendations are documented). Collation against
-  Gesammelte Schriften II.1 is the outstanding print check.
+  Gesammelte Schriften II.1 is the outstanding print check. Benjamin's
+  authorial copyright is understood to have expired in Germany and some
+  other jurisdictions, but the essay may remain protected in the United
+  States through December 31, 2050.
 - **Translation**: original, 2026, made from the German. Its principles
   (the impart-family, the ring-words, the quintessence policy for
   *geistiges Wesen*) are documented in the translator's note at the end
@@ -44,6 +47,14 @@ conversation with whom the essay was first worked through.
 
 ## License
 
-Translation, commentary, and epilegomena © 2026 Jesse Posner, licensed
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). The German
-text is in the public domain.
+Jesse Posner's independently created commentary, annotations,
+epilegomena, and original page design are © 2026 Jesse Posner and licensed
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), only to the
+extent he owns or is authorized to license those rights.
+
+Excluded from CC BY 4.0 are Walter Benjamin's underlying German essay;
+the complete English translation in this edition while authorization of
+the underlying work remains unresolved; quotations from Edmund Jephcott's
+or any other third-party translation; and all other identified third-party
+material. No rights in excluded material are granted. See [LICENSE](LICENSE)
+for the complete interim notice.

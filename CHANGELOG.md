@@ -4,6 +4,29 @@ This file records published, reader-visible changes to the living edition. The e
 
 Versions use calendar dates. Paragraph and sentence identifiers refer to the edition's stable internal anchors.
 
+## 2026.07.12.3
+
+### Edition
+
+- Published the approved territorial rights notice, narrowed CC BY scope,
+  and corrected first-publication record documented in AUD-P0-001 and
+  AUD-P0-001A.
+
+### Rights and licensing
+
+- Replaced blanket worldwide public-domain claims with a territorial notice:
+  Benjamin's authorial copyright is understood to have expired in Germany
+  and some other jurisdictions, while the essay may remain protected in the
+  United States through December 31, 2050.
+- Narrowed CC BY 4.0 to Jesse Posner's independently created commentary,
+  annotations, epilegomena, and original page design. Pending clearance, the
+  license excludes Benjamin's underlying German essay, this complete English
+  translation, quotations from third-party translations, and other
+  third-party material.
+- Corrected the first-publication record to <em>Schriften</em>, vol. II
+  (Suhrkamp, 1955), pp. 401–419, and distinguished the mid-October dating
+  from the still-unverified exact release day.
+
 ## 2026.07.12.2
 
 ### Edition

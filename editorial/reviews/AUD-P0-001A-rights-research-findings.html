@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>AUD-P0-001A · Rights research findings and recommendation</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f6efe1;
+      --surface: #efe6d2;
+      --ink: #241d12;
+      --soft: #6b5f4b;
+      --rubric: #8e2f1c;
+      --rubric-soft: #a95a3f;
+      --rule: #d9cdb4;
+      --code: #e7dcc2;
+      --open-bg: #f4dfd5;
+      --open-ink: #722312;
+      --caution-bg: #f3e8c5;
+      --caution-ink: #594714;
+      --good-bg: #e3ead5;
+      --good-ink: #365026;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #171310;
+        --surface: #100d0b;
+        --ink: #e6dbc4;
+        --soft: #a2937a;
+        --rubric: #d97a55;
+        --rubric-soft: #b7683f;
+        --rule: #3b332a;
+        --code: #26201a;
+        --open-bg: #351a14;
+        --open-ink: #efad91;
+        --caution-bg: #302817;
+        --caution-ink: #d7c173;
+        --good-bg: #1d2b19;
+        --good-ink: #a8c596;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 17px; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      line-height: 1.68;
+    }
+    a { color: var(--rubric); text-underline-offset: .16em; overflow-wrap: anywhere; }
+    header, main, footer { width: min(100% - 2rem, 78rem); margin-inline: auto; }
+    header { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+    .eyebrow, .meta, .status, th, .label, .badge, .decision-label {
+      font-family: "Avenir Next", Avenir, "Gill Sans", "Helvetica Neue", sans-serif;
+    }
+    .eyebrow {
+      margin: 0 0 .4rem;
+      color: var(--rubric);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .74rem;
+    }
+    h1, h2, h3, h4 { font-family: Baskerville, "Hoefler Text", Georgia, serif; line-height: 1.18; }
+    h1 { margin: 0; max-width: 24ch; font-size: clamp(2.1rem, 6vw, 4.4rem); font-weight: 600; }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.55rem, 3vw, 2.2rem); font-weight: 600; }
+    h3 { margin: 1.8rem 0 .65rem; font-size: 1.2rem; }
+    h4 { margin: 1.2rem 0 .45rem; font-size: 1rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: .55rem 1.5rem; margin-top: 1.5rem; color: var(--soft); font-size: .82rem; }
+    .status, .badge { display: inline-block; padding: .2rem .55rem; border: 1px solid currentColor; letter-spacing: .08em; text-transform: uppercase; font-size: .7rem; }
+    .status { color: var(--open-ink); background: var(--open-bg); }
+    .badge.proven { color: var(--good-ink); background: var(--good-bg); }
+    .badge.working { color: var(--caution-ink); background: var(--caution-bg); }
+    .badge.open { color: var(--open-ink); background: var(--open-bg); }
+    main { padding: 2.8rem 0 5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem); gap: 3.5rem; align-items: start; }
+    article { min-width: 0; }
+    aside { position: sticky; top: 1.5rem; padding: 1.25rem; background: var(--surface); border-top: 3px solid var(--rubric); }
+    section { padding: 2.2rem 0; border-bottom: 1px solid var(--rule); }
+    section:first-child { padding-top: 0; }
+    p, ul, ol { margin: .7rem 0 1rem; }
+    li { margin-bottom: .5rem; }
+    .lede { max-width: 68ch; font-size: 1.14rem; }
+    .callout { padding: 1rem 1.15rem; background: var(--caution-bg); color: var(--caution-ink); border: 1px solid currentColor; }
+    .callout.danger { background: var(--open-bg); color: var(--open-ink); }
+    .callout.good { background: var(--good-bg); color: var(--good-ink); }
+    .callout strong { color: inherit; }
+    .finding, .option { padding: 1rem 1.15rem; border: 1px solid var(--rule); margin: 1rem 0; }
+    .finding h3, .option h3 { margin-top: 0; }
+    .finding p:last-child, .option p:last-child { margin-bottom: 0; }
+    .tradeoff, .note { color: var(--soft); }
+    .label, .decision-label { color: var(--rubric); letter-spacing: .09em; text-transform: uppercase; font-size: .72rem; }
+    .decision-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .decision-grid .option { margin: 0; }
+    blockquote { margin: 1rem 0; padding: .9rem 1.1rem; background: var(--surface); border-left: 3px solid var(--rubric-soft); }
+    blockquote p { margin: 0 0 .6rem; }
+    blockquote p:last-child { margin-bottom: 0; }
+    code { padding: .08em .28em; background: var(--code); font-size: .88em; overflow-wrap: anywhere; }
+    pre { overflow-x: auto; padding: 1rem; background: var(--code); border: 1px solid var(--rule); font-size: .82rem; line-height: 1.55; white-space: pre-wrap; }
+    pre code { padding: 0; background: transparent; }
+    table { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: .9rem; }
+    th, td { padding: .7rem .6rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+    th { color: var(--rubric); letter-spacing: .06em; font-size: .72rem; text-transform: uppercase; }
+    .questions { counter-reset: question; list-style: none; padding: 0; }
+    .questions li { counter-increment: question; padding: .9rem 0 .9rem 2.3rem; border-bottom: 1px solid var(--rule); position: relative; }
+    .questions li::before { content: counter(question); position: absolute; left: 0; top: .9rem; color: var(--rubric); font-weight: 700; }
+    .toc { list-style: none; padding: 0; font-size: .88rem; }
+    .toc li { margin-bottom: .45rem; }
+    footer { padding: 1.4rem 0 3rem; border-top: 1px solid var(--rule); color: var(--soft); font-family: "Avenir Next", Avenir, sans-serif; font-size: .78rem; }
+    :focus-visible { outline: 3px solid var(--rubric); outline-offset: 3px; }
+    @media (max-width: 800px) {
+      header { padding-top: 2.2rem; }
+      main { grid-template-columns: 1fr; gap: 1.5rem; }
+      aside { position: static; }
+      table { display: block; overflow-x: auto; }
+      .decision-grid { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+    @media print {
+      body { background: white; color: black; }
+      main { display: block; }
+      aside { position: static; margin-bottom: 2rem; }
+      a { color: black; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Rights research findings and recommendation</h1>
+    <div class="meta">
+      <span class="status">Option B published</span>
+      <span><strong>Issue:</strong> AUD-P0-001A</span>
+      <span><strong>Parent:</strong> AUD-P0-001</span>
+      <span><strong>Priority:</strong> P0 · publication risk</span>
+      <span><strong>Prepared:</strong> 2026-07-12</span>
+      <span><strong>Affected editions:</strong> 2026.07.12.2–2026.07.12.3</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="answer">
+        <h2>Answer in one paragraph</h2>
+        <p class="lede">The research does not support the edition's blanket claim that Benjamin's German essay is simply in the public domain. The authorial term has expired in Germany and some other jurisdictions, but the prudent United States assumption is that the essay remains protected through 31 December 2050. The exact 1955 publication day and the absence of US publication within the following thirty days remain unproved; neither gap is evidence that the work is free to use. Suhrkamp is the strongest first clearance administrator for the German source and a new English translation, although public records do not prove the ultimate ownership chain.</p>
+        <p class="callout danger"><strong>Option B was published in Edition 2026.07.12.3.</strong> The corrected notices improve accuracy but do not themselves authorize continued publication of the complete German text or new translation. No external outreach has been authorized.</p>
+      </section>
+
+      <section id="memos">
+        <h2>The three persisted memoranda</h2>
+        <ul>
+          <li><a href="../research/AUD-P0-001-publication-history.md">Publication-history memorandum</a> — composition, controlled manuscript circulation, the 1955 edition, and the unresolved thirty-day fact.</li>
+          <li><a href="../research/AUD-P0-001-us-copyright.md">United States copyright memorandum</a> — URAA, duration, derivative rights, reliance parties, fair-use limits, and proposed interim wording.</li>
+          <li><a href="../research/AUD-P0-001-rights-holder.md">Rights-holder and permissions memorandum</a> — likely administrators, separate Jephcott rights, clearance contacts, and the scope of a permission request.</li>
+        </ul>
+        <p class="note">These are internal research records, not legal opinions. The recommendations below synthesize their common ground and preserve their uncertainties.</p>
+      </section>
+
+      <section id="record">
+        <h2>What the documentary record establishes</h2>
+
+        <div class="finding">
+          <h3><span class="badge proven">Proven</span> Lifetime nonpublication and controlled circulation</h3>
+          <p>Benjamin composed the essay between 4 and 11 November 1916, delivered it to Gershom Scholem in December, and later circulated manuscript copies among a small named group under restrictions. The critical-edition report and Harvard's editorial note agree that it remained unpublished in Benjamin's lifetime.</p>
+        </div>
+
+        <div class="finding">
+          <h3><span class="badge proven">Proven</span> First documented print publication</h3>
+          <p>The first located publisher-issued printing is in Walter Benjamin, <em>Schriften</em>, vol. II, ed. Theodor W. Adorno and Gretel Adorno with Friedrich Podszus (Frankfurt am Main: Suhrkamp, 1955), pp. 401–419. The German National Library's original contents scan establishes volume II and the page range. An earlier agent's statement that the essay appeared in volume I was incorrect.</p>
+        </div>
+
+        <div class="finding">
+          <h3><span class="badge working">Strong evidence</span> Mid-October 1955 release</h3>
+          <p>National-library and union-catalog records prove the year, place, publisher, and extent. A scholarly reconstruction from publisher and Adorno–Scholem correspondence dates the two-volume set to mid-October 1955. No exact calendar day was established.</p>
+        </div>
+
+        <div class="finding">
+          <h3><span class="badge open">Open fact</span> US publication in the following thirty days</h3>
+          <p>No US edition, co-imprint, or qualifying US publication was found. US library records describe the Frankfurt edition, and searches of both halves of the official 1955 <em>Catalog of Copyright Entries</em> found no Benjamin–Suhrkamp <em>Schriften</em> entry. These are meaningful negative results, not proof: registration and publication are different facts, and no publisher shipping ledger or complete contemporaneous US distribution record was obtained.</p>
+        </div>
+      </section>
+
+      <section id="law">
+        <h2>The United States working conclusion</h2>
+        <p>On the best-supported facts, the edition should act as though the underlying essay remains protected in the United States through 31 December 2050 and enters the US public domain on 1 January 2051.</p>
+        <h3>Why a work written in 1916 can still be protected</h3>
+        <p>The essay's age is not being ignored; two different dates are doing different legal work. Benjamin wrote the manuscript in 1916 but did not publish it. For this class of pre-1978 work, the possible United States term is calculated from the first publication in 1955. The URAA later restored qualifying foreign copyrights for the remainder of the term they would have received had they never entered the US public domain. The resulting working calculation is therefore <code>1955 + 95 years</code>, carried to the end of 2050—not <code>1916 + 95 years</code>. Germany uses a different ordinary rule based on the author's death, which is why the German term expired after 2010 while the possible US term continues.</p>
+        <table>
+          <thead>
+            <tr><th>Question</th><th>Research conclusion</th><th>Confidence</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Was the essay protected in Germany on 1 January 1996?</td><td>Yes. Benjamin died in 1940; Germany's ordinary life-plus-seventy term ran through 2010.</td><td>High</td></tr>
+            <tr><td>Could URAA restoration apply?</td><td>Yes, and likely did if the remaining statutory facts hold. Restoration was automatic.</td><td>Medium</td></tr>
+            <tr><td>What if ordinary US copyright never lapsed?</td><td>Restoration would be unnecessary, but a valid 1955 copyright could still run for the same ninety-five-year term.</td><td>Fact-dependent</td></tr>
+            <tr><td>Would a US publication within thirty days prove public-domain status?</td><td>No. It could defeat restoration, but an ordinary properly maintained US copyright might still remain.</td><td>High</td></tr>
+            <tr><td>Does the absence of a Notice of Intent to Enforce clear this project?</td><td>No. A project begun in 2026 is not plausibly a statutory reliance party; an NIE is not required to enforce against a non-reliance party.</td><td>High</td></tr>
+            <tr><td>Does copyright in a new translation solve the source-rights problem?</td><td>No. A translation is expressly a derivative work; the translator's original expression does not authorize use of protected underlying expression.</td><td>High</td></tr>
+            <tr><td>Is the complete present edition safely covered by fair use?</td><td>Not established. Its scholarly criticism helps, but it publishes the entire German work and a complete substitute translation. A fact-specific counsel review is required before fair use is treated as clearance.</td><td>Open legal judgment</td></tr>
+          </tbody>
+        </table>
+        <p class="callout"><strong>Important distinction:</strong> a territorial notice can correct an inaccurate representation. It cannot supply a missing reproduction, distribution, display, or translation right.</p>
+      </section>
+
+      <section id="holders">
+        <h2>Who should be approached</h2>
+        <table>
+          <thead>
+            <tr><th>Material</th><th>Best first route</th><th>What is known</th><th>What remains unproved</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Benjamin's German essay and a new English translation</td><td><strong>Suhrkamp Verlag</strong>: English-rights team plus its Frankfurt Rights reprint portal</td><td>Continuous publishing relationship, current Benjamin editions, edition-level copyright claims, and an active rights department covering English translation and permissions.</td><td>Whether Suhrkamp is owner, exclusive licensee, or administrator; the principal and full chain of title; exact territorial and media scope.</td></tr>
+            <tr><td>Edmund Jephcott's 1978 English wording</td><td><strong>HarperCollins permissions</strong> if a license is sought</td><td>The 1996 HUP title page attributes the essay translation copyright to Harcourt Brace Jovanovich. HarperCollins now publishes <em>Reflections</em> after the HMH Books &amp; Media acquisition.</td><td>Title-specific succession, any reversion, and territorial or format limitations.</td></tr>
+            <tr><td>HUP-specific editorial material</td><td><strong>Harvard University Press</strong></td><td>HUP controls its compilation and original edition material.</td><td>HUP is not shown as owner of Jephcott's translation or Benjamin's source rights.</td></tr>
+            <tr><td>Manuscript images or archival facsimiles</td><td><strong>Walter Benjamin Archive</strong></td><td>Custody, provenance, and object-specific reproduction route.</td><td>Archive custody does not establish blanket literary copyright ownership.</td></tr>
+          </tbody>
+        </table>
+        <p>The public WATCH database contains no Walter Benjamin record. That absence is not a finding that the work is unowned or unrepresented.</p>
+      </section>
+
+      <section id="claims">
+        <h2>Claims that require correction if option B is approved</h2>
+        <table>
+          <thead><tr><th>Surface</th><th>Current public claim</th><th>Required direction</th></tr></thead>
+          <tbody>
+            <tr><td><code>README.md</code>, edition description</td><td>German text is “public domain (Benjamin d. 1940).”</td><td>State the German expiration territorially and disclose likely US protection through 2050.</td></tr>
+            <tr><td><code>README.md</code>, license section</td><td>Translation, commentary, and epilogue are CC BY; German is public domain.</td><td>Pending clearance, limit CC BY to independently created commentary, annotations, epilegomena, and design; exclude German, this translation, and third-party material.</td></tr>
+            <tr><td><code>LICENSE</code></td><td>The German text is unconditionally public domain.</td><td>Replace with a territorial notice and explicit exclusions.</td></tr>
+            <tr><td><code>index.html</code>, bibliography</td><td>Textlog supplies “the public-domain German text”; “the original is out of copyright.”</td><td>Describe Textlog as the electronic transcription from which the edition began; do not use its availability as a rights conclusion.</td></tr>
+            <tr><td><code>index.html</code>, colophon</td><td>German text is public domain; translation and commentary are CC BY.</td><td>Use the short interim notice and narrowed license scope below.</td></tr>
+            <tr><td><code>index.html</code>, publication history</td><td>First publication is identified only as <em>Schriften</em>, two volumes, 1955.</td><td>Correct to vol. II, pp. 401–419; distinguish the proven year from the mid-October reconstruction and unresolved exact day.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="options">
+        <h2>Revised resolution options</h2>
+        <div class="decision-grid">
+          <div class="option">
+            <h3>A. Withdraw complete texts pending clearance</h3>
+            <p>Temporarily remove the complete German and English reading texts while retaining the project description, commentary supported by limited quotations, research record, and rights notice.</p>
+            <p class="tradeoff"><strong>Tradeoff:</strong> legally safest; most disruptive to the edition.</p>
+          </div>
+          <div class="option">
+            <h3>B. Correct, narrow, and keep online</h3>
+            <p>Immediately correct the territorial claims and narrow CC BY, while leaving the complete edition accessible during an expedited clearance process.</p>
+            <p class="tradeoff"><strong>Tradeoff:</strong> truthful and continuous, but corrected wording does not cure any missing permission.</p>
+          </div>
+          <div class="option">
+            <h3>C. Seek a durable written license</h3>
+            <p>Ask Suhrkamp to confirm its capacity and grant worldwide rights for the German text, the new translation, living revisions, repository distribution, archiving, and—if available—CC BY downstream reuse.</p>
+            <p class="tradeoff"><strong>Tradeoff:</strong> best durable route; may cost money, impose restrictions, take time, or be refused.</p>
+          </div>
+          <div class="option">
+            <h3>D. Rely on a counsel-reviewed legal position</h3>
+            <p>Commission a targeted title/fair-use opinion after completing the remaining records search, then publish within the scope counsel considers supportable.</p>
+            <p class="tradeoff"><strong>Tradeoff:</strong> may support publication without a license, but requires professional analysis and may still recommend withdrawal or clearance.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="recommendation">
+        <h2>Fresh recommendation</h2>
+        <p><strong>Adopt B + C now, with D as the closing condition.</strong> This respects the editor's previously chosen interim posture—continued access during research—while correcting the public representation and pursuing the only clearly evidenced permission route. Option A remains the legally safest alternative and should be reconsidered if the administrator objects, clearance stalls, or counsel advises withdrawal.</p>
+        <ol>
+          <li>Adopt US protection through 2050 as the project's working assumption, not as a final legal adjudication.</li>
+          <li>Publish a prompt accuracy correction across README, LICENSE, bibliography, colophon, and metadata.</li>
+          <li>Pending clearance, exclude the German text, this complete English translation, Jephcott quotations, and all other third-party material from CC BY.</li>
+          <li>Prepare a coordinated Suhrkamp request, but do not send it until the editor approves the exact scope, willingness to pay, and fallback if CC BY is unavailable.</li>
+          <li>Preserve CC BY for commentary, annotations, epilegomena, and original page design. Treat CC BY reuse of the complete translation as negotiable rather than a condition of keeping the project alive.</li>
+          <li>Inventory every Jephcott quotation by page and word count. Decide separately, with counsel if needed, whether to continue under fair use, reduce quotations, or request permission from HarperCollins.</li>
+          <li>Do not mark AUD-P0-001 resolved until a written grant or counsel-reviewed alternative establishes the publication basis and every public surface agrees.</li>
+        </ol>
+      </section>
+
+      <section id="wording">
+        <h2>Proposed interim wording</h2>
+        <p>This language is intentionally conservative. It corrects scope but does not represent that publication has been cleared.</p>
+
+        <h3>Short site, README, and colophon notice</h3>
+        <pre><code>Interim rights notice: Walter Benjamin's authorial copyright in the
+underlying German essay is understood to have expired in Germany and in
+some other jurisdictions. The essay may remain protected in the United
+States through December 31, 2050. The complete German text, this new
+English translation, quotations from third-party translations, and all
+other third-party material are excluded from the site's CC BY 4.0 license
+while rights clearance is pending. No rights in excluded material are
+granted by this notice.</code></pre>
+
+        <h3>Proposed replacement for <code>LICENSE</code></h3>
+        <pre><code>Copyright and license notice
+
+Jesse Posner's independently created commentary, annotations,
+epilegomena, and original page design are © 2026 Jesse Posner and
+licensed under Creative Commons Attribution 4.0 International (CC BY
+4.0), only to the extent he owns or is authorized to license those rights.
+
+Excluded from CC BY 4.0 are Walter Benjamin's underlying German essay;
+the complete English translation in this edition while authorization of
+the underlying work remains unresolved; quotations from Edmund Jephcott's
+or any other third-party translation; and all other identified third-party
+material. No rights in excluded material are granted.
+
+Benjamin's authorial copyright is understood to have expired in Germany
+and in some other jurisdictions. The underlying essay may remain protected
+in the United States through December 31, 2050. Copyright is territorial,
+and users are responsible for determining which rights and exceptions
+apply in their jurisdiction.</code></pre>
+
+        <h3>Bibliography publication-history correction</h3>
+        <pre><code>First documented publication: “Über Sprache überhaupt und über die
+Sprache des Menschen,” in Walter Benjamin, Schriften, vol. II, ed.
+Theodor W. Adorno and Gretel Adorno, with the collaboration of Friedrich
+Podszus (Frankfurt am Main: Suhrkamp, 1955), pp. 401–419. Benjamin
+composed the essay 4–11 November 1916, delivered it to Gershom Scholem in
+December, and circulated manuscript copies privately under restrictions.
+It remained unpublished in his lifetime. The set has been dated to
+mid-October 1955; the exact release day remains unverified.</code></pre>
+
+        <h3>Textlog description</h3>
+        <pre><code>textlog.de — the open web transcription from which this edition's German
+reading text began. It is an electronic source, not an independent critical
+witness or evidence of worldwide public-domain status.</code></pre>
+      </section>
+
+      <section id="request">
+        <h2>Permission request: scope to approve before contact</h2>
+        <p>The proposed Suhrkamp request would identify the 1916 essay, its 1955 <em>Schriften</em> publication, the 1977 <em>Gesammelte Schriften</em> witness, the current public URL, and the GitHub repository. It would request:</p>
+        <ul>
+          <li>non-exclusive worldwide reproduction, distribution, public display, and making-available rights for the complete German text;</li>
+          <li>the right to prepare, publish, revise, and archive this complete new English translation;</li>
+          <li>parallel German/English presentation, sentence-level quotation in commentary, linking, indexing, and ordinary technical reformatting;</li>
+          <li>living-edition corrections, permanent version history, public repository copies, browser caching, citation, and noncommercial archival preservation;</li>
+          <li>free public access without advertising, subscription, or sale of the text;</li>
+          <li>an express decision on whether readers may reuse the translation under CC BY 4.0;</li>
+          <li>the licensor's exact legal capacity, principal, territorial/media exclusions, required credit, fee, approval rights, and whether the grant ratifies publication before permission.</li>
+        </ul>
+        <p class="callout"><strong>No outreach is authorized by this page.</strong> Contacting Suhrkamp, HarperCollins, HUP, the Archive, or counsel is a separate external action requiring the editor's approval.</p>
+      </section>
+
+      <section id="decision-record">
+        <h2>Decision and implementation record</h2>
+        <p><span class="decision-label">Decision · 2026-07-12</span><br>The editor selected Option B: “Correct, narrow, and keep online.”</p>
+        <p><span class="decision-label">Authorized scope</span><br>Adopt the working US-through-2050 risk assumption; replace blanket public-domain claims with territorial wording; exclude the German essay, this complete English translation pending clearance, third-party translations, and other third-party material from CC BY; retain CC BY for independently created commentary, annotations, epilegomena, and original page design; and correct the 1955 publication record.</p>
+        <p><span class="decision-label">Implementation</span><br>The approved wording is applied across <code>README.md</code>, <code>LICENSE</code>, <code>index.html</code>, and <code>CHANGELOG.md</code>. The complete reading texts remain present, and the release is recorded in both public revision histories.</p>
+        <p><span class="decision-label">Verification</span><br>Static consistency, JavaScript parsing, duplicate-ID, whitespace, desktop, mobile, dark-mode, bibliography, colophon, and console checks passed. The long mobile colophon wraps without overflow. Only the already-audited masthead-controls overflow remains.</p>
+        <p><span class="decision-label">Reserved</span><br>Option C outreach, Option D counsel review, the response to a site-specific but non-CC license, and the Jephcott quotation posture remain open.</p>
+        <p><span class="decision-label">Publication · 2026-07-12</span><br>Published as Edition 2026.07.12.3. No external communication or clearance outreach has been made.</p>
+      </section>
+
+      <section id="decisions">
+        <h2>Decision state</h2>
+        <ol class="questions">
+          <li><strong>Approved through Option B — working legal assumption:</strong> treat the underlying essay as US-protected through 2050 unless written clearance or counsel establishes otherwise.</li>
+          <li><strong>Approved — interim publication posture:</strong> keep the complete edition online after correcting its notices.</li>
+          <li><strong>Approved through Option B — license scope:</strong> remove the German text and complete new translation from CC BY while preserving CC BY for commentary, annotations, epilegomena, and design.</li>
+          <li><strong>Open — durable clearance:</strong> whether to prepare and send the coordinated Suhrkamp request, including the explicit CC BY question.</li>
+          <li><strong>Open — negotiating priority:</strong> whether continued lawful access is more important than open licensing if Suhrkamp offers only site-specific permission.</li>
+          <li><strong>Open — Jephcott:</strong> whether to obtain targeted fair-use advice first or proceed directly to a HarperCollins permissions request.</li>
+          <li><strong>Open — counsel:</strong> whether to authorize a targeted US copyright/title review before AUD-P0-001 is finally closed.</li>
+        </ol>
+      </section>
+
+      <section id="acceptance">
+        <h2>Acceptance criteria for eventual resolution</h2>
+        <ul>
+          <li>The editor has chosen and recorded the interim publication posture.</li>
+          <li>The public-domain and CC BY statements are accurate, territorial, and consistent across every public surface.</li>
+          <li>The corrected publication history identifies <em>Schriften</em> II, pp. 401–419, and preserves the exact-date uncertainty.</li>
+          <li>The source/new-translation rights administrator has responded in writing, or counsel has approved a documented alternative basis.</li>
+          <li>Any grant covers the actual German witness, new translation, territories, website, repository, revisions, archives, and downstream license actually offered.</li>
+          <li>Jephcott quotations have a documented fair-use or permission posture separate from source/new-translation clearance.</li>
+          <li><code>AUDIT.md</code>, <code>README.md</code>, <code>LICENSE</code>, bibliography, colophon, metadata, changelog, and public Revision History agree.</li>
+          <li>The deployed edition is verified and AUD-P0-001 is marked Published and Resolved only after those conditions are met.</li>
+        </ul>
+      </section>
+
+      <section id="sources">
+        <h2>Selected primary and authoritative sources</h2>
+        <ul>
+          <li><a href="https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title17-section104A&amp;num=0&amp;edition=prelim">17 U.S.C. § 104A</a> — restored works, term, ownership, reliance parties, source country, and eligibility.</li>
+          <li><a href="https://www.copyright.gov/circs/circ38b.pdf">US Copyright Office Circular 38B</a> — official URAA guidance.</li>
+          <li><a href="https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title17-section103&amp;num=0&amp;edition=prelim">17 U.S.C. § 103</a> and <a href="https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title17-section106&amp;num=0&amp;edition=prelim">§ 106</a> — derivative-work copyright and exclusive rights.</li>
+          <li><a href="https://www.gesetze-im-internet.de/englisch_urhg/englisch_urhg.html">German Copyright Act §§ 64 and 69</a> — life-plus-seventy term and calendar-year calculation.</li>
+          <li><a href="https://d-nb.info/450354865">German National Library: <em>Schriften</em>, vol. II</a> and <a href="https://d-nb.info/450354865/04">original contents scan</a>.</li>
+          <li><a href="https://www.suhrkamp.de/rights/about-contacts/contacts-kontakt-s-1145">Suhrkamp rights contacts</a> and <a href="https://www.suhrkamp.de/rights/permission-abdruck-s-1146">permission instructions</a>.</li>
+          <li><a href="https://permissions.harpercollins.com/">HarperCollins permissions portal</a> and <a href="https://www.harpercollins.com/products/reflections-walter-benjamin">current <em>Reflections</em> record</a>.</li>
+          <li><a href="https://www.hup.harvard.edu/resources/rights-and-permissions/permissions-faq">Harvard University Press permissions FAQ</a>.</li>
+          <li><a href="https://adk.de/archiv-der-kuenste/abteilungen-fachbereiche/walter-benjamin-archiv">Walter Benjamin Archive</a> — archival custody and provenance.</li>
+        </ul>
+      </section>
+    </article>
+
+    <aside aria-label="Review contents">
+      <p class="eyebrow">AUD-P0-001A</p>
+      <h2>Review contents</h2>
+      <ol class="toc">
+        <li><a href="#answer">Answer</a></li>
+        <li><a href="#memos">Research memoranda</a></li>
+        <li><a href="#record">Publication record</a></li>
+        <li><a href="#law">US conclusion</a></li>
+        <li><a href="#holders">Rights map</a></li>
+        <li><a href="#claims">Claims to correct</a></li>
+        <li><a href="#options">Resolution options</a></li>
+        <li><a href="#recommendation">Recommendation</a></li>
+        <li><a href="#wording">Proposed wording</a></li>
+        <li><a href="#request">Permission scope</a></li>
+        <li><a href="#decision-record">Decision record</a></li>
+        <li><a href="#decisions">Decision state</a></li>
+        <li><a href="#acceptance">Acceptance criteria</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ol>
+      <p class="callout"><strong>Option B published:</strong> corrected notices and narrowed CC BY are live in Edition 2026.07.12.3. Options C and D and all external contact remain open.</p>
+    </aside>
+  </main>
+
+  <footer>
+    Internal research synthesis · Option B published in Edition 2026.07.12.3 · clearance decisions remain open · noindex, unlisted, not access-controlled · governed by EDITORIAL.md
+  </footer>
+</body>
+</html>
