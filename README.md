@@ -10,11 +10,12 @@ in parallel.
 
 ## The edition
 
-- **German text**: after textlog.de, with fifteen editorial corrections;
-  collated against a second online
-  witness (99.7% agreement; the witnesses share a corrupt electronic
-  ancestor, and the emendations are documented). Collation against
-  Gesammelte Schriften II.1 is the outstanding print check. Benjamin's
+- **German text**: a critical reading based on *Gesammelte Schriften* II.1,
+  collated in full with its critical report and later controls. It makes two
+  declared departures from GS (¶3 and ¶14), preserves marked historical
+  forms, and restores the source's emphasis. The earlier textlog-derived
+  transcription remains part of the edition's provenance, not its present
+  authority. Benjamin's
   authorial copyright is understood to have expired in Germany and some
   other jurisdictions, but the essay may remain protected in the United
   States through December 31, 2050.

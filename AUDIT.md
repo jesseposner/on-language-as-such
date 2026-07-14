@@ -22,7 +22,7 @@ The present version is best described as an excellent beta rather than a finishe
 | Priority | Finding | Recommended disposition |
 | --- | --- | --- |
 | P0 | The claim that the German is simply "public domain" is probably incorrect for US publication. | Qualify the claim immediately and conduct formal rights research or clearance. |
-| P0 | The German witness differs from *GS* II.1 in fifteen places and has no published apparatus. | Establish a diplomatic base text and document every emendation. |
+| P0 | The German witness differs from *GS* II.1 in sixteen word-and-punctuation loci, omits its emphasis layer, and has no published apparatus. | Establish accountable base and reading texts and document every emendation. |
 | P1 | "Quintessence" embeds a major interpretation in the governing vocabulary and breaks the visible `Geist` family. | Reconsider, or explicitly present the work as an interpretive translation with a literal alternative. |
 | P1 | Several local translation readings change meaning. | Correct the definite cases listed below, then perform a focused second pass. |
 | P1 | At mobile widths the header overflows and the Apparatus button cannot open the apparatus. | Repair the responsive header and sheet state machine. |
@@ -69,7 +69,7 @@ underlying rights issue is not yet fully resolved. See
 
 The stated outstanding print check was performed against a scan of [*Gesammelte Schriften* II.1, pp. 140-157](https://www.kritiknetz.de/images/stories/texte/walter-benjamin-gesammelte-schriften-ii.pdf).
 
-Fifteen clear divergences remain between the German displayed in `index.html` and *GS* II.1:
+The German displayed in published Edition 2026.07.12.4 contained sixteen clear word-and-punctuation divergences from *GS* II.1:
 
 | No. | Paragraph | Current edition | *GS* II.1 | Assessment |
 | ---: | ---: | --- | --- | --- |
@@ -81,30 +81,50 @@ Fifteen clear divergences remain between the German displayed in `index.html` an
 | 6 | 5 | `die Dinge benennt.` | `die Dinge benennt:` | Punctuation divergence. |
 | 7 | 11 | `Geist, und Sprache` | `Geist und Sprache` | Spurious comma. |
 | 8 | 11 | `der sprachlich existentester. d. h. fixierteste Ausdruck` | `der sprachlich existenteste, d. h. fixierteste Ausdruck` | Corrupt morphology and punctuation. |
-| 9 | 14 | `(Genesis 1:3; 1:11)` | `(1,3; 1,14)` | Substantive citation error; Genesis 1:14 is the relevant creation command. |
-| 10 | 16 | `der menschliche Name` | `der menschliche Namen` | Silent grammatical normalization of the printed reading; probably defensible, but it belongs in the apparatus. |
+| 9 | 14 | `(Genesis 1:3; 1:11)` | `(1,3; 1,14)` | Substantive witness conflict: GS preserves probable T1 1:14, while Jephcott and Reclam use 1:11; either disposition must be declared. |
+| 10 | 16 | `der menschliche Name` | `der menschliche Namen` | Silent standardization of an attested marked nominative that Benjamin repeats later in the essay. |
 | 11 | 16 | `Auf die Sprache der Dinge selbst; aus denen` | `Auf die Sprache der Dinge selbst, aus denen` | Punctuation divergence. |
 | 12 | 18 | `in den Namen Das ist` | `in den Namen. Das ist` | Missing full stop. |
 | 13 | 19 | `Diese Unmittelbarkeit »in der Mitteilung` | `Diese Unmittelbarkeit in der Mitteilung` | Stray opening quotation mark. |
 | 14 | 21 | `rief ... sie hervor-, In der Sprache` | `rief ... sie hervor. In der Sprache` | Corrupt punctuation and capitalization. |
 | 15 | 22 | `eine Obersetzung` | `eine Übersetzung` | Transcription error. |
+| 16 | 8 | `wenn der Genitiv nicht ...` | `wenn der Genetiv nicht ...` | Silent modernization of a dated but valid GS spelling. |
 
-Not every difference should automatically be treated as an error. At least the ¶2 rearrangement and ¶16 `Name` normalization look editorial. The problem is that no apparatus presently distinguishes transcription correction, modernization, conjecture, and adoption of a printed reading.
+**Research status, 2026-07-12:** three commissioned passes verified
+all sixteen loci against the GS page images, examined the GS critical report,
+and compared the Reclam 2019 reading edition and canonical Jephcott translation
+where useful. They also establish that GS is a T1-based critical text containing
+three disclosed conjectures, that `der menschliche Namen` is an attested marked
+nominative rather than an obvious error, and that the published display omitted
+the complete emphasis layer. The recommendations were subsequently approved,
+implemented, and published in Edition 2026.07.12.5. See
+`editorial/reviews/AUD-P0-002A-collation-research-findings.html` and its three
+linked research memoranda.
 
-The surrounding documentation is also inconsistent:
+Not every difference was treated as an error. The ¶2 rearrangement and ¶16 `Name` normalization were reversed; Genesis 1:11 was retained as a declared emendation; and ¶3 now follows the unanimous typescripts against a GS conjecture.
 
-- `README.md` says there are fifteen editorial corrections.
-- The bibliography says there are fourteen transcription defects.
-- The bibliography refers to "the German file's frontmatter," but the repository has no separate German source file.
-- The epilogue calls the German "settled" while the bibliography and colophon say the *GS* collation is pending.
+At audit time the surrounding documentation was also inconsistent:
+
+- `README.md` said there were fifteen editorial corrections.
+- The bibliography said there were fourteen transcription defects.
+- The bibliography referred to "the German file's frontmatter," although the repository then had no separate German source file.
+- The epilogue called the German "settled" while the bibliography and colophon said the *GS* collation was pending.
 
 ### Recommended action
 
-- Store a diplomatic *GS* witness separately from the reading text.
+- Store a source-faithful transcription of the printed *GS* critical text separately from the reading text.
 - Create an apparatus with paragraph, source reading, adopted reading, category, authority, and rationale.
 - Record the exact edition, page span, scan source, and collation date.
 - Generate the displayed German from that maintained source rather than editing it inside the HTML artifact.
 - Update all counts and completion claims from the same data.
+
+**Resolved and published in Edition 2026.07.12.5:** all five actions are
+complete. `edition/german-gs.md` and `edition/german-reading.md` separate
+the base from the adopted reading; `edition/textual-apparatus.yml` and
+`edition/collation.md` record the evidence and decisions; `scripts/sync-german.py`
+maintains the 26-paragraph display; and `scripts/verify-edition.py` verifies the
+display, quotation corpus, apparatus, counts, and stale-claim exclusions. The
+reader-visible revision is recorded in the public Revision History.
 
 ## 3. Translation review
 
@@ -142,7 +162,7 @@ Rendering `Sache` as "matter" while also rendering `Materie` as "matter" collaps
 | 1 | `seinen Inhalt` / "its content" | The German witness omits `geistigen`. | Restore the source and translate the full phrase under the chosen `geistiges` policy. |
 | 1.9 | "whose circumference traces the idea of God" | The likely agency is reversed: the idea of God marks or designates the circumference. | "within the precinct of ideas whose circumference the idea of God marks." |
 | 12.1 | `sinnliche Bedeutung` -> "literal meaning" | `sinnlich` is sensory/sensuous; the commentary itself recognizes the contrast with sound. | "figurative and sensory meaning." |
-| 14 | Genesis 1:11 | The critical text reads 1:14, the relevant "Let there be lights" verse. | Correct German, English, and commentary references. |
+| 14 | Genesis 1:11 | GS reads 1:14; Jephcott and Reclam read 1:11; the biblical and transmission evidence is genuinely divided. | Choose and declare the reading; replace the categorical commentary with the two-sided evidence. |
 | 16 | "By it, each man is vouched his creation by God" | Unidiomatic and syntactically misleading. | "Through it, every person's creation by God is vouched for." |
 | 16-17 | `empfangend / sprachempfangend / Empfängnis` -> "conceiving" | Privileges the pregnancy resonance and obscures the basic receive/receptivity family and its relation to spontaneity. | Keep "receiving/receptive" in the text; annotate the conception resonance. |
 | 19 | `exzitiert` -> "excited it" | Possible in an older register, but strongly misleading in current English. | "called it forth" or "aroused it." |
@@ -312,9 +332,9 @@ Useful automated checks:
 
 - [x] Qualify the public-domain and license language.
 - [ ] Complete formal US rights research or clearance.
-- [ ] Establish the German source of truth.
-- [ ] Resolve and document all fifteen *GS* divergences.
-- [ ] Correct Genesis 1:14 and meaning-bearing transcription errors.
+- [x] Establish the German source of truth.
+- [x] Resolve and document all sixteen *GS* divergences, the additional T1/GS decision, and the emphasis layer.
+- [x] Resolve and disclose the Genesis 1:11/1:14 conflict and correct meaning-bearing transcription errors.
 
 ### Translation
 

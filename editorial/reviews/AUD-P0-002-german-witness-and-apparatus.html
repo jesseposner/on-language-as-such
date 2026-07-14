@@ -131,7 +131,7 @@
     <p class="eyebrow">Internal editorial review · not part of the published edition</p>
     <h1>German witness and textual apparatus</h1>
     <div class="meta">
-      <span class="status">Research in progress</span>
+      <span class="status">Resolved · published</span>
       <span><strong>Issue:</strong> AUD-P0-002</span>
       <span><strong>Priority:</strong> P0 · textual integrity</span>
       <span><strong>Opened:</strong> 2026-07-12</span>
@@ -143,8 +143,8 @@
     <article>
       <section id="question">
         <h2>The question before the edition</h2>
-        <p class="lede">The edition calls its German text both "settled" and still awaiting collation against <em>Gesammelte Schriften</em> II.1. The completed print check finds fifteen divergences, including two lost words, a wrong biblical citation, malformed German, and several punctuation defects. Because some current readings are silent improvements on the printed text, resolution requires an explicit base-text and emendation policy—not simply a list of corrections.</p>
-        <div class="callout"><strong>No textual resolution has been implemented.</strong> This page establishes the witnesses, records all fifteen divergences, and presents the policy choices for discussion.</div>
+        <p class="lede">The edition calls its German text both "settled" and still awaiting collation against <em>Gesammelte Schriften</em> II.1. The initial print check found fifteen divergences, including two lost words, a wrong biblical citation, malformed German, and several punctuation defects. Because some current readings are silent improvements on the printed text, resolution requires an explicit base-text and emendation policy—not simply a list of corrections.</p>
+        <div class="callout"><strong>This initial review was superseded at the reading level.</strong> The commissioned research found a sixteenth ED/GS divergence, GS editorial conjectures, marked German forms, and a missing emphasis layer. The <a href="AUD-P0-002A-collation-research-findings.html">fresh findings and recommendations</a> governed the resolution published in Edition 2026.07.12.5.</div>
       </section>
 
       <section id="claims">
@@ -183,7 +183,7 @@
       </section>
 
       <section id="collation">
-        <h2>Complete GS II.1 collation</h2>
+        <h2>Initial GS II.1 collation</h2>
         <p>Fourteen proposed actions restore the GS reading. Number 10 is different: the edition's current <code>Name</code> silently corrects the printed <code>Namen</code> and should be retained only as a declared emendation.</p>
 
         <ol class="variants">
@@ -332,7 +332,7 @@
         <h2>Proposed source architecture</h2>
         <p>The full site-generation refactor belongs to a later maintenance issue. This P0 can still establish accountable source files now:</p>
         <pre><code>edition/
-  german-gs.md          # diplomatic transcription of the base witness
+  german-gs.md          # source-faithful transcription of the printed GS critical text
   german-reading.md     # 26-paragraph reader-facing German text
   textual-apparatus.yml # every departure from the base, with rationale
   collation.md          # GS / textlog / prior-edition comparison record</code></pre>
@@ -364,7 +364,7 @@
       </section>
 
       <section id="questions">
-        <h2>Decisions required</h2>
+        <h2>Decisions originally required</h2>
         <ol class="questions">
           <li>Should GS II.1 become the edition's declared base witness?</li>
           <li>Should the public German be a diplomatic transcription (A) or an emended critical reading text (B)?</li>
@@ -376,14 +376,14 @@
 
       <section id="research">
         <h2>Research commission · 2026-07-12</h2>
-        <p>The edition framework is approved, but no individual reading is yet authorized. Three parallel research passes will precede the final textual decision:</p>
+        <p>At this stage the edition framework had been approved, but no individual reading was yet authorized. Three parallel research passes were commissioned before the final textual decision:</p>
         <ol>
           <li><strong>Variants 1–7:</strong> verify ¶¶1–11 against GS page images, textlog, the 1955 <em>Schriften</em> where obtainable, reputable later German editions, translations, and exact quotations in the edition's bibliography; sweep the same paragraphs for missed variants.</li>
           <li><strong>Variants 8–15:</strong> perform the same work for ¶¶11–26, including the Genesis citation and the grammatical/historical status of <code>der menschliche Namen</code>.</li>
           <li><strong>Adversarial full-text sweep:</strong> independently recollate the entire essay, test the assumed witness genealogy, and search for any additional emendation the first two passes missed.</li>
         </ol>
-        <p>Each pass must distinguish visual inspection from OCR, report conflicting evidence rather than flatten it, and assign a confidence level to every recommendation.</p>
-        <p><strong>Deliverable:</strong> a new internal report, <code>AUD-P0-002A-collation-research-findings.html</code>, synthesizing the evidence and presenting a fresh recommendation for every reading. This original review remains the record of the initial audit and approved framework.</p>
+        <p>Each pass distinguished visual inspection from OCR, reported conflicting evidence rather than flattening it, and assigned confidence levels to its recommendations.</p>
+        <p><strong>Completed deliverable:</strong> <a href="AUD-P0-002A-collation-research-findings.html"><code>AUD-P0-002A-collation-research-findings.html</code></a> synthesizes the evidence and presents a fresh recommendation for every reading. The supporting records are the <a href="../research/AUD-P0-002-variants-01-07.md">variants 1–7 memo</a>, <a href="../research/AUD-P0-002-variants-08-15.md">variants 8–15 memo</a>, and <a href="../research/AUD-P0-002-full-text-recollation.md">adversarial full-text recollation</a>. This original review remains the record of the initial audit and approved framework.</p>
       </section>
 
       <section id="acceptance">
@@ -391,7 +391,7 @@
         <p>AUD-P0-002 can be marked resolved only when:</p>
         <ul>
           <li>the base witness and editorial policy are explicit;</li>
-          <li>all fifteen divergences have an approved disposition;</li>
+          <li>all sixteen ED/GS divergences and the additional T1/GS decision have an approved disposition;</li>
           <li>the diplomatic source, reading text, apparatus, and collation record exist;</li>
           <li>German display and repeated German quotations agree with the approved reading;</li>
           <li>the ¶1 and ¶14 English consequences are corrected;</li>
@@ -405,10 +405,10 @@
       <section id="record">
         <h2>Decision and implementation record</h2>
         <p><span class="decision-label">Framework decision · 2026-07-12</span><br>GS II.1 is approved as the declared base witness. Option B—a GS-based critical reading text—is approved. The final edition will expose a compact public textual apparatus and introduce accountable source files before the German display is revised.</p>
-        <p><span class="decision-label">Reserved readings</span><br>All fourteen proposed restorations and the proposed <code>Name</code> emendation remain unapproved pending the commissioned research and fresh findings report.</p>
-        <p><span class="decision-label">Implementation</span><br>Not started. The approved architecture does not authorize any individual textual change.</p>
-        <p><span class="decision-label">Verification</span><br>Initial GS collation completed; expanded multi-witness and bibliographic research in progress.</p>
-        <p><span class="decision-label">Publication</span><br>No German-text revision published.</p>
+        <p><span class="decision-label">Approved readings · 2026-07-12</span><br>Adopt GS at fifteen former divergence loci; restore T1–T4 <code>in</code> at ¶3 against the GS conjecture; retain Genesis 1:11 at ¶14 as a declared emendation; retain marked <code>Namen</code>, <code>Genetiv</code>, and <code>maßen</code>; restore the complete emphasis layer.</p>
+        <p><span class="decision-label">Implementation · 2026-07-12</span><br>Completed locally under the persisted implementation plan. Accountable GS-base, reading-text, apparatus, and collation sources now govern the synchronized German display; translation, commentary, epilogue, bibliography, README, colophon, and unreleased change record are aligned.</p>
+        <p><span class="decision-label">Verification · 2026-07-12</span><br>All 26 German paragraphs, 125 German quotations, 125 English quotations, the two public apparatus entries, identifiers, provenance claims, desktop/mobile layout, German toggle, commentary sheet, anchors, and keyboard handlers passed. English quintessence-family count: 62.</p>
+        <p><span class="decision-label">Publication · 2026-07-12</span><br>Published as Edition 2026.07.12.5; the public Revision History, changelog, colophon, commit, and tag identify the complete revised state.</p>
       </section>
 
       <section id="sources">
@@ -416,6 +416,7 @@
         <ul>
           <li><a href="https://www.kritiknetz.de/images/stories/texte/walter-benjamin-gesammelte-schriften-ii.pdf"><em>Walter Benjamin, Gesammelte Schriften</em> II.1</a>, pp. 140–157.</li>
           <li><a href="https://www.textlog.de/benjamin/essays/metaphysisch/sprache-ueberhaupt-und-sprache-des-menschen">textlog.de electronic transcription</a>.</li>
+          <li><a href="AUD-P0-002A-collation-research-findings.html">AUD-P0-002A research synthesis</a> and its three linked memoranda.</li>
           <li><code>README.md</code>, <code>index.html</code>, and <code>AUDIT.md</code> in this repository.</li>
         </ul>
       </section>
@@ -429,7 +430,7 @@
         <li><a href="#claims">Current claims</a></li>
         <li><a href="#witnesses">Witnesses examined</a></li>
         <li><a href="#distinction">Editorial operations</a></li>
-        <li><a href="#collation">Fifteen divergences</a></li>
+        <li><a href="#collation">Initial fifteen divergences</a></li>
         <li><a href="#impact">Downstream consequences</a></li>
         <li><a href="#policy">Proposed policy</a></li>
         <li><a href="#options">Resolution options</a></li>
@@ -437,11 +438,12 @@
         <li><a href="#recommendation">Provisional recommendation</a></li>
         <li><a href="#questions">Decisions required</a></li>
         <li><a href="#research">Research commission</a></li>
+        <li><a href="AUD-P0-002A-collation-research-findings.html">Fresh findings report →</a></li>
         <li><a href="#acceptance">Acceptance criteria</a></li>
         <li><a href="#record">Decision record</a></li>
         <li><a href="#sources">Primary references</a></li>
       </ol>
-      <p class="callout"><strong>Gate:</strong> Do not change the German display, English consequences, or provenance claims until the base-text policy and all readings are approved.</p>
+      <p class="callout"><strong>Resolution:</strong> The approved German display, English consequences, apparatus, and provenance claims were published together in Edition 2026.07.12.5.</p>
     </aside>
   </main>
 

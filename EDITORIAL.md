@@ -161,8 +161,8 @@ Every public-facing entry, including `Unreleased`, describes the net reader-visi
 ## YYYY.MM.DD
 
 ### German text
-- ¶14: `Genesis 1:11` → `Genesis 1:14`, corrected against *GS* II.1,
-  p. 148.
+- ¶14: retained `Genesis 1:11` as a declared emendation of *GS* II.1's
+  `1:14`, with the competing evidence disclosed in the textual apparatus.
 
 ### Translation
 - ¶21.16: “the hundred languages of man” → “hundreds of human

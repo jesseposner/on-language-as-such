@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <title>AUD-P0-002A · Collation research findings</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --paper: #f6efe1;
+      --surface: #efe6d2;
+      --ink: #241d12;
+      --soft: #6b5f4b;
+      --rubric: #8e2f1c;
+      --rubric-soft: #a95a3f;
+      --rule: #d9cdb4;
+      --code: #e7dcc2;
+      --open-bg: #f4dfd5;
+      --open-ink: #722312;
+      --caution-bg: #f3e8c5;
+      --caution-ink: #594714;
+      --good-bg: #e3ead5;
+      --good-ink: #365026;
+      --blue-bg: #dfe7ed;
+      --blue-ink: #314f68;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #171310;
+        --surface: #100d0b;
+        --ink: #e6dbc4;
+        --soft: #a2937a;
+        --rubric: #d97a55;
+        --rubric-soft: #b7683f;
+        --rule: #3b332a;
+        --code: #26201a;
+        --open-bg: #351a14;
+        --open-ink: #efad91;
+        --caution-bg: #302817;
+        --caution-ink: #d7c173;
+        --good-bg: #1d2b19;
+        --good-ink: #a8c596;
+        --blue-bg: #172630;
+        --blue-ink: #9cb9cf;
+      }
+    }
+    * { box-sizing: border-box; }
+    html { font-size: 17px; scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      line-height: 1.68;
+    }
+    a { color: var(--rubric); text-underline-offset: .16em; overflow-wrap: anywhere; }
+    header, main, footer { width: min(100% - 2rem, 82rem); margin-inline: auto; }
+    header { padding: 3.5rem 0 2rem; border-bottom: 1px solid var(--rule); }
+    .eyebrow, .meta, .status, th, .label, .badge, .decision-label, .number {
+      font-family: "Avenir Next", Avenir, "Gill Sans", "Helvetica Neue", sans-serif;
+    }
+    .eyebrow {
+      margin: 0 0 .4rem;
+      color: var(--rubric);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: .74rem;
+    }
+    h1, h2, h3, h4 { font-family: Baskerville, "Hoefler Text", Georgia, serif; line-height: 1.18; }
+    h1 { margin: 0; max-width: 22ch; font-size: clamp(2.1rem, 6vw, 4.4rem); font-weight: 600; }
+    h2 { margin: 0 0 1rem; font-size: clamp(1.55rem, 3vw, 2.2rem); font-weight: 600; }
+    h3 { margin: 1.8rem 0 .65rem; font-size: 1.2rem; }
+    h4 { margin: 1.2rem 0 .45rem; font-size: 1rem; }
+    .meta { display: flex; flex-wrap: wrap; gap: .55rem 1.5rem; margin-top: 1.5rem; color: var(--soft); font-size: .82rem; }
+    .status, .badge { display: inline-block; padding: .2rem .55rem; border: 1px solid currentColor; letter-spacing: .08em; text-transform: uppercase; font-size: .7rem; }
+    .status { color: var(--open-ink); background: var(--open-bg); }
+    .badge.high { color: var(--good-ink); background: var(--good-bg); }
+    .badge.medium { color: var(--caution-ink); background: var(--caution-bg); }
+    .badge.new { color: var(--blue-ink); background: var(--blue-bg); }
+    main { padding: 2.8rem 0 5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem); gap: 3.5rem; align-items: start; }
+    article { min-width: 0; }
+    aside { position: sticky; top: 1.5rem; padding: 1.25rem; background: var(--surface); border-top: 3px solid var(--rubric); }
+    section { padding: 2.2rem 0; border-bottom: 1px solid var(--rule); }
+    section:first-child { padding-top: 0; }
+    p, ul, ol { margin: .7rem 0 1rem; }
+    li { margin-bottom: .5rem; }
+    .lede { max-width: 70ch; font-size: 1.14rem; }
+    .callout { padding: 1rem 1.15rem; background: var(--caution-bg); color: var(--caution-ink); border: 1px solid currentColor; }
+    .callout.good { background: var(--good-bg); color: var(--good-ink); }
+    .callout.open { background: var(--open-bg); color: var(--open-ink); }
+    .callout strong { color: inherit; }
+    .finding, .option, .decision { padding: 1rem 1.15rem; border: 1px solid var(--rule); margin: 1rem 0; }
+    .finding h3, .option h3, .decision h3 { margin-top: 0; }
+    .finding p:last-child, .option p:last-child, .decision p:last-child { margin-bottom: 0; }
+    .tradeoff, .note { color: var(--soft); }
+    .label, .decision-label { color: var(--rubric); letter-spacing: .09em; text-transform: uppercase; font-size: .72rem; }
+    blockquote { margin: 1rem 0; padding: .9rem 1.1rem; background: var(--surface); border-left: 3px solid var(--rubric-soft); }
+    blockquote p { margin: 0 0 .6rem; }
+    blockquote p:last-child { margin-bottom: 0; }
+    code { padding: .08em .28em; background: var(--code); font-size: .88em; overflow-wrap: anywhere; }
+    pre { overflow-x: auto; padding: 1rem; background: var(--code); border: 1px solid var(--rule); font-size: .82rem; line-height: 1.55; white-space: pre-wrap; }
+    pre code { padding: 0; background: transparent; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0 1.5rem; }
+    table { width: 100%; min-width: 52rem; border-collapse: collapse; font-size: .88rem; }
+    th, td { padding: .7rem .6rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--rule); }
+    th { color: var(--rubric); letter-spacing: .06em; font-size: .7rem; text-transform: uppercase; }
+    td:first-child { width: 3rem; color: var(--rubric); font-family: "Avenir Next", Avenir, sans-serif; font-weight: 700; }
+    .questions { counter-reset: question; list-style: none; padding: 0; }
+    .questions li { counter-increment: question; padding: .9rem 0 .9rem 2.3rem; border-bottom: 1px solid var(--rule); position: relative; }
+    .questions li::before { content: counter(question); position: absolute; left: 0; top: .9rem; color: var(--rubric); font-weight: 700; }
+    .toc { list-style: none; padding: 0; font-size: .88rem; }
+    .toc li { margin-bottom: .45rem; }
+    .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .split .option { margin: 0; }
+    footer { padding: 1.4rem 0 3rem; border-top: 1px solid var(--rule); color: var(--soft); font-family: "Avenir Next", Avenir, sans-serif; font-size: .78rem; }
+    :focus-visible { outline: 3px solid var(--rubric); outline-offset: 3px; }
+    @media (max-width: 800px) {
+      header { padding-top: 2.2rem; }
+      main { grid-template-columns: 1fr; gap: 1.5rem; }
+      aside { position: static; }
+      .split { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; }
+    }
+    @media print {
+      body { background: white; color: black; }
+      main { display: block; }
+      aside { position: static; margin-bottom: 2rem; }
+      a { color: black; }
+      .finding, .option, tr { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Collation research findings</h1>
+    <div class="meta">
+      <span class="status">Resolved · published</span>
+      <span><strong>Issue:</strong> AUD-P0-002A</span>
+      <span><strong>Parent:</strong> <a href="AUD-P0-002-german-witness-and-apparatus.html">AUD-P0-002</a></span>
+      <span><strong>Priority:</strong> P0 · textual integrity</span>
+      <span><strong>Prepared:</strong> 2026-07-12</span>
+      <span><strong>Released edition:</strong> 2026.07.12.5</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="answer">
+        <h2>Answer in one paragraph</h2>
+        <p class="lede">The commissioned research confirms that the current German descends from a defective electronic transcription, but it changes the initial audit in four important ways. There are sixteen—not fifteen—word-and-punctuation divergences from <em>Gesammelte Schriften</em> II.1; the unusual forms <code>Namen</code> and <code>Genetiv</code> are defensible readings rather than obvious errors; GS is itself a T1-based critical text containing three declared conjectures; and the current display has erased the German text’s entire emphasis layer. The synthesis recommends returning fifteen of the sixteen divergences to GS, retaining Genesis 1:11 as one declared, medium-confidence emendation, restoring the unanimous typescript reading <code>in</code> at one GS conjecture, and encoding all attested emphasis before the public text is revised.</p>
+        <p class="callout"><strong>Disposition:</strong> the recommendations were approved, implemented, verified, and published together as Edition 2026.07.12.5.</p>
+      </section>
+
+      <section id="memos">
+        <h2>The three persisted research memoranda</h2>
+        <ul>
+          <li><a href="../research/AUD-P0-002-variants-01-07.md">Variants 1–7 and ¶¶1–11 sweep</a> — page-image verification, Reclam and Jephcott controls, GS conjectures, <code>Genetiv</code>, and early-paragraph emphasis.</li>
+          <li><a href="../research/AUD-P0-002-variants-08-15.md">Variants 8–15 and ¶¶11–26 sweep</a> — Genesis, <code>der menschliche Namen</code>, later variants, biblical controls, and the second-half sweep.</li>
+          <li><a href="../research/AUD-P0-002-full-text-recollation.md">Adversarial full-text recollation</a> — all 26 paragraphs, witness genealogy, quotation synchronization, emphasis inventory, and challenge to the first two recommendations.</li>
+        </ul>
+        <p class="note">The memoranda preserve disagreements and source limitations rather than manufacturing unanimity. This page is the synthesis and recommendation; the memoranda remain the full evidentiary record.</p>
+      </section>
+
+      <section id="changes">
+        <h2>What the research changes</h2>
+
+        <div class="finding">
+          <h3><span class="badge new">New</span> The count is sixteen</h3>
+          <p>The original audit missed ¶8: ED and textlog have modern <code>Genitiv</code>, while the GS page image and Reclam 2019 have dated but legitimate <code>Genetiv</code>. No further word-or-punctuation divergence survived high-resolution verification. A suspected <code>Paradiesessprache</code> difference was an OCR illusion; ED and GS agree.</p>
+        </div>
+
+        <div class="finding">
+          <h3><span class="badge new">New</span> GS is not an authorial diplomatic witness</h3>
+          <p>GS II.3 identifies T1—a typescript carrying Benjamin’s handwritten corrections—as its <em>Druckvorlage</em>, alongside T2–T4. It also discloses three editorial conjectures. The project may still use GS as its declared base, but <code>german-gs.md</code> must be described as a source-faithful transcription of the printed GS critical text, not as a diplomatic transcription of Benjamin’s typescript.</p>
+        </div>
+
+        <div class="finding">
+          <h3><span class="badge new">New</span> All German emphasis is missing</h3>
+          <p>Every one of the 26 displayed German paragraphs contains zero emphasis markup. GS visibly emphasizes propositions, contrasts, pronouns, and even the suffix <code>-bar</code>; GS II.3 reports one doctrinal sentence as double-underlined in all four typescripts. Reclam’s born-digital sample exposes 56 italic XML fragments before the sample ends. This is a systematic loss of textual information, not cosmetic styling.</p>
+        </div>
+
+        <div class="finding">
+          <h3><span class="badge new">New</span> The web witnesses are one dependent branch</h3>
+          <p>textlog and Projekt Gutenberg share a diagnostic cluster of rare corruptions and reproduce GS’s own conjectural readings. Their agreement is evidence of common electronic ancestry, not independent confirmation. The repository’s “99.7% agreement with a second online witness” claim must disappear when this issue is implemented.</p>
+        </div>
+      </section>
+
+      <section id="witnesses">
+        <h2>Evidence hierarchy and remaining limits</h2>
+        <ol>
+          <li><strong>GS reading text:</strong> all eighteen essay pages, printed pp. 140–157, inspected as images. It remains the approved base.</li>
+          <li><strong>GS critical report:</strong> printed pp. 931–936, inspected for T1–T4, the copy-text declaration, conjectures, and transmitted emphasis.</li>
+          <li><strong>Reclam 2019:</strong> the publisher’s page-image/born-digital sample, used as a reputable later German reading edition where available.</li>
+          <li><strong>Jephcott:</strong> the user-supplied canonical English scan, visually checked as an editorial and translation control—not as authority over the German.</li>
+          <li><strong>Electronic transcriptions:</strong> textlog and Projekt Gutenberg, useful for provenance but given little independent weight.</li>
+        </ol>
+        <p class="callout"><strong>Evidence still missing:</strong> the text pages of the 1955 <em>Schriften</em> II and facsimiles of T1–T4 were not obtained. Those comparisons would refine the genealogy, especially at Genesis and disputed punctuation, but they do not alter what the inspected GS pages and GS report say. The synthesis does not treat them as blockers to a reasoned decision now.</p>
+      </section>
+
+      <section id="sixteen">
+        <h2>All sixteen ED/GS divergences</h2>
+        <p>The numbering preserves the parent review’s first fifteen items and appends the newly discovered ¶8 spelling as item 16. “Adopt GS” means the current edition changes; “retain ED em.” means the edition remains different from GS and says so publicly.</p>
+        <div class="table-wrap" role="region" aria-label="Sixteen divergence recommendations" tabindex="0">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Locus</th><th>Current edition</th><th>GS II.1</th><th>Fresh recommendation</th><th>Confidence</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>01</td><td>¶1 · p. 141</td><td><code>seinen Inhalt</code></td><td><code>seinen geistigen Inhalt</code></td><td>Adopt GS; English becomes minimally “its quintessential content.”</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>02</td><td>¶1 · p. 141</td><td><code>Idee: aber</code></td><td><code>Idee; aber</code></td><td>Adopt GS semicolon.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>03</td><td>¶2 · p. 141</td><td>supplied first <code>ihm</code>; added comma</td><td><code>und über, gerade über ihm … erhalten ist</code></td><td>Restore GS’s suspended construction; keep smoother English.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>04</td><td>¶3 · p. 142</td><td><code>sprachlichen Wesen:</code></td><td><code>sprachlichen Wesen.</code></td><td>Adopt GS sentence boundary.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>05</td><td>¶4 · p. 142</td><td><code>in selbst</code></td><td><code>in sich selbst</code></td><td>Restore the missing reflexive.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>06</td><td>¶5 · p. 143</td><td><code>benennt.</code></td><td><code>benennt:</code></td><td>Adopt GS colon; Reclam and Jephcott prefer the full stop.</td><td><span class="badge medium">Medium-high</span></td></tr>
+              <tr><td>07</td><td>¶11 · p. 146</td><td><code>Geist, und Sprache</code></td><td><code>Geist und Sprache</code></td><td>Remove the electronic comma.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>08</td><td>¶11 · p. 146</td><td><code>existentester. d. h.</code></td><td><code>existenteste, d. h.</code></td><td>Adopt GS morphology and punctuation.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>09</td><td>¶14 · p. 148</td><td><code>Genesis 1:3; 1:11</code></td><td><code>1,3; 1,14</code></td><td><strong>Retain 1:11 as ED em.</strong>; disclose GS 1:14 and the divided evidence.</td><td><span class="badge medium">Medium-high</span></td></tr>
+              <tr><td>10</td><td>¶16 · p. 149</td><td><code>der menschliche Name</code></td><td><code>der menschliche Namen</code></td><td>Adopt GS <code>Namen</code>; explain the marked nominative.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>11</td><td>¶16 · p. 150</td><td><code>Dinge selbst; aus denen</code></td><td><code>Dinge selbst, aus denen</code></td><td>Adopt GS comma; Reclam retains the semicolon.</td><td><span class="badge medium">Medium-high</span></td></tr>
+              <tr><td>12</td><td>¶18 · p. 151</td><td><code>in den Namen Das</code></td><td><code>in den Namen. Das</code></td><td>Restore the full stop.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>13</td><td>¶19 · p. 154</td><td><code>Unmittelbarkeit »in</code></td><td><code>Unmittelbarkeit in</code></td><td>Remove the orphaned guillemet.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>14</td><td>¶21 · p. 155</td><td><code>hervor-, In</code></td><td><code>hervor. In</code></td><td>Restore the sentence boundary.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>15</td><td>¶22 · p. 156</td><td><code>Obersetzung</code></td><td><code>Übersetzung</code></td><td>Restore <code>Übersetzung</code>.</td><td><span class="badge high">High</span></td></tr>
+              <tr><td>16</td><td>¶8 · p. 144</td><td><code>Genitiv</code></td><td><code>Genetiv</code></td><td>Adopt GS’s dated but valid spelling.</td><td><span class="badge high">High</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="callout good"><strong>Net recommendation:</strong> adopt GS at IDs 1–8 and 10–16. Retain current 1:11 at ID 9 only as a declared emendation. This yields fifteen corrections toward GS and one documented departure.</p>
+      </section>
+
+      <section id="conjectures">
+        <h2>What GS changed before this edition received it</h2>
+        <p>The approved base is already a constituted critical text. The new architecture must preserve these inherited editorial facts even when the public apparatus remains compact.</p>
+        <div class="table-wrap" role="region" aria-label="GS editorial interventions" tabindex="0">
+          <table>
+            <thead><tr><th>Locus</th><th>T1–T4</th><th>GS</th><th>Synthesis recommendation</th></tr></thead>
+            <tbody>
+              <tr><td>¶3 · 142,8</td><td><code>in</code></td><td><code>in einer Sprache</code>, expressly conjectured</td><td><strong>Restore T1–T4 <code>in</code></strong> as a declared departure from GS; Reclam and Jephcott support the elliptical authorial construction.</td></tr>
+              <tr><td>¶5 · 143,21</td><td><code>Einsichten.!</code></td><td><code>Einsichten. –</code>, expressly conjectured</td><td>Retain the intelligible GS repair; record the typescript punctuation internally.</td></tr>
+              <tr><td>¶16 · 150,12</td><td><code>das einzige</code></td><td><code>die einzige</code>, expressly conjectured</td><td>Retain GS’s grammatically necessary repair; record it internally.</td></tr>
+              <tr><td>¶4 · 142,22–23</td><td>passage double-underlined in all four typescripts</td><td>printed emphasis</td><td>Encode the transmitted emphasis; this is evidence, not a fourth conjecture.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>This creates one proposed German change outside the sixteen-item ED/GS list: ED currently agrees with GS at <code>in einer Sprache</code>, but the critical reading would instead recover the unanimous typescript <code>in</code>. The distinction must remain visible in both the public apparatus and internal collation.</p>
+      </section>
+
+      <section id="contested">
+        <h2>The two genuinely contested readings</h2>
+
+        <h3>¶3: <code>in</code> or <code>in einer Sprache</code>?</h3>
+        <div class="split">
+          <div class="option">
+            <p class="label">GS reading</p>
+            <h4><code>in einer Sprache</code></h4>
+            <p>Clearer modern syntax and the declared base reading, but explicitly a GS editorial expansion against all four typescripts.</p>
+          </div>
+          <div class="option">
+            <p class="label">Recommended critical reading</p>
+            <h4><code>in</code></h4>
+            <p>Unanimous T1–T4 reading; grammatically sharp ellipsis; followed by Reclam and closely tracked by Jephcott.</p>
+          </div>
+        </div>
+        <p><strong>Recommendation:</strong> adopt T1–T4 <code>in</code> and report <code>GS: in einer Sprache (conj.)</code>. Confidence: medium-high.</p>
+
+        <h3>¶14: Genesis 1:11 or 1:14?</h3>
+        <div class="split">
+          <div class="option">
+            <p class="label">Probable authorial / base reading</p>
+            <h4>Genesis 1:14</h4>
+            <p>GS prints it and does not flag the locus; it contains Luther’s literal <code>Es werden Lichter</code>, and textlog preserves it. In the larger act, however, God then <em>makes</em> the lights at 1:16.</p>
+          </div>
+          <div class="option">
+            <p class="label">Recommended edition emendation</p>
+            <h4>Genesis 1:11</h4>
+            <p>Jephcott and Reclam both use it, and the creation act better fits Benjamin’s immediate claim that speech alone initiates it. Its Luther wording is <code>Die Erde lasse …</code>, not the literal <code>Es werde</code>.</p>
+          </div>
+        </div>
+        <p><strong>Recommendation:</strong> retain 1:11, label it <code>ED em.</code>, and replace the current categorical commentary with this two-sided account. Confidence: medium-high. Following GS 1:14 remains a viable conservative choice; the evidence does not justify calling either number an obvious correction.</p>
+      </section>
+
+      <section id="marked">
+        <h2>Two forms that should no longer be “corrected”</h2>
+
+        <div class="finding">
+          <h3><code>der menschliche Namen</code></h3>
+          <p>Modern standard German favors <code>der Name</code>, but GS, textlog, and Reclam all print <code>Namen</code>. More importantly, Benjamin uses the same nominative again at p. 155: <code>in denen der Namen schon welkte</code>. IDS grammis recognizes <code>der Namen</code> as a less-prevalent nominative formed by stem reanalysis. Restore the authorial markedness and explain it briefly; do not normalize it silently.</p>
+        </div>
+
+        <div class="finding">
+          <h3><code>Genetiv</code></h3>
+          <p>GS and Reclam retain this form; Duden marks it dated, not nonsensical. The approved policy follows GS spelling, so the critical reading should use <code>Genetiv</code>. If a later project-wide modernization policy is adopted, it must identify this as normalization rather than textual correction.</p>
+        </div>
+      </section>
+
+      <section id="emphasis">
+        <h2>The missing emphasis layer</h2>
+        <p>Restoration must be complete, not a hand-picked set of attractive italics. The maintained GS source should encode every visually confirmed emphasis boundary, including partial-word emphasis such as the <code>-bar</code> of <code>mitteilbar</code>. The reading source should preserve or explicitly depart from those boundaries, and exact German commentary quotations should be generated or mechanically checked against it.</p>
+        <blockquote>
+          <p>Plain-text equality is insufficient. A transcription can contain every word and still erase Benjamin’s argumentative structure by dropping emphasis.</p>
+        </blockquote>
+        <p class="callout"><strong>Implementation gate:</strong> the memos establish the omission and record representative emphases, but the source files must contain a page-by-page complete emphasis transcription before the public display changes. The final verification must compare inline boundaries, not merely text content.</p>
+      </section>
+
+      <section id="apparatus">
+        <h2>Recommended public and internal record</h2>
+        <p>The compact public apparatus should remain selective but fully disclose this edition’s departures from its declared base:</p>
+        <ul>
+          <li><strong>¶3:</strong> <code>in] in einer Sprache GS conj.; in T1–T4, Reclam</code>.</li>
+          <li><strong>¶14:</strong> <code>1:11 ED em.] 1:14 GS; 1:11 Jephcott, Reclam</code>, with a short explanation of the biblical ambiguity.</li>
+          <li><strong>Textual note:</strong> describe GS as a T1-based critical text; explain the marked <code>Namen</code> and <code>Genetiv</code> forms; state that emphasis follows GS except where recorded.</li>
+        </ul>
+        <p>The internal <code>collation.md</code> should be exhaustive: all sixteen ED/GS divergences, all three GS conjectures, the double-underlining report, later-witness conflicts, quote synchronization, and the electronic-witness genealogy.</p>
+      </section>
+
+      <section id="architecture">
+        <h2>Revised source architecture</h2>
+        <pre><code>edition/
+  german-gs.md          # source-faithful transcription of printed GS, including emphasis
+  german-reading.md     # adopted 26-paragraph German critical reading text
+  textual-apparatus.yml # public departures and reader-facing textual notes
+  collation.md          # exhaustive T1 reports / GS / later edition / electronic branch record</code></pre>
+        <p>The full site-generation refactor remains a later maintenance issue. For this P0, implementation can introduce these accountable sources first, then mechanically verify the embedded HTML and all repeated German quotations against them.</p>
+      </section>
+
+      <section id="recommendation">
+        <h2>Fresh recommendation</h2>
+        <ol>
+          <li>Approve the fifteen returns to GS listed in the matrix, including <code>Namen</code> and <code>Genetiv</code>.</li>
+          <li>Approve T1–T4 <code>in</code> at ¶3 as a declared departure from GS’s conjectural expansion.</li>
+          <li>Retain Genesis 1:11 at ¶14 as a declared emendation, while presenting GS 1:14 and the interpretive cost honestly.</li>
+          <li>Restore the complete GS emphasis layer in the maintained German sources and synchronize exact quotations.</li>
+          <li>Keep the two sensible GS repairs at <code>Einsichten. –</code> and <code>die einzige</code>; record their typescript readings internally.</li>
+          <li>Publish a compact apparatus containing the edition’s two departures from GS, with notes for Genesis, <code>Namen</code>, <code>Genetiv</code>, and witness genealogy.</li>
+          <li>Treat a future 1955/T1–T4 physical collation as desirable follow-up, not a blocker to this resolution.</li>
+        </ol>
+      </section>
+
+      <section id="questions">
+        <h2>Decisions presented for approval</h2>
+        <ol class="questions">
+          <li>Do we approve the fifteen high- or medium-high-confidence returns to GS in the sixteen-item matrix?</li>
+          <li>Do we depart from GS at ¶3 to restore unanimous T1–T4 <code>in</code>, as recommended?</li>
+          <li>At Genesis, do we retain 1:11 as a declared emendation, or conservatively adopt GS 1:14?</li>
+          <li>Do we treat complete German emphasis restoration as part of this P0 rather than deferring it as visual polish?</li>
+          <li>Do we approve the proposed two-entry public apparatus plus reader-facing notes for the marked forms and witness genealogy?</li>
+        </ol>
+      </section>
+
+      <section id="implementation">
+        <h2>Approved implementation sequence</h2>
+        <ol>
+          <li>Create and verify the four accountable source/apparatus files.</li>
+          <li>Transcribe GS wording and every emphasis boundary; encode the adopted reading and both departures.</li>
+          <li>Update the German display, exact German commentary quotations, and the ¶1 English phrase.</li>
+          <li>Rewrite the ¶14 commentary to disclose the real witness conflict.</li>
+          <li>Replace inconsistent “fourteen,” “fifteen,” “settled,” “documented,” and “pending” claims across README, bibliography, epilogue, colophon, and textual note.</li>
+          <li>Add the public apparatus; on publication, add a reader-facing Revision History entry describing only the net change from Edition 2026.07.12.4.</li>
+          <li>Run source/output, quotation, emphasis, fragment, responsive, and accessibility checks before publication.</li>
+        </ol>
+      </section>
+
+      <section id="acceptance">
+        <h2>Acceptance criteria</h2>
+        <ul>
+          <li>All sixteen ED/GS divergences and the additional ¶3 T1/GS decision have approved dispositions.</li>
+          <li>The maintained GS source accurately represents the printed GS critical text, including emphasis.</li>
+          <li>The reading source, public German, and repeated exact quotations agree in wording and emphasis.</li>
+          <li>The public apparatus exposes every edition departure from GS; the internal collation preserves all GS interventions and later-witness conflicts.</li>
+          <li>The ¶1 English omission and ¶14 commentary are corrected according to the approved decisions.</li>
+          <li>All public provenance claims and counts agree.</li>
+          <li>The public Revision History records the deployed reader-visible changes without narrating unpublished proposals.</li>
+          <li>The deployed edition is mechanically and visually verified before AUD-P0-002 is marked resolved.</li>
+        </ul>
+      </section>
+
+      <section id="record">
+        <h2>Decision and implementation record</h2>
+        <p><span class="decision-label">Research · 2026-07-12</span><br>Three commissioned passes completed and persisted. All sixteen ED/GS divergences were image-checked; the GS critical report, Reclam sample, canonical Jephcott scan, electronic transmission, repeated quotations, and emphasis layer were examined.</p>
+        <p><span class="decision-label">Recommendation · approved 2026-07-12</span><br>The proposed readings and ripple plan were approved without amendment and persisted in <code>editorial/plans/AUD-P0-002-implementation-plan.md</code>.</p>
+        <p><span class="decision-label">Implementation · 2026-07-12</span><br>Completed and verified. The accountable sources, German and English readings, quotation corpus, commentary, public apparatus, provenance surfaces, and release record are synchronized.</p>
+        <p><span class="decision-label">Verification · 2026-07-12</span><br>The maintained/displayed German matches at all 26 paragraphs; 250 commentary excerpts match their sources; the only GS departures are ¶3 and ¶14; the English quintessence-family count is 62; browser and responsive checks pass.</p>
+        <p><span class="decision-label">Publication · 2026-07-12</span><br>Published as Edition 2026.07.12.5; the public Revision History, changelog, colophon, commit, and tag identify the complete revised state.</p>
+      </section>
+
+      <section id="sources">
+        <h2>Principal sources</h2>
+        <ul>
+          <li>Walter Benjamin, <a href="https://archive.org/details/GesammelteSchriftenBd.2"><em>Gesammelte Schriften</em> II</a>, essay at II.1, pp. 140–157; critical report at II.3, pp. 931–936.</li>
+          <li>Walter Benjamin, ed. Fred Lönker, Reclam 2019: <a href="https://www.reclam.de/produktdetail/ueber-sprache-ueberhaupt-und-ueber-die-sprache-des-menschen-9783150196076">official record</a> and <a href="https://www.lesejury.de/media/samples/076/9783150196076_leseprobe.pdf">publisher sample</a>.</li>
+          <li>Edmund Jephcott, “On Language as Such and on the Language of Man,” canonical English control, user-supplied scan of <em>Selected Writings</em> I, pp. 62–74.</li>
+          <li><a href="https://www.textlog.de/benjamin/essays/metaphysisch/sprache-ueberhaupt-und-sprache-des-menschen">textlog transcription</a> and <a href="https://projekt-gutenberg.org/authors/walter-benjamin/books/ueber-sprache-ueberhaupt-und-ueber-die-sprache-des-menschen/chapter/2/">Projekt Gutenberg-DE</a>, used as transmission controls.</li>
+          <li><a href="https://www.duden.de/rechtschreibung/Genetiv">Duden: <code>Genetiv</code></a> and IDS grammis, <a href="https://grammis.ids-mannheim.de/kontrastive-grammatik/3635">mixed noun declension including <code>der Namen</code></a>.</li>
+          <li>Deutsche Bibelgesellschaft, <a href="https://www.die-bibel.de/bibel/LU17/GEN.1.1">Lutherbibel, Genesis 1</a>, used as a structural control alongside the GS report’s identification of Benjamin’s Luther source.</li>
+        </ul>
+      </section>
+    </article>
+
+    <aside aria-label="Review contents">
+      <p class="eyebrow">AUD-P0-002A</p>
+      <h2>Review contents</h2>
+      <ol class="toc">
+        <li><a href="#answer">Answer</a></li>
+        <li><a href="#memos">Research memoranda</a></li>
+        <li><a href="#changes">What changed</a></li>
+        <li><a href="#witnesses">Evidence hierarchy</a></li>
+        <li><a href="#sixteen">Sixteen divergences</a></li>
+        <li><a href="#conjectures">GS conjectures</a></li>
+        <li><a href="#contested">Contested readings</a></li>
+        <li><a href="#marked">Marked German forms</a></li>
+        <li><a href="#emphasis">Missing emphasis</a></li>
+        <li><a href="#apparatus">Public apparatus</a></li>
+        <li><a href="#architecture">Source architecture</a></li>
+        <li><a href="#recommendation">Recommendation</a></li>
+        <li><a href="#questions">Decisions required</a></li>
+        <li><a href="#implementation">Implementation sequence</a></li>
+        <li><a href="#acceptance">Acceptance criteria</a></li>
+        <li><a href="#record">Decision record</a></li>
+        <li><a href="#sources">Sources</a></li>
+      </ol>
+      <p class="callout open"><strong>Gate:</strong> review and approve the readings before any public-edition change.</p>
+    </aside>
+  </main>
+
+  <footer>
+    Internal review · prepared 2026-07-12 · noindex, unlisted, not access-controlled · governed by EDITORIAL.md
+  </footer>
+</body>
+</html>

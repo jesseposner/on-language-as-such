@@ -1,8 +1,57 @@
 # Revision History
 
-This file records published, reader-visible changes to the living edition. The editorial protocol is defined in [EDITORIAL.md](EDITORIAL.md); proposed and unpublished work is not represented as part of the public edition.
+This file records reader-visible changes to the living edition. The editorial protocol is defined in [EDITORIAL.md](EDITORIAL.md); completed but unpublished work appears under `Unreleased`, while proposals remain in internal review records.
 
 Versions use calendar dates. Paragraph and sentence identifiers refer to the edition's stable internal anchors.
+
+## 2026.07.12.5
+
+### German text
+
+- Reconstituted the German reading text against *Gesammelte Schriften* II.1
+  and its critical report: fifteen former divergences now follow GS in
+  wording and punctuation.
+- ¶3: restored the unanimous T1–T4 reading `in` in place of GS's conjectural
+  expansion `in einer Sprache`.
+- ¶14: retained Genesis 1:11 as a declared emendation of GS 1:14, with the
+  competing internal and witness evidence disclosed.
+- Restored the source's full emphasis and retained marked historical forms,
+  including `Genetiv`, nominative `Namen`, and `maßen`.
+
+### Translation
+
+- ¶1: restored the force of `geistigen Inhalt` as “quintessential content.”
+- ¶3: revised the construction to “imparts itself in, and not through, a
+  language,” preserving Benjamin's suspended preposition.
+- Carried source emphasis into English wherever the grammatical and
+  conceptual relation is direct.
+
+### Commentary and apparatus
+
+- Synchronized the displayed German and English excerpts with the revised
+  reading texts and restored their meaningful emphasis.
+- Replaced provisional collation claims with completed findings; added notes
+  on ¶2's suspended syntax, ¶3's typescript reading, `Genetiv`, `Namen`, and
+  `maßen`.
+- Rewrote the Genesis note to present 1:11 and 1:14 as a genuine textual and
+  exegetical conflict rather than as a settled error.
+- Added a public textual apparatus declaring the edition's two departures
+  from GS.
+
+### Edition and provenance
+
+- Added accountable German GS-base and reading-text sources, a
+  machine-readable apparatus, a full collation record, and a repeatable
+  synchronization check.
+- Updated the translator's note, epilogue, bibliography, README, and colophon
+  to identify GS as the current base and textlog as historical provenance.
+
+### Interface
+
+- Allowed the masthead controls to wrap on narrow screens, eliminating
+  document-level horizontal overflow on mobile.
+- Kept the textual-apparatus heading visible below the sticky movement
+  navigation when reached through an anchor link.
 
 ## 2026.07.12.4
 

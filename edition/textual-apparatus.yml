@@ -1,0 +1,52 @@
+edition_policy:
+  base_witness: "Walter Benjamin, Gesammelte Schriften II.1 (1977), pp. 140–157"
+  base_description: "T1-based critical text containing disclosed GS editorial conjectures"
+  reading_text: "GS-based critical reading with declared departures"
+  spelling: "Follow GS, including marked historical forms, unless explicitly recorded"
+  emphasis: "Follow visually inspected GS emphasis unless explicitly recorded"
+
+departures:
+  - id: de-p03-in
+    paragraph: 3
+    base_locus: "GS II.1, p. 142, line 8; apparatus p. 935"
+    base_reading: "in einer Sprache"
+    adopted_reading: "in"
+    type: emendation
+    authority:
+      - "T1–T4"
+      - "Fred Lönker, Reclam 2019"
+      - "Edmund Jephcott translation as control"
+    public_note: "GS conjectures its expansion for unanimous T1–T4 in; this edition restores the typescript reading."
+    confidence: medium-high
+
+  - id: de-p14-genesis
+    paragraph: 14
+    base_locus: "GS II.1, p. 148"
+    base_reading: "(1,3; 1,14)"
+    adopted_reading: "(Genesis 1,3; 1,11)"
+    type: emendation-and-display-normalization
+    authority:
+      - "Edmund Jephcott 1978/1996"
+      - "Fred Lönker, Reclam 2019"
+      - "internal Genesis 1 structure"
+    public_note: "GS prints 1:14; Jephcott and Reclam print 1:11. This edition retains 1:11 because that creation act better fits Benjamin’s immediate claim that only the fiat occurs, while disclosing that 1:14 better matches the literal Luther formula Es werden Lichter."
+    confidence: medium-high
+
+reader_notes:
+  - id: de-p08-genetiv
+    paragraph: 8
+    reading: "Genetiv"
+    note: "Dated but valid spelling retained from GS and Reclam; modern Genitiv is not silently substituted."
+
+  - id: de-p16-namen
+    paragraph: 16
+    reading: "der menschliche Namen"
+    note: "Marked, less-prevalent nominative retained from GS; Benjamin repeats der Namen at p. 155."
+
+  - id: de-gs-constitution
+    scope: whole-work
+    note: "GS is a critical constitution based on T1, not a diplomatic facsimile. Its three disclosed conjectures are recorded in edition/collation.md."
+
+  - id: de-emphasis
+    scope: whole-work
+    note: "German emphasis follows the visually inspected GS pages. The p. 142 thesis beginning Das and ending Sprache. was double-underlined in all four reported typescripts."
