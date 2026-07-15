@@ -4,6 +4,51 @@ This file records reader-visible changes to the living edition. The editorial pr
 
 Versions use calendar dates. Paragraph and sentence identifiers refer to the edition's stable internal anchors.
 
+## 2026.07.14
+
+### Translation
+
+- ¶1.9: changed “whose circumference traces the idea of God” to “whose
+  circumference designates the idea of God,” translating `bezeichnet`
+  directly while preserving the German sentence's reversible case grammar in
+  commentary.
+- ¶12.1: changed “figurative and literal meaning” to “figurative and sensory,”
+  restoring the force of `sinnlich`.
+- ¶15.3: changed “in man, God released language … freely out of himself” to
+  “in man God let language … go free from himself,” preserving both
+  `im Menschen` and `aus sich` while making `frei` describe language's freedom
+  rather than the manner of God's action.
+- ¶16.5 and ¶16.9: changed “each man is vouched his creation by God” to “every
+  person's creation by God is vouched for,” and clarified that the mystical
+  theory's rejection of the bourgeois theory itself rests on a
+  misunderstanding.
+- ¶16.12–¶17.1: made reception and receptivity the governing English family
+  for `empfangend`, `sprachempfangend`, and `Empfängnis`, while retaining
+  conception as a secondary resonance in commentary.
+- ¶19.9: changed “excited it” to “aroused it” and “the awakening of itself” to
+  “its own awakening,” avoiding a modern false friend while preserving the
+  `Erweckung` echo.
+- ¶21: restored the distributive force of Friedrich Müller's “each a name”
+  and changed an exact “hundred languages of man” to Benjamin's indefinite
+  “hundreds of human languages.”
+- Normalized eleven mechanical reflections of ordinary German idiom across
+  ¶6, ¶13, ¶16–17, ¶19, ¶22, ¶24, and ¶25, while retaining marked English
+  where Benjamin's syntax itself is marked and conceptually active.
+
+### Commentary and apparatus
+
+- Synchronized the affected quotations and recast the ¶1.9, ¶15, ¶16–17, ¶19,
+  and ¶21 commentary around the corrected readings; removed interpretations
+  that depended on an exact hundred or on conception as the sole meaning of
+  `Empfängnis`.
+- Added the edition's controlled-estrangement policy to the translator's note
+  and documented Müller's three parallel departure clauses from “Huldigung
+  der Tiere” with a stable TextGrid source.
+
+### Scope
+
+- No German reading or textual-apparatus entry changed.
+
 ## 2026.07.12.5
 
 ### German text

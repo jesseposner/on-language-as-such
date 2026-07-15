@@ -171,6 +171,18 @@ Rendering `Sache` as "matter" while also rendering `Materie` as "matter" collaps
 
 A focused copy-edit should also decide how much German syntactic strangeness is deliberately retained. Phrases such as "Why name?", "A content of language there is not," and "the question after good and evil" can be productive, but the register should be declared and applied consistently.
 
+**Resolved and published in Edition 2026.07.14:** the
+recommended package in
+`editorial/reviews/AUD-P1-002-local-readings-and-marked-syntax.html` was
+approved and applied across the translation, commentary, epilogue,
+translator's note, notes, and bibliography according to
+`editorial/plans/AUD-P1-002-implementation-plan.md`. During the pre-edit source
+check, the full ¶15 German exposed an omission in the review's evidence:
+`aus sich` is present after all. That row was reopened before editing; amended
+option B, preserving both `im Menschen` and `aus sich`, was subsequently
+approved and applied. The complete package passed textual and browser
+verification and was published on 2026-07-14.
+
 ## 4. Commentary and scholarly apparatus
 
 ### Strengths

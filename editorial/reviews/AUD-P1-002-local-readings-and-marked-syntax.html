@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AUD-P1-002 · Local readings and marked syntax</title>
+  <style>
+    :root {
+      --paper: #f5efe2;
+      --surface: #eee4d1;
+      --surface-2: #e7dac2;
+      --ink: #251f16;
+      --soft: #685d4c;
+      --rubric: #8c321f;
+      --rule: #cdbfa5;
+      --recommended: #e4ead7;
+      --recommended-ink: #31421f;
+      --open: #f2dfc8;
+      --open-ink: #74411f;
+      --closed: #dde6e8;
+      --closed-ink: #28464d;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper: #171310;
+        --surface: #211b16;
+        --surface-2: #2a221b;
+        --ink: #e8dec9;
+        --soft: #b4a48b;
+        --rubric: #dc7a55;
+        --rule: #4b4033;
+        --recommended: #202817;
+        --recommended-ink: #c4d39a;
+        --open: #302217;
+        --open-ink: #e2ac7c;
+        --closed: #172529;
+        --closed-ink: #a9c8ce;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 17px/1.65 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+    }
+    a { color: var(--rubric); text-underline-offset: .18em; }
+    a:focus-visible { outline: 2px solid var(--rubric); outline-offset: 3px; }
+    code {
+      padding: .08em .28em;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+      font-size: .9em;
+      overflow-wrap: anywhere;
+    }
+    header {
+      padding: 3.5rem max(1.5rem, calc((100vw - 78rem) / 2));
+      border-bottom: 1px solid var(--rule);
+    }
+    h1, h2, h3, h4 { font-weight: 600; line-height: 1.25; }
+    h1 { max-width: 20ch; margin: .2rem 0 1rem; font-size: clamp(2.2rem, 5vw, 4.5rem); }
+    h2 { margin: 0 0 1rem; font-size: 1.6rem; }
+    h3 { margin: 1.35rem 0 .55rem; font-size: 1.13rem; }
+    h4 { margin: .8rem 0 .35rem; font-size: 1rem; }
+    p { margin: 0 0 1rem; }
+    .eyebrow, .meta, .status, .label, .toc, footer, th, .metric span {
+      font-family: "Avenir Next", Avenir, "Helvetica Neue", sans-serif;
+    }
+    .eyebrow {
+      margin: 0;
+      color: var(--rubric);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+    .meta { display: flex; flex-wrap: wrap; gap: .65rem 1.4rem; color: var(--soft); font-size: .8rem; }
+    .status {
+      padding: .22rem .55rem;
+      border: 1px solid var(--rubric);
+      color: var(--rubric);
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    main {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 18rem;
+      gap: 3rem;
+      max-width: 78rem;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    article { min-width: 0; }
+    article > section {
+      padding: 0 0 2.8rem;
+      margin: 0 0 2.8rem;
+      border-bottom: 1px solid var(--rule);
+      scroll-margin-top: 1rem;
+    }
+    .lede { max-width: 68ch; font-size: 1.18rem; }
+    .callout, .recommendation, .open, .closed, .source {
+      padding: 1rem 1.15rem;
+      border: 1px solid var(--rule);
+      background: var(--surface);
+    }
+    .recommendation {
+      border-top: 3px solid var(--recommended-ink);
+      background: var(--recommended);
+      color: var(--recommended-ink);
+    }
+    .open { border-top: 3px solid var(--open-ink); background: var(--open); color: var(--open-ink); }
+    .closed { border-top: 3px solid var(--closed-ink); background: var(--closed); color: var(--closed-ink); }
+    .source { margin: 1rem 0; border-left: 3px solid var(--rubric); }
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin: 1.2rem 0; }
+    .metric { padding: 1rem; border: 1px solid var(--rule); background: var(--surface); }
+    .metric strong { display: block; color: var(--rubric); font-size: 2rem; line-height: 1; }
+    .metric span { display: block; margin-top: .45rem; color: var(--soft); font-size: .83rem; }
+    .table-wrap { overflow-x: auto; margin: 1rem 0; }
+    table { width: 100%; border-collapse: collapse; font-size: .91rem; }
+    th, td { padding: .7rem .72rem; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: top; }
+    th { color: var(--rubric); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+    .passage { margin: 1rem 0 1.5rem; padding: 1.15rem; border: 1px solid var(--rule); background: var(--surface); }
+    .passage h3 { margin-top: 0; }
+    .reading-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+    .reading-grid.four { grid-template-columns: repeat(4, 1fr); }
+    .reading { padding: .85rem; background: var(--paper); border-top: 2px solid var(--rule); }
+    .reading.recommended-reading { border-top-color: var(--recommended-ink); }
+    .label {
+      display: block;
+      margin-bottom: .35rem;
+      color: var(--rubric);
+      font-size: .69rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .reading p { margin: 0; }
+    .options { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; }
+    .option { padding: 1rem 1.05rem; border: 1px solid var(--rule); background: var(--surface); }
+    .option.recommended-option { border-top: 3px solid var(--recommended-ink); }
+    .option h3 { margin-top: 0; }
+    .tradeoff { color: var(--soft); font-size: .91rem; }
+    .decision-list { counter-reset: decision; list-style: none; padding: 0; }
+    .decision-list > li { counter-increment: decision; margin: 0 0 1.1rem; padding: 1rem 1.1rem; border: 1px solid var(--rule); background: var(--surface); }
+    .decision-list > li::before {
+      content: counter(decision);
+      float: left;
+      width: 1.6rem;
+      height: 1.6rem;
+      margin: .15rem .65rem 0 0;
+      border-radius: 50%;
+      background: var(--rubric);
+      color: var(--paper);
+      font: 700 .82rem/1.6rem "Avenir Next", Avenir, sans-serif;
+      text-align: center;
+    }
+    ul, ol { padding-left: 1.35rem; }
+    li { margin: .45rem 0; }
+    aside { position: sticky; top: 1.5rem; align-self: start; }
+    aside h2 { font-size: 1.15rem; }
+    .toc { padding-left: 1.2rem; font-size: .8rem; }
+    .toc li { margin: .48rem 0; }
+    aside .callout { margin-top: 1.2rem; font-size: .86rem; }
+    footer { padding: 1.2rem 1.5rem 2rem; border-top: 1px solid var(--rule); color: var(--soft); font-size: .76rem; text-align: center; }
+
+    @media (max-width: 940px) {
+      main { grid-template-columns: minmax(0, 1fr); }
+      aside { position: static; order: -1; }
+      .toc { columns: 2; }
+      .reading-grid.four, .options { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 660px) {
+      header { padding-top: 2.4rem; }
+      main { padding: 2rem 1rem 4rem; }
+      .metrics, .reading-grid, .reading-grid.four, .options { grid-template-columns: 1fr; }
+      .toc { columns: 1; }
+      th, td { min-width: 8.5rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">Internal editorial review · not part of the published edition</p>
+    <h1>Local readings and controlled estrangement</h1>
+    <div class="meta">
+      <span class="status">Published &amp; resolved · Edition 2026.07.14</span>
+      <span><strong>Report:</strong> AUD-P1-002</span>
+      <span><strong>Audit section:</strong> §3, Translation review</span>
+      <span><strong>Prepared:</strong> 2026-07-14</span>
+      <span><strong>Public baseline:</strong> 2026.07.12.5</span>
+      <span><strong>Published:</strong> 2026-07-14</span>
+    </div>
+  </header>
+
+  <main>
+    <article>
+      <section id="question">
+        <h2>The question before the edition</h2>
+        <p class="lede">With the German witness and governing lexicon now settled, the next audit item is sentence-level: which English peculiarities reproduce Benjamin’s own pressure on syntax, and which instead reverse agency, flatten a lexical distinction, import an unintended sense, or simply impede reading?</p>
+        <p class="callout"><strong>Published in Edition 2026.07.14.</strong> The complete approved package, including amended ¶15 option B, is now part of the public living edition.</p>
+        <div class="closed">
+          <p><strong>Implementation evidence amendment · 2026-07-14.</strong> The originally recommended ¶15 row below was based on an abbreviated quotation. The full maintained reading is <em>im Menschen entließ Gott die Sprache, die ihm als Medium der Schöpfung gedient hatte, frei aus sich</em>. Because <em>aus sich</em> is present, the review’s claim that “out of himself” was added by the current English was incorrect. The row was reopened before editing; amended option B was subsequently approved and implemented.</p>
+        </div>
+        <div class="metrics" aria-label="Review scope">
+          <div class="metric"><strong>7</strong><span>open loci inherited from the audit after Edition .5 closed two rows</span></div>
+          <div class="metric"><strong>2</strong><span>additional meaning-bearing discrepancies found in the focused pass</span></div>
+          <div class="metric"><strong>11</strong><span>representative syntax edits governed by one proposed policy</span></div>
+        </div>
+        <p class="closed"><strong>Closed scope:</strong> Edition 2026.07.12.5 restored <code>geistigen</code> in ¶1 and settled the Genesis 1:11 / 1:14 witness conflict in ¶14. Those two former audit rows are not reopened here. The <code>Sache</code> / <code>Materie</code> matrix likewise remains settled.</p>
+      </section>
+
+      <section id="evidence">
+        <h2>Evidence and method</h2>
+        <p>Each locus was checked against four layers, in this order:</p>
+        <ol>
+          <li>the maintained German reading text, now accountable to <em>Gesammelte Schriften</em> II.1 and its apparatus;</li>
+          <li>the sentence’s local argument and recurring word-families;</li>
+          <li>Edmund Jephcott’s canonical English as a control witness, using the private Carpe transcript at <code>/Users/jesse/src/carpe/artifacts/benjamin/text/jephcott-translation-transcript.md</code>;</li>
+          <li>external lexical or primary-source evidence where the first three do not settle the question.</li>
+        </ol>
+        <p>Jephcott is a control, not an authority over the German. At several loci he supplies the clean solution; at ¶12 and ¶21 he shares the present edition’s error; at ¶16–17 he clarifies reception but then adds a fertilization-and-birth sequence more explicit than Benjamin’s German.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Locus</th><th>Current edition</th><th>Jephcott control</th><th>Finding</th></tr></thead>
+            <tbody>
+              <tr><td>¶1.9</td><td>“whose circumference traces the idea of God”</td><td>“whose circumference defines the idea of God”</td><td>The German is grammatically ambiguous; default word order and Jephcott favor circumference as subject.</td></tr>
+              <tr><td>¶12.1</td><td>“figurative and literal meaning”</td><td>“metaphorical and literal senses”</td><td>Both obscure <code>sinnlich</code>, which here means sensory.</td></tr>
+              <tr><td>¶16</td><td>“each man is vouched his creation by God”</td><td>“each man is guaranteed his creation by God”</td><td>Both leave the English object structure misleading.</td></tr>
+              <tr><td>¶16–17</td><td>conception-led throughout</td><td>receptive, then “fertilized” and “give birth,” then conception</td><td>The German deliberately overlays receiving and conception; neither English policy is neutral.</td></tr>
+              <tr><td>¶19.9</td><td>“they themselves excited it”</td><td>“they themselves have aroused it”</td><td>Jephcott removes a modern false friend and preserves the awakening echo.</td></tr>
+              <tr><td>¶21, Müller</td><td>“saw by the nobility with which … because”</td><td>“saw by the nobility with which … that”</td><td>Both remain opaque; the full Müller passage supplies the missing parallel.</td></tr>
+              <tr><td>¶21.16</td><td>“the hundred languages of man”</td><td>same</td><td><code>hunderten</code> means hundreds, not exactly one hundred.</td></tr>
+              <tr><td>¶15</td><td>God released language “freely out of himself” in man</td><td>God “set language … free” in man</td><td>The full German includes both <code>im Menschen</code> and <code>aus sich</code>; the canonical control suppresses the latter, while amended option B preserves both.</td></tr>
+              <tr><td>¶16.10</td><td>mystical theory is “open to misunderstanding”</td><td>its rejection “rests on a misunderstanding”</td><td>The current version changes Benjamin’s criticism of the theory into a warning about its reception.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="locus-one">
+        <h2>1 · ¶1.9 and the circumference of ideas</h2>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">German</span><p><em>im Bezirk der Ideen, deren Umkreis diejenige Gottes bezeichnet</em></p></div>
+            <div class="reading"><span class="label">Current</span><p>“within the precinct of ideas whose circumference traces the idea of God”</p></div>
+            <div class="reading"><span class="label">Jephcott</span><p>“within that realm of Ideas whose circumference defines the idea of God”</p></div>
+          </div>
+        </div>
+        <p>Both <code>Umkreis</code> and <code>diejenige [Idee] Gottes</code> can be nominative or accusative here. The audit initially treated the present agency as probably reversed, but the sentence does not permit that confidence. Unmarked German word order makes <code>Umkreis</code> the likelier subject, and Jephcott reads it that way. The current commentary, however, repeatedly assumes the opposite: God marks the boundary of the thinkable.</p>
+        <div class="options">
+          <div class="option recommended-option"><h3>A · Preserve the grammatical surface</h3><p>“within the precinct of ideas whose circumference <strong>designates</strong> the idea of God.”</p><p class="tradeoff">Recommended. It retains default agency, translates <code>bezeichnet</code> more directly than “traces,” and makes the ambiguity explicit in commentary.</p></div>
+          <div class="option"><h3>B · Reverse the agency</h3><p>“within the precinct of ideas whose circumference <strong>the idea of God marks</strong>.”</p><p class="tradeoff">Matches the current commentary’s geometry, but chooses the marked grammatical parse against Jephcott.</p></div>
+          <div class="option"><h3>C · Spatially neutralize</h3><p>“within the precinct of ideas, <strong>at whose circumference lies</strong> the idea of God.”</p><p class="tradeoff">Readable and noncommittal about agency, but replaces Benjamin’s verb of designation with an added verb of position.</p></div>
+        </div>
+        <p class="recommendation"><strong>Recommendation:</strong> adopt A and revise the commentary from a categorical reverse-agency reading to a two-sided note. This is an ambiguity to disclose, not a definite error to “correct.”</p>
+      </section>
+
+      <section id="locus-twelve">
+        <h2>2 · ¶12.1, figurative and sensory</h2>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">German</span><p><em>nach der übertragenen und der sinnlichen Bedeutung</em></p></div>
+            <div class="reading"><span class="label">Current</span><p>“according to its figurative and its literal meaning”</p></div>
+            <div class="reading recommended-reading"><span class="label">Recommended</span><p>“This sentence has a double sense—<strong>figurative and sensory</strong>: the languages of things are imperfect, and they are mute.”</p></div>
+          </div>
+        </div>
+        <p><code>sinnlich</code> means belonging to, conveyed by, or perceptible to the senses. The next sentence names sound as the sensory lack of things, and the current commentary already explains the phrase correctly. “Literal” therefore creates a distinction the German does not make. The lexical evidence is straightforward: see <a href="https://www.duden.de/rechtschreibung/sinnlich">Duden, <em>sinnlich</em></a>.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> this is a definite correction. The dash removes the awkward singular “meaning” after a two-member pair while retaining Benjamin’s compact taxonomy.</p>
+      </section>
+
+      <section id="locus-guarantee">
+        <h2>3 · ¶16, what the proper name vouches for</h2>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">German</span><p><em>Mit ihm wird jedem Menschen seine Erschaffung durch Gott verbürgt</em></p></div>
+            <div class="reading"><span class="label">Current</span><p>“By it, each man is vouched his creation by God”</p></div>
+            <div class="reading recommended-reading"><span class="label">Recommended</span><p>“Through it, <strong>every person’s creation by God is vouched for</strong>.”</p></div>
+          </div>
+        </div>
+        <p>The grammatical subject is “his creation by God”; <code>jedem Menschen</code> is dative. The present English makes the person look like the direct object of “vouched,” while Jephcott’s “guaranteed his creation” remains unidiomatic. The proposed sentence preserves Benjamin’s nominal claim and the edition’s established “vouch” family without implying that a person is promised an act of creation in the future.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> definite correction. “Through it” is slightly freer than <code>mit ihm</code>, but states the name’s mediating function cleanly.</p>
+      </section>
+
+      <section id="reception">
+        <h2>4 · ¶16–17, reception and conception</h2>
+        <p>This is the most consequential choice in the item. Benjamin writes <code>empfangend</code>, <code>sprachempfangend</code>, and then twice <code>Empfängnis</code>. The verb means receiving; the noun ordinarily means conception or becoming pregnant, but its historical range includes taking-in or reception. Benjamin then pairs it with <code>Spontaneität</code>, activating the philosophical contrast between receptivity and spontaneity.</p>
+        <p>The lexical doubleness is real. <a href="https://www.duden.de/rechtschreibung/empfangen">Duden’s <em>empfangen</em></a> begins with receiving or taking in and includes conceiving a child; <a href="https://www.duden.de/rechtschreibung/Empfaengnis"><em>Empfängnis</em></a> gives conception as the modern sense while recording older “taking-in” and “instruction” in its history.</p>
+        <div class="options">
+          <div class="option recommended-option">
+            <h3>A · Reception-led</h3>
+            <p>“it has become, in one part, <strong>receptive, though receptive to language</strong>. This <strong>reception</strong> is directed toward the language of things…”</p>
+            <p>“For <strong>reception and spontaneity</strong> together … this word applies also to that <strong>reception</strong> of the nameless in the name. It is translation…”</p>
+            <p class="tradeoff">Recommended. Preserves one English family and the argument’s receive/respond structure; commentary retains conception as a secondary resonance.</p>
+          </div>
+          <div class="option">
+            <h3>B · Double signal</h3>
+            <p>Use “receptive” for the adjectives but “reception/conception” or “conception” for the nouns.</p>
+            <p class="tradeoff">Makes both senses visible in the reading text, but creates an editorial doublet Benjamin did not write and breaks the repeated noun.</p>
+          </div>
+          <div class="option">
+            <h3>C · Conception-led</h3>
+            <p>Retain “conceiving,” “conception,” and the commentary’s fertilization-and-birth account.</p>
+            <p class="tradeoff">Preserves the biological charge most strongly, but obscures ordinary receiving and makes the Kantian contrast depend on commentary to become visible.</p>
+          </div>
+        </div>
+        <p class="recommendation"><strong>Recommendation:</strong> A. The reading text should carry the grammatical action—things impart, the name receives, translation answers—while a concise note preserves the pregnancy resonance. The commentary should stop treating fertilization and birth as the sole or certain content of the German. Jephcott’s added “fertilized” and “give birth” are useful evidence for the resonance, not words to import.</p>
+      </section>
+
+      <section id="aroused">
+        <h2>5 · ¶19.9, arousing judgment</h2>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">German</span><p><em>sie selbst haben es exzitiert … die Erweckung seiner selbst</em></p></div>
+            <div class="reading"><span class="label">Current</span><p>“they themselves <strong>excited</strong> it … the awakening of itself”</p></div>
+            <div class="reading recommended-reading"><span class="label">Recommended</span><p>“they themselves <strong>aroused</strong> it … its own awakening”</p></div>
+          </div>
+        </div>
+        <p><code>exzitieren</code> means to stimulate or arouse; in present English, “excited it” strongly suggests enthusiasm or sexual excitement. <a href="https://www.duden.de/rechtschreibung/exzitieren">Duden</a> gives <em>anregen</em>; Jephcott’s “aroused” also prepares the following <code>Erweckung</code>.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> definite correction to “aroused it.” The commentary already paraphrases the action as awakening, so its argument changes little.</p>
+      </section>
+
+      <section id="mueller">
+        <h2>6 · ¶21, the Maler Müller quotation in context</h2>
+        <p>The audit was right that the line could not be responsibly recast in isolation. Müller repeats its syntax three times in “Huldigung der Tiere,” once for each created domain:</p>
+        <div class="source">
+          <p><strong>Land animals:</strong> <em>und sah an den Adel, wie sie von mir wegsprangen, darum daß ihnen der Mann einen Namen gab.</em></p>
+          <p><strong>Birds:</strong> <em>und ich sah an den Adel, wie sie von mir wegflogen, darum daß ihnen der Mann einen Namen gab.</em></p>
+          <p><strong>Sea creatures:</strong> <em>und ich sahe an den Adel, wie sie von mir wegbrausten, darum daß ihnen der Mann einen Namen gab.</em></p>
+          <p><a href="https://hdl.handle.net/11858/00-1734-0000-0004-5069-F">Friedrich Müller, “Huldigung der Tiere,” TextGrid Repository, stable object</a>.</p>
+        </div>
+        <p>The varying verbs—sprang, flew, surged—show that <code>Adel</code> names the noble manner or dignity manifested in departure after naming. Benjamin quotes only the first member. The source also repeatedly says that each creature receives its own name, licensing “each” where an English plural pronoun would otherwise suggest one collective name.</p>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">Current</span><p>“and saw by the nobility with which they sprang away from me, because the man had given them a name.”</p></div>
+            <div class="reading"><span class="label">Jephcott</span><p>“And saw by the nobility with which they leaped away from me that the man had given them a name.”</p></div>
+            <div class="reading recommended-reading"><span class="label">Recommended</span><p>“and saw <strong>how nobly they sprang away from me, because the man had given each a name</strong>.”</p></div>
+          </div>
+        </div>
+        <p class="recommendation"><strong>Recommendation:</strong> recast the source’s archaic noun-and-inversion as an adverbial clause. This retains the strangeness that matters—the creatures springing <em>away</em> in nobility—without manufacturing English opacity. The commentary should cite the full threefold parallel and avoid claiming the syntax is transparent.</p>
+      </section>
+
+      <section id="hundreds">
+        <h2>7 · ¶21.16, hundreds rather than one hundred</h2>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">German</span><p><em>nicht aus der einen … sondern aus den hunderten Menschensprachen</em></p></div>
+            <div class="reading"><span class="label">Current and Jephcott</span><p>“not out of the one … but out of <strong>the hundred languages of man</strong>”</p></div>
+            <div class="reading recommended-reading"><span class="label">Recommended</span><p>“not out of the one … but out of <strong>the hundreds of human languages</strong>”</p></div>
+          </div>
+        </div>
+        <p><code>hunderten</code> is plural: the contrast is one paradisal language against the hundreds of human languages. No symbolic exact hundred is present in the German.</p>
+        <p class="recommendation"><strong>Recommendation:</strong> definite correction. This has the largest downstream footprint: the ¶4 and ¶21 commentary, the epilogue’s summary of mourning, and its language-model coda all currently build rhetoric around an exact hundred and must change together.</p>
+      </section>
+
+      <section id="new-findings">
+        <h2>8–9 · Two additional meaning-bearing findings</h2>
+        <h3>¶15 · Language is set free in man <span class="status">Approved</span></h3>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">Full German</span><p><em>im Menschen entließ Gott die Sprache, die ihm als Medium der Schöpfung gedient hatte, frei aus sich</em></p></div>
+            <div class="reading"><span class="label">Published baseline</span><p>“in man, God released language … <strong>freely out of himself</strong>”</p></div>
+            <div class="reading"><span class="label">Superseded first recommendation</span><p>“in man, God <strong>set language, which had served him as the medium of creation, free</strong>.”</p></div>
+          </div>
+        </div>
+        <p>The current sentence does turn <code>frei</code> into the adverb “freely,” but “out of himself” is not an addition: it answers to <code>aus sich</code>. Jephcott’s clean “set language … free” suppresses that phrase rather than settling it. The edition therefore needs a fresh decision that preserves both <code>im Menschen</code> and <code>aus sich</code> without reproducing the current English friction.</p>
+        <div class="options">
+          <div class="option"><h3>A · Follow the canonical control</h3><p>“rather, in man God set language, which had served him as the medium of creation, free.”</p><p class="tradeoff">Most fluent and established in English; leaves <code>aus sich</code> without an explicit counterpart.</p></div>
+          <div class="option recommended-option"><h3>B · Preserve both vectors · approved</h3><p>“rather, in man God let language, which had served him as the medium of creation, go free from himself.”</p><p class="tradeoff">Approved amended reading. Keeps emancipation in man and release from God; the marked English answers to the marked German.</p></div>
+          <div class="option"><h3>C · Retain the published reading</h3><p>“rather, in man, God released language, which had served <em>him</em> as medium of creation, freely out of himself.”</p><p class="tradeoff">Preserves both spatial terms, but makes <code>frei</code> adverbial and remains difficult to parse.</p></div>
+        </div>
+
+        <h3>¶16.10 · The mystical theory is itself mistaken</h3>
+        <div class="passage">
+          <div class="reading-grid">
+            <div class="reading"><span class="label">German</span><p><em>Mißverständlich ist aber auch die Ablehnung … durch die mystische Sprachtheorie.</em></p></div>
+            <div class="reading"><span class="label">Current</span><p>“the rejection … by the mystical theory of language is likewise <strong>open to misunderstanding</strong>.”</p></div>
+            <div class="reading recommended-reading"><span class="label">Recommended</span><p>“But the mystical theory’s rejection of the bourgeois theory of language also <strong>rests on a misunderstanding</strong>.”</p></div>
+          </div>
+        </div>
+        <p>The next sentence states the mystical theory’s error: it identifies word and thing. The current English instead suggests that readers may misunderstand an otherwise viable rejection, weakening Benjamin’s deliberate demolition of both conventionalism and naive word-mysticism. Jephcott gets the relation right.</p>
+        <p class="closed"><strong>Decision · 2026-07-14:</strong> amended ¶15 option B was approved and implemented. The ¶16 correction was already part of the approved package.</p>
+      </section>
+
+      <section id="syntax-policy">
+        <h2>The focused pass · a policy for marked syntax</h2>
+        <p>Literalness is not the same as reproducing every German idiom with English words. The proposed policy is <strong>controlled estrangement</strong>:</p>
+        <div class="recommendation">
+          <p><strong>Preserve marked English where the German itself is marked and the form performs conceptual work. Normalize where only the English is marked—especially ordinary German idioms, false friends, or calques that alter agency or relation. Explain the important retained estrangements in commentary.</strong></p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Locus</th><th>Disposition</th><th>Reason or proposed reading</th></tr></thead>
+            <tbody>
+              <tr><td>¶3</td><td><strong>Retain:</strong> “What is impartable in a quintessence, that is its linguistic essence.”</td><td>The German topicalizes the clause; the fronting makes <em>what is impartable</em> the theorem’s subject.</td></tr>
+              <tr><td>¶6</td><td><strong>Retain:</strong> “Why name?”</td><td><code>Wozu benennt?</code> is itself a verbless, jolting question. Smoothing it would erase Benjamin’s interruption.</td></tr>
+              <tr><td>¶10</td><td><strong>Retain:</strong> “A content of language there is not.”</td><td>The fronted German object and categorical negation are meaning-bearing; commentary already teaches the form.</td></tr>
+              <tr><td>¶19</td><td><strong>Retain:</strong> “The word as outwardly imparting…”</td><td>Benjamin’s German is itself an appositional fragment after naming the Fall.</td></tr>
+              <tr><td>¶6</td><td><strong>Normalize:</strong> “the answer runs” → “the answer is”</td><td><code>lautet</code> is ordinary German idiom; English “runs” contributes no conceptual pressure.</td></tr>
+              <tr><td>¶13</td><td><strong>Normalize:</strong> “these expositions follow it in principle in this: that in them…”</td><td>Proposed: “these reflections follow it in principle by presupposing language as…” The present nesting is English-only friction.</td></tr>
+              <tr><td>¶16</td><td><strong>Normalize:</strong> “In a strict spirit” → “In the strict sense”</td><td><code>im strengen Geist</code> marks rigor, not a separate spiritual entity.</td></tr>
+              <tr><td>¶17</td><td><strong>Normalize:</strong> “this word holds also of” → “this word applies also to”</td><td>Ordinary English relation; no German wordplay is lost.</td></tr>
+              <tr><td>¶17</td><td><strong>Normalize:</strong> “Its full meaning it gains” → “It gains its full meaning”</td><td>The German order is unmarked; the English inversion is not.</td></tr>
+              <tr><td>¶19</td><td><strong>Normalize:</strong> “the question after good and evil” → “the question of good and evil”</td><td><code>die Frage nach</code> is ordinary government, not a spatial “after”; the present phrase also collides with “after creation.”</td></tr>
+              <tr><td>¶22</td><td><strong>Normalize:</strong> “very well thinkable” → “entirely conceivable”</td><td><code>sehr wohl denkbar</code> is idiomatic emphasis.</td></tr>
+              <tr><td>¶22</td><td><strong>Normalize:</strong> “infinitely much higher” → “infinitely higher”</td><td>The degree remains; the English becomes grammatical.</td></tr>
+              <tr><td>¶24</td><td><strong>Normalize:</strong> “For the knowledge … it holds good to attempt”</td><td>Proposed: “To understand the forms of art, one should attempt to conceive them all as languages…”</td></tr>
+              <tr><td>¶24</td><td><strong>Normalize:</strong> “An example that lies near” → “A ready example”</td><td><code>naheliegt</code> means an example that readily suggests itself.</td></tr>
+              <tr><td>¶25</td><td><strong>Normalize:</strong> “hangs together with … extends over” → “is connected with … extends to”</td><td>Preserves both relations without German preposition calques.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="open"><strong>Boundary of this pass:</strong> this is not a general modernization. The edition’s established conceptual families—impart, impartability, speaks itself out, name-language, mediality, creating/cognizing—remain intact. Nor does this review authorize unlisted smoothing during implementation; every reader-visible sentence change will be enumerated first.</p>
+      </section>
+
+      <section id="ripple">
+        <h2>How approval would ripple through the edition</h2>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Layer</th><th>Required synchronized work</th></tr></thead>
+            <tbody>
+              <tr><td>Reading text</td><td>Apply the approved nine substantive dispositions and the exact controlled-estrangement list; preserve unit IDs and paragraph anchors.</td></tr>
+              <tr><td>Commentary</td><td>Update every quoted English unit. Recast ¶1.9 as ambiguous; align ¶12 with sensory meaning; make reception primary and conception secondary in ¶16–17; cite Müller’s threefold source parallel; remove exact-hundred rhetoric in ¶4 and ¶21.</td></tr>
+              <tr><td>Epilogue</td><td>Replace “a hundred languages” and “the hundred languages raised to a power” with language that rests on multiplicity rather than an exact number. Check its receive/respond vocabulary against the approved ¶16–17 policy.</td></tr>
+              <tr><td>Translator’s note</td><td>Add one concise sentence declaring controlled estrangement: marked syntax is retained when Benjamin marks it, not whenever German idiom can be mirrored mechanically.</td></tr>
+              <tr><td>Bibliography</td><td>Add the stable TextGrid object for “Huldigung der Tiere” and identify the quoted subsection. This source verification belongs to the translation decision, not merely to later link repair.</td></tr>
+              <tr><td>Verification</td><td>Search for superseded phrases across reading text, commentary, epilogue, quotation corpus, metadata, and internal documentation; then run the edition verifier and browser checks.</td></tr>
+              <tr><td>Public record</td><td>Published the net corrections under Edition 2026.07.14 in the Revision History and changelog without narrating abandoned proposals or internal review states.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="decisions">
+        <h2>Decision bundle</h2>
+        <p>Four approvals would settle this item while keeping the genuinely different questions visible:</p>
+        <ol class="decision-list">
+          <li><strong>Definite readings:</strong> approve the recommended corrections at ¶12, ¶15, both ¶16 syntax/meaning loci, ¶19, and both ¶21 loci.</li>
+          <li><strong>Reception policy:</strong> choose reception-led, double-signal, or conception-led English for ¶16–17. The recommendation is reception-led with the conception resonance in commentary.</li>
+          <li><strong>¶1.9 ambiguity:</strong> choose default agency, reversed agency, or spatial neutralization. The recommendation is default agency with explicit disclosure.</li>
+          <li><strong>Register:</strong> approve or amend the controlled-estrangement policy and its exact representative list before implementation.</li>
+        </ol>
+        <p class="closed"><strong>Decision · 2026-07-14:</strong> the recommended package was approved: definite readings as presented, reception-led English, default agency at ¶1.9 with disclosure, and controlled estrangement as stated. The implementation plan is persisted at <code>editorial/plans/AUD-P1-002-implementation-plan.md</code>.</p>
+        <p class="closed"><strong>Evidence amendment resolved · 2026-07-14:</strong> the full ¶15 text reopened that reading before it was changed; amended option B was then approved. All decisions are now closed.</p>
+        <p class="closed"><strong>Implementation, verification, and publication · 2026-07-14:</strong> the complete approved package is synchronized across translation, commentary, epilogue, translator’s note, notes, bibliography, and the public revision record. The edition verifier, desktop and mobile interaction checks, overflow checks, and link check pass. Published and resolved as Edition 2026.07.14.</p>
+      </section>
+    </article>
+
+    <aside aria-label="Review navigation">
+      <h2>In this review</h2>
+      <ol class="toc">
+        <li><a href="#question">Question and scope</a></li>
+        <li><a href="#evidence">Evidence and control</a></li>
+        <li><a href="#locus-one">¶1.9 · circumference</a></li>
+        <li><a href="#locus-twelve">¶12 · sensory</a></li>
+        <li><a href="#locus-guarantee">¶16 · vouched for</a></li>
+        <li><a href="#reception">¶16–17 · reception</a></li>
+        <li><a href="#aroused">¶19 · aroused</a></li>
+        <li><a href="#mueller">¶21 · Müller</a></li>
+        <li><a href="#hundreds">¶21 · hundreds</a></li>
+        <li><a href="#new-findings">Additional findings</a></li>
+        <li><a href="#syntax-policy">Syntax policy</a></li>
+        <li><a href="#ripple">Edition-wide ripple</a></li>
+        <li><a href="#decisions">Decision bundle</a></li>
+      </ol>
+      <div class="callout"><strong>Internal only.</strong> This page is deliberately absent from the public edition’s navigation and carries <code>noindex, nofollow</code>.</div>
+    </aside>
+  </main>
+
+  <footer>AUD-P1-002 · Prepared against public Edition 2026.07.12.5 · Published and resolved as Edition 2026.07.14</footer>
+</body>
+</html>
